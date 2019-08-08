@@ -23,6 +23,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 });
 
+    /**
+     * RECLAMACAO API
+     */
+    Route::get('reclamacao-categorias','API\v1\IndexController@getReclamaCategories');
     Route::post('cadastrar', 'Auth\RegisterController@registerAPI');
     Route::post('entrar', 'Auth\LoginController@loginAPI');
     Route::post('sair', 'Auth\LoginController@logoutAPI');
