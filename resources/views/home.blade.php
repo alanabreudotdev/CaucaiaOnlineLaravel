@@ -10,7 +10,6 @@
                     <span id="doc-mapplus"><i class="fa fa-plus"></i></span>
                     <span id="doc-mapminus"><i class="fa fa-minus"></i></span>
                     <span id="doc-lock"><i class="fa fa-lock"></i></span>
-                    <span id="listar-geolocation"><i class="fa fa-crosshairs"></i></span>
                 </div>
             </div>
         </div>

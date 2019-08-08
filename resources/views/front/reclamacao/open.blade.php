@@ -9,7 +9,7 @@
    
     <!-- Row -->
     <div class="row ">
-            <div class="col-xl-8 col-md-8">
+            <div class="col-xl-12 col-md-12">
             <!-- Title -->
             <div class="hk-pg-header">
                 <h4 class="hk-pg-title ">Nova Reclamação </h4>
@@ -169,17 +169,7 @@
                             </div>
                         </div>
                     </section>
-            </div>
            
-            <!-- PUBLICIDADE ADWORD -->
-        <div class="col-xl-4 col-md-4 ">
-                <div class="hk-row-wrapper">
-                    <div class="card">                            
-                        <img src="https://via.placeholder.com/300x250.png" class="img-fluid" alt="img">
-                    </div>
-                </div>
-            </div>
-            <!-- FIM PUBLICIADE ADWORD -->
         </div>
 </div>
 </div>

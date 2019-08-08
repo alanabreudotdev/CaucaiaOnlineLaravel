@@ -8,6 +8,11 @@
     <div class="row mb-40">
         <div class="col-xl-12 pa-0 ">
             <div id="mapa" class="gmap w-auto h-350p border-bottom border-3" ></div>
+            <div class="listar-mapcontrols">
+                    <span id="doc-mapplus"><i class="fa fa-plus"></i></span>
+                    <span id="doc-mapminus"><i class="fa fa-minus"></i></span>
+                    <span id="doc-lock"><i class="fa fa-lock"></i></span>
+            </div>
         </div>
     </div>
    
@@ -22,8 +27,8 @@
             <section class="hk-sec-wrapper shadow-sm">
         
                 <h4 class="hk-sec-title ">{{setting('nome_orgao_servico')}}</h5>
-                 <h5 >Categoria/Serviço: {{ $reclamacao->categories->name}}</h6>
-                 <small>Subcategoria: {{ $reclamacao->subcategories->name}}</small>
+                 <h5 >{{ $reclamacao->categories->name}}</h6>
+                 <small>{{ $reclamacao->subcategories->name}}</small>
 
             </section>
            

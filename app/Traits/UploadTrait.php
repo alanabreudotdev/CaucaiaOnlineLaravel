@@ -22,11 +22,11 @@ trait UploadTrait
      * @return string
      */
     
-    public function uploadFile(UploadedFile $image, $path)
+    public function uploadFile(UploadedFile $image, $path, $name = null)
     {
         $extension = $image->getClientOriginalExtension();
         $name = pathinfo($image->getClientOriginalName(), PATHINFO_FILENAME);
-        $image_name = str_slug(date('Y-m-d-h-i-s') . $name . str_random()) . '.' . $extension;
+        $image_name = str_slug($name . str_random(10)) . '.' . $extension;
         $image->move($path, $image_name);
         return $image_name;
     }

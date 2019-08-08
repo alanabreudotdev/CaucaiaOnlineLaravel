@@ -86,12 +86,13 @@ class ReclamarController extends Controller
         // Persist user record to database
         $save = Reclamacao::create($input);
         if($save){
+
             // Check if a profile image has been uploaded
             if ($request->has('foto_url_01')) {
                 // Get image file
                 $image = $request->file('foto_url_01');
                 // Make a image name based on user name and current timestamp
-                $name = $save->id.'_foto01'.'_'.time();
+                $name = str_slug($save->id.'_'.time().'_'. str_random(10));
                 // Define folder path
                 $folder = '/uploads/images/reclamacao/';
                 // Make a file path where image will be stored [ folder path + file name + file extension]
@@ -102,41 +103,41 @@ class ReclamarController extends Controller
                 $save->foto_url_01 = $filePath;
                 $save->save();
             }
+            
+           // Check if a profile image has been uploaded
+        if ($request->has('foto_url_02')) {
+            // Get image file
+            $image = $request->file('foto_url_02');
+            // Make a image name based on user name and current timestamp
+            $name = str_slug($save->id.'_'.time().'_'. str_random(10));
+            // Define folder path
+            $folder = '/uploads/images/reclamacao/';
+            // Make a file path where image will be stored [ folder path + file name + file extension]
+            $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
+            // Upload image
+            $this->uploadOne($image, $folder, 'public', $name);
+            // Set user profile image path in database to filePath
+            $save->foto_url_02 = $filePath;
+            $save->save();
+        }
 
-            // Check if a profile image has been uploaded
-            if ($request->has('foto_url_02')) {
-                // Get image file
-                $image = $request->file('foto_url_02');
-                // Make a image name based on user name and current timestamp
-                $name = $save->id.'_foto02'.'_'.time();
-                // Define folder path
-                $folder = '/uploads/images/reclamacao/';
-                // Make a file path where image will be stored [ folder path + file name + file extension]
-                $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
-                // Upload image
-                $this->uploadOne($image, $folder, 'public', $name);
-                // Set user profile image path in database to filePath
-                $save->foto_url_02 = $filePath;
-                $save->save();
-            }
-
-            // Check if a profile image has been uploaded
-            if ($request->has('foto_url_03')) {
-                // Get image file
-                $image = $request->file('foto_url_03');
-                // Make a image name based on user name and current timestamp
-                $name = $save->id.'_foto03'.'_'.time();
-                // Define folder path
-                $folder = '/uploads/images/reclamacao/';
-                // Make a file path where image will be stored [ folder path + file name + file extension]
-                $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
-                // Upload image
-                $this->uploadOne($image, $folder, 'public', $name);
-                // Set user profile image path in database to filePath
-                $save->foto_url_03 = $filePath;
-                $save->save();
-            }
-        
+        // Check if a profile image has been uploaded
+        if ($request->has('foto_url_03')) {
+            // Get image file
+            $image = $request->file('foto_url_03');
+            // Make a image name based on user name and current timestamp
+            $name = str_slug($save->id.'_'.time().'_'. str_random(10));
+            // Define folder path
+            $folder = '/uploads/images/reclamacao/';
+            // Make a file path where image will be stored [ folder path + file name + file extension]
+            $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
+            // Upload image
+            $this->uploadOne($image, $folder, 'public', $name);
+            // Set user profile image path in database to filePath
+            $save->foto_url_03 = $filePath;
+            $save->save();
+        }
+       
         }
     
         // Return user back and show a flash message
