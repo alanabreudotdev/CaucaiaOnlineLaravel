@@ -2,13 +2,13 @@
         <div class="col-12">
     @if(count($reclamacoes)>0)
     <div class="row mb-10">
-            
+
         @foreach ($reclamacoes as $rcl )
-        <div class="col-xl-6 mb-10 ">                       
+        <div class="col-xl-6 col-sm-12 mb-10 ">
                 <div class="card card-profile-feed h-560p">
                         <div class="card-header card-header-action">
                             <div class="media align-items-center">
-                                
+
                                 <div class="media-body">
                                     <div class="text-capitalize font-weight-500 text-dark">{{$rcl->categories->name}}</div>
                                     <div class="font-13">{{\Carbon\Carbon::parse($rcl->created_at)->diffForHumans() }}</div>
@@ -29,9 +29,9 @@
                                     <div class="position-relative">
                                         <a href="/reclamar/ver/{{$rcl->id}}/{{$rcl->slug}}">
                                             @if($rcl->foto_url_01)
-                                                <img class="card-img-top d-block h-280p" src="{{asset('storage'.$rcl->foto_url_01)}}" alt="{{$rcl->titulo}}">
+                                                <img class="card-img-top d-block h-300p" src="{{asset('storage'.$rcl->foto_url_01)}}" alt="{{$rcl->titulo}}">
                                             @else
-                                                <img class="card-img-top d-block h-280p" src="{{asset('dist/img/default_reclamacao.jpg')}}" alt="{{$rcl->titulo}}">
+                                                <img class="card-img-top d-block h-300p" src="{{asset('dist/img/default_reclamacao.jpg')}}" alt="{{$rcl->titulo}}">
                                             @endif
                                             <a href="/reclamar/ver/{{$rcl->id}}/{{$rcl->slug}}" class="btn btn-light btn-wth-icon icon-wthot-bg btn-sm btn-rounded btn-pg-link"><span class="icon-label"><i class="ion ion-md-link"></i></span><span class="btn-text">visualizar</span></a>
                                         </a>
@@ -40,27 +40,27 @@
                                     <h6 class="card-title"><a href="/reclamar/ver/{{$rcl->id}}/{{$rcl->slug}}">@if(strlen($rcl->titulo)>149){!!substr($rcl->titulo,0,150)!!}...@else {{$rcl->titulo}}@endif</a></h6>
                                             <small class="card-subtitle mb-2 text-muted">{{$rcl->endereco}}</small>
                                     </div>
-                            
+
                         </div>
                         <div class="card-footer justify-content-between">
                             <div>
                                 <a href="#!" id="reclamacao_apoio" onclick="apoioLike({{$rcl->id}})"><i class="ion-md-thumbs-up text-primary"></i><span class="apoios-{{$rcl->id}}">@if($rcl->apoio ==0) 0 @else{{$rcl->apoio}}  @endif</span> &nbsp; pessoas apoiaram</a>
                             </div>
                             <div>
-                                
+
                             </div>
                         </div>
                     </div>
-                </div>       
-                    
+                </div>
+
             @endforeach
-       
+
     </div>
-                @else   
+                @else
                 <a href="#" class="list-group-item list-group-item-action flex-column align-items-start mb-30">
                     <div class="d-flex w-100 justify-content-center">
                         <h5 class="mb-1">nenhuma reclamação encontrada</h5>
-                                        
+
                     </div>
                 </a>
                 <a href="/reclamar" class="d-flex w-100 justify-content-center">Voltar</a>

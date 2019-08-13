@@ -45,6 +45,16 @@ class User extends Authenticatable
         return $this->api_token;
     }
 
+    /**
+    * CHECAR TOKEN
+    */
+    public static function checkToken($token){
+       if($token->api_token){
+           return true;
+       }
+       return false;
+   }
+
     public function reclamacao(){
         return $this->hasMany('App\Reclamacao','id');
     }

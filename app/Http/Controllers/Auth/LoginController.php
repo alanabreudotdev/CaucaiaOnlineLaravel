@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Auth;
+use App\User;
 
 class LoginController extends Controller
 {
@@ -41,15 +42,22 @@ class LoginController extends Controller
 
     public function loginAPI(Request $request)
     {
-        $this->validateLogin($request);
+         //$this->validateLogin($request);
 
         if ($this->attemptLogin($request)) {
             $user = $this->guard()->user();
             $user->generateToken();
 
             return response()->json([
-                'data' => $user->toArray(),
+                'success' => true,
+                'token' => $user->api_token,
+                'user' => $user
             ]);
+        }else{
+          return response()->json([
+                'success' => false,
+                'message' => 'Email ou senha inválido',
+            ], 401);
         }
 
         return $this->sendFailedLoginResponse($request);
@@ -57,13 +65,36 @@ class LoginController extends Controller
 
     public function logoutAPI(Request $request)
     {
-        $user = Auth::guard('api')->user();
 
-        if ($user) {
-            $user->api_token = null;
-            $user->save();
+      if(!User::checkToken($request)){
+            return response()->json([
+             'message' => 'Token é obrigatório',
+             'success' => false,
+            ],422);
         }
 
-        return response()->json(['data' => 'User logged out.'], 200);
+        $user = User::where('api_token',$request['api_token'])->first();
+
+
+          if ($user) {
+              $user->api_token = null;
+              $user->save();
+              return response()->json([
+                'message' => 'Usuário deslogado com sucesso.',
+                'success' => true,
+              ], 200);
+          }else{
+
+              return response()->json([
+                    'message' => 'Usuário não logado.',
+                    'success' => false,
+              ], 500);
+          }
+
+
+
+
+
+
     }
 }

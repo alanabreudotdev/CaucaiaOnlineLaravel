@@ -26,18 +26,26 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     /**
      * RECLAMACAO API
      */
-    Route::get('reclamacao-categorias','API\v1\IndexController@getReclamaCategories');
+
     Route::post('cadastrar', 'Auth\RegisterController@registerAPI');
     Route::post('entrar', 'Auth\LoginController@loginAPI');
-    Route::post('sair', 'Auth\LoginController@logoutAPI');
+    Route::get('sair', 'Auth\LoginController@logoutAPI');
 
 Route::group(['middleware' => 'auth:api'], function(){
-    
-    Route::get('paginas', function() {
-        // If the Content-Type and Accept headers are set to 'application/json', 
+
+  Route::get('reclamacao-categorias','API\v1\IndexController@getReclamaCategories');
+  Route::get('reclamacao-subcategorias','API\v1\IndexController@getReclamaSubCategories');
+  Route::get('reclamacao-index','API\v1\IndexController@getReclamacao');
+  Route::get('reclamacao-apoio','Front\ReclamarController@ajaxApoio');
+  Route::get('reclamacao-ver','API\v1\IndexController@getReclamacaoView');
+  Route::post('reclamacao-postar','API\v1\IndexController@postReclamacao');
+
+
+
+  Route::get('paginas', function() {
+        // If the Content-Type and Accept headers are set to 'application/json',
         // this will return a JSON structure. This will be cleaned up later.
         return Page::all();
     });
-    
-});
 
+});

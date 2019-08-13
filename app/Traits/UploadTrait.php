@@ -21,7 +21,7 @@ trait UploadTrait
      * @param $path
      * @return string
      */
-    
+
     public function uploadFile(UploadedFile $image, $path, $name = null)
     {
         $extension = $image->getClientOriginalExtension();

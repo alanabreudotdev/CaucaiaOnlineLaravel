@@ -12,13 +12,13 @@
                 </li>
                 <li class="nav-item  show-on-hover {{ (request()->is('reclamar*')) ? 'active' : '' }}">
                     <a class="nav-link " href="{{ url('/reclamar/listar/todas')}}" role="button"  aria-haspopup="true" aria-expanded="false">
-                        RECLAMAÇÕES 
+                        RECLAMAÇÕES
                     </a>
                 </li>
-               
+
                 <li class="nav-item  show-on-hover">
                         <a class="nav-link " href="#!" role="button"  aria-haspopup="true" aria-expanded="false">
-                            AJUDA 
+                            AJUDA
                         </a>
                     </li>
                 <li class="nav-item">
@@ -26,23 +26,23 @@
                 </li>
             </ul>
         </div>
-        
+
         @if(Auth::user())
         <ul class="navbar-nav hk-navbar-content">
             <li class="nav-item">
-                    <a href="/reclamar" type="button" class="btn btn-green btn-rounded btn-sm">Reclamar</a>           
+                    <a href="/reclamar" class="btn btn-green btn-rounded btn-sm">Reclamar</a>
              </li>
-            @if (Auth::check() && Auth::user()->hasRole('admin')) 
+            @if (Auth::check() && Auth::user()->hasRole('admin'))
                 <li class="nav-item">
                    <a id="settings_toggle_btn"  class="nav-link nav-link-hover" href="{{ url('/admin') }}"><span class="feather-icon"><i data-feather="settings"></i></span></a>
                 </li>
             @endif
-            @if (Auth::check() && Auth::user()->hasRole('gerenciador')) 
+            @if (Auth::check() && Auth::user()->hasRole('gerenciador'))
                 <li class="nav-item">
                    <a id="settings_toggle_btn"  class="nav-link nav-link-hover" href="{{ url('/gerenciador') }}"><span class="feather-icon"><i data-feather="settings"></i></span></a>
                 </li>
             @endif
-            
+
             <li class="nav-item dropdown dropdown-authentication">
                 <a class="nav-link dropdown-toggle no-caret" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media">
@@ -68,19 +68,19 @@
                         </form>
                 </div>
             </li>
-            
+
         </ul>
         @else
         <ul class="navbar-nav hk-navbar-content">
                <li class="nav-item">
-                    <a href="/reclamar" type="button" class="btn btn-green btn-rounded btn-sm">Reclamar</a>     
+                    <a href="/reclamar" class="btn btn-success btn-rounded btn-sm">Reclamar</a>
                </li>
                 <li class="nav-item dropdown dropdown-authentication">
                     <a class="nav-link dropdown-toggle no-caret" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <div class="media">
                             <div class="media-img-wrap">
                                     <div class="avatar">
-                                            <img src=" {{ asset('dist/img/user_guest.png')}}" alt="Usuario" class="avatar-img rounded-circle">
+                                            <img src=" {{ asset('dist/img/img-thumb.jpg')}}" alt="Usuario" class="avatar-img rounded-circle">
                                         </div>
                             </div>
                             <div class="media-body">
@@ -91,10 +91,10 @@
                     <div class="dropdown-menu dropdown-menu-right" data-dropdown-in="flipInX" data-dropdown-out="flipOutX">
                         <a class="dropdown-item" href="{{ route('entrar')}}"><i class="dropdown-icon zmdi zmdi-account"></i><span>Entrar</span></a>
                         <a class="dropdown-item" href="{{ route('cadastrar')}}"><i class="dropdown-icon zmdi zmdi-card"></i><span>Cadastrar</span></a>
-                       
+
                     </div>
                 </li>
-                
+
             </ul>
             @endif
     </nav>

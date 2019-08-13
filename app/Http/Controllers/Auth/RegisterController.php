@@ -71,6 +71,7 @@ class RegisterController extends Controller
             'lastname' => $data['lastname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'photo_url' => null,
         ]);
     }
 
@@ -78,9 +79,9 @@ class RegisterController extends Controller
     {
         $user->generateToken();
 
-        return response()->json(['data' => $user->toArray()], 201);
+        return response()->json(['success'=> true, 'data' => $user->toArray()], 201);
     }
-    
+
     public function registerAPI(Request $request)
     {
         // Here the request is validated. The validator method is located
@@ -89,7 +90,7 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         // A Registered event is created and will trigger any relevant
-        // observers, such as sending a confirmation email or any 
+        // observers, such as sending a confirmation email or any
         // code that needs to be run as soon as the user is created.
         event(new registered($user = $this->create($request->all())));
 
@@ -104,5 +105,5 @@ class RegisterController extends Controller
                         ?: redirect($this->redirect('/home'));
     }
 
-    
+
 }
