@@ -110,7 +110,7 @@ class IndexController extends Controller
           $image = $request->foto_url_01;  // your base64 encoded
 
           \File::put(storage_path(). $storageFolder . $name, base64_decode($image));
-
+ 
           // Set user profile image path in database to filePath
           $save->foto_url_01 = $filePath;
           $save->save();
