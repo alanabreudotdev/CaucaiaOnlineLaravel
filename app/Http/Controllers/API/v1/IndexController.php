@@ -46,10 +46,10 @@ class IndexController extends Controller
     }
 
     public function getReclamacao($id = null){
-  
+
 
         $reclamacoes = Reclamacao::latest()->select('id','created_at','reclama_category_id',
-          'titulo', 'textoReclamacao','foto_url_01', 'apoio', 'endereco', 'views' )
+          'titulo', 'texto_reclamacao','foto_url_01', 'apoio', 'endereco', 'views' )
                                   ->with('user','categories')
                                   ->paginate(100);
 
