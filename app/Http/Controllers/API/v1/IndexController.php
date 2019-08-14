@@ -47,7 +47,7 @@ class IndexController extends Controller
 
     public function getReclamacao($id = null){
 
-        $reclamacoes = Reclamacao::latest()->with('user','categories')->paginate(6);
+        $reclamacoes = Reclamacao::latest()->with('user','categories')->paginate(100);
 
       return response()->json([
         'success' => true,
@@ -86,7 +86,7 @@ class IndexController extends Controller
         'longitude' => $longitude,
         'latitude' =>$latitude,
         'slug' => $slug
-
+        'status'=> 1
       ];
 
       //GET TOTAL RECLAMACOES PER CATEGORY
@@ -96,7 +96,7 @@ class IndexController extends Controller
 
       // Persist user record to database
       $save = Reclamacao::create($dados);
- 
+
       if($save){
         if($request->has('foto_url_01')){
 
