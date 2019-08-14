@@ -51,7 +51,7 @@ class IndexController extends Controller
 
       return response()->json([
         'success' => true,
-        'reclamacoes' => $reclamacoes
+         $reclamacoes
       ]);
     }
 
