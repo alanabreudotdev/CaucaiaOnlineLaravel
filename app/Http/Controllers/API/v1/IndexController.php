@@ -85,9 +85,10 @@ class IndexController extends Controller
         'celular' =>$request->celular,
         'longitude' => $longitude,
         'latitude' =>$latitude,
-        'slug' => $slug
+        'slug' => $slug,
         'status'=> 1
       ];
+        
 
       //GET TOTAL RECLAMACOES PER CATEGORY
       $total = $this->rclCat->getTotalReclamacao($request->categoria);
