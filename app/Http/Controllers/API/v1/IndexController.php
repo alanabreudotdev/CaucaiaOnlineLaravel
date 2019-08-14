@@ -31,7 +31,7 @@ class IndexController extends Controller
 
         return response()->json([
           'success' => true,
-          'data' => $categorias
+          'reclamacoes' => $categorias
         ]);
     }
 
@@ -88,7 +88,7 @@ class IndexController extends Controller
         'slug' => $slug,
         'status'=> 1
       ];
-        
+
 
       //GET TOTAL RECLAMACOES PER CATEGORY
       $total = $this->rclCat->getTotalReclamacao($request->categoria);
