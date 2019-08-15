@@ -139,7 +139,7 @@ class IndexController extends Controller
         'birthday' => $request->birthday,
         'reclamacao_privacidade' => $request->reclamacao_privacidade,
         'cpf' => $request->cpf,
-        if($request->password != null){ 'password' => bcrypt($request->password)}
+        if($request->password != null){ 'password' => bcrypt($request->password);,}
       ];
 
       $user = User::where('id', $request->id)->first();
