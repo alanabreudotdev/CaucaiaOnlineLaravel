@@ -60,7 +60,7 @@ Route::get('/usuario/reclamacoes','Front\UsuarioController@reclamacoes')->middle
 
 
 //ROTAS PARA ADMIN
-Route::group([ 'prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' => 'admin'], function () {
+Route::group([ 'prefix' => 'admin', 'middleware' => ['auth', 'roles','verified'], 'roles' => 'admin'], function () {
     Route::get('/','Admin\AdminController@index')->name('admin');
     Route::get('usuarios','Admin\AdminController@index')->name('admin.usuarios');
     Route::get('noticias','Admin\AdminController@index')->name('admin.noticias');
@@ -76,11 +76,11 @@ Route::group([ 'prefix' => 'admin', 'middleware' => ['auth', 'roles'], 'roles' =
     Route::resource('settings', 'Admin\SettingsController', ['as' => 'settings']);
     Route::get('generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@getGenerator']);
     Route::post('generator', ['uses' => '\Appzcoder\LaravelAdmin\Controllers\ProcessController@postGenerator']);
-    
+
     //NEWS
     Route::resource('news-category', 'Admin\\NewsCategoryController');
     Route::resource('news', 'Admin\\NewsController');
-    
+
     //RECLAMAÇÃO
     Route::resource('reclamacao', 'Admin\\ReclamacaoController');
     Route::resource('reclama-category', 'Admin\\ReclamaCategoryController');
@@ -104,7 +104,7 @@ Route::group([ 'prefix' => 'gerenciador', 'middleware' => ['auth', 'roles'], 'ro
 
 });
 
-Auth::routes();
+Auth::routes(['verify' => true]);
 
 
 
