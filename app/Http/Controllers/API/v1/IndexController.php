@@ -132,7 +132,7 @@ class IndexController extends Controller
     }
 
     public function userUpdate(Request $request){
-      echo trim($request->birthday);
+      echo preg_replace('~\x{00a0}~u', ' ', $request->birthday);
 
       die();
       $dados = [
