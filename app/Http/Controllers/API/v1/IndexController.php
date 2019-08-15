@@ -150,14 +150,14 @@ class IndexController extends Controller
 
       ];
 
-
       $user = User::where('id', $request->id)->first();
 
       $save = $user->update($dados);
       if($save){
+        $user = User::where('id', $request->id)->first();
         return response()->json([
           'success'=>true,
-          'data'=>$save
+          'data'=>$user
         ]);
       }else{
         return response()->json([
