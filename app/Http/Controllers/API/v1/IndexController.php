@@ -132,6 +132,17 @@ class IndexController extends Controller
 
     public function userUpdate(Request $request){
 
+      $dados = [
+        'name' => $request->name,
+        'lastname' => $request->lastname,
+        'celular' => $request->celular,
+        'birthday' => $request->birthday,
+        'reclamacao_privacidade' => $request->reclamacao_privacidade,
+        'cpf' => $request->cpf,
+        if($request->password != null){ 'password' => bcrypt($request->password);
+        }
+      ];
+
       $user = User::where('id', $request->id)->first();
 
       $save = $user->update($request);
