@@ -132,10 +132,12 @@ class IndexController extends Controller
     }
 
     public function userUpdate(Request $request){
-       $data = json_decode($request,true);
 
 
-      
+       echo $date = date_create_from_format("d/m/Y", $request->birthday)->format("Y-m-d");
+      die();
+
+
       $dados = [
         'name' => $request->name,
         'lastname' => $request->lastname,
@@ -150,7 +152,7 @@ class IndexController extends Controller
 
       $user = User::where('id', $request->id)->first();
 
-      $save = $user->update($data);
+      $save = $user->update($dados);
       if($save){
         return response()->json([
           'success'=>true,
