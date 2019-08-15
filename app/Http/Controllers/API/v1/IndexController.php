@@ -132,10 +132,10 @@ class IndexController extends Controller
     }
 
     public function userUpdate(Request $request){
-      $data = json_decode($request,true);
+       $data = json_decode($request,true);
 
 
-      die();
+      
       $dados = [
         'name' => $request->name,
         'lastname' => $request->lastname,
