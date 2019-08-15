@@ -132,7 +132,7 @@ class IndexController extends Controller
     }
 
     public function userUpdate(Request $request){
-      echo $request->birthday;
+      echo Carbon::parse($request->birthday)->format('Y-m-d');
       die();
       $dados = [
         'name' => $request->name,
