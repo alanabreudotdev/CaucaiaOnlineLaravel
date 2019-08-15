@@ -37,9 +37,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
-    protected $dates = [
-        'birthday',
-    ];
+  protected $dateFormat = 'd/m/Y';
+
+
 
     public function generateToken()
     {
