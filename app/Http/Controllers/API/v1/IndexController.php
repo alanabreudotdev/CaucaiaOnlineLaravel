@@ -11,6 +11,7 @@ use App\User;
 use App\Traits\UploadTrait;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
+use Carbon\Carbon;
 
 class IndexController extends Controller
 {
@@ -131,12 +132,13 @@ class IndexController extends Controller
     }
 
     public function userUpdate(Request $request){
-
+      echo $request->birthday;
+      die();
       $dados = [
         'name' => $request->name,
         'lastname' => $request->lastname,
         'celular' => $request->celular,
-        'birthday' => \Illuminate\Support\Facades\Date::createFromFormat('Y-m-d', $request->birthday),
+        'birthday' => Carbon::parse($request->birthday)->format('Y-m-d')),
         'reclamacao_privacidade' => $request->reclamacao_privacidade,
         'cpf' => $request->cpf,
         'password' => $request->password,
