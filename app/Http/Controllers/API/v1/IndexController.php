@@ -138,7 +138,7 @@ class IndexController extends Controller
         'name' => $request->name,
         'lastname' => $request->lastname,
         'celular' => $request->celular,
-        'birthday' => Carbon::parse($request->birthday)->format('Y-m-d')),
+        'birthday' => Carbon::parse($request->birthday)->format('Y-m-d'),
         'reclamacao_privacidade' => $request->reclamacao_privacidade,
         'cpf' => $request->cpf,
         'password' => $request->password,
