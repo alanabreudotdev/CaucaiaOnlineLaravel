@@ -143,6 +143,8 @@ class IndexController extends Controller
 
       ];
 
+      echo (\Illuminate\Support\Facades\Date::createFromFormat('Y-m-d', $request->birthday));
+
       $user = User::where('id', $request->id)->first();
 
       $save = $user->update($dados);
