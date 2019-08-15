@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\ReclamaCategory;
 use App\Reclamacao;
 use App\ReclamaSubCategory;
+use App\User;
 use App\Traits\UploadTrait;
 use Illuminate\Support\Str;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -127,5 +128,24 @@ class IndexController extends Controller
         'success'=>true,
         'data'=> 'Foi'
       ]);
+    }
+
+    public function userUpdate(Request $request){
+
+      $user = User::where('id', $request->id)->first();
+
+      $save = $user->update($request);
+      if($save){
+        return response()->json([
+          'success'=>true,
+          'data'=>$save
+        ]);
+      }else{
+        return response()->json([
+          'success'=>false,
+          'message'=> 'Error'
+        ]);
+      }
+
     }
 }
