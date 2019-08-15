@@ -145,7 +145,7 @@ class IndexController extends Controller
 
       $user = User::where('id', $request->id)->first();
 
-      $save = $user->update($request);
+      $save = $user->update($dados);
       if($save){
         return response()->json([
           'success'=>true,
