@@ -132,7 +132,8 @@ class IndexController extends Controller
     }
 
     public function userUpdate(Request $request){
-      echo preg_replace('~\x{00a0}~u', ' ', $request->birthday);
+      $data = json_decode($request,true);
+
 
       die();
       $dados = [
@@ -149,7 +150,7 @@ class IndexController extends Controller
 
       $user = User::where('id', $request->id)->first();
 
-      $save = $user->update($dados);
+      $save = $user->update($data);
       if($save){
         return response()->json([
           'success'=>true,

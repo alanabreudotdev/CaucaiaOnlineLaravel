@@ -16,7 +16,7 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $fillable = [
-        'name', 'lastname', 'email', 'password', 'celular', 'birthday','reclamacao_privacidade','cpf','rg'
+        'name', 'lastname', 'email', 'password','celular', 'birthday','reclamacao_privacidade','cpf','rg'
     ];
 
     /**
@@ -35,10 +35,8 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-
+        'birthday' => 'date:d/m/Y',
     ];
-
-    //protected $dates = ['birthday'];
 
     public function generateToken()
     {
