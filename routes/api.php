@@ -39,6 +39,7 @@ Route::group(['middleware' => 'auth:api'], function(){
   Route::get('reclamacao-apoio','Front\ReclamarController@ajaxApoio');
   Route::get('reclamacao-ver','API\v1\IndexController@getReclamacaoView');
   Route::post('reclamacao-postar','API\v1\IndexController@postReclamacao');
+  Route::post('user-update','API\v1\IndexController@userUpdate');
 
 
 
