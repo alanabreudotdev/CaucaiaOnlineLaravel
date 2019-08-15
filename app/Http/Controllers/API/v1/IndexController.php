@@ -146,10 +146,7 @@ class IndexController extends Controller
         'celular' => $request->celular,
         'birthday' => $date,
         'reclamacao_privacidade' => $request->reclamacao_privacidade,
-        'cpf' => $request->cpf,
-        if($request->password){
-          'password' => $request->password,
-        }
+        'cpf' => $request->cpf
 
       ];
 
