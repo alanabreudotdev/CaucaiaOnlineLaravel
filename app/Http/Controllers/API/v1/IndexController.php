@@ -132,7 +132,7 @@ class IndexController extends Controller
     }
 
     public function userUpdate(Request $request){
-      echo Carbon::parse($request->birthday)->format('Y-m-d');
+      echo Carbon::parse(stripslashes($request->birthday))->format('Y-m-d');
       die();
       $dados = [
         'name' => $request->name,
@@ -145,7 +145,6 @@ class IndexController extends Controller
 
       ];
 
-      echo (\Illuminate\Support\Facades\Date::createFromFormat('Y-m-d', $request->birthday));
 
       $user = User::where('id', $request->id)->first();
 
