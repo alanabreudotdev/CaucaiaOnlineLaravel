@@ -133,20 +133,21 @@ class IndexController extends Controller
 
     public function userUpdate(Request $request){
 
+      if($request->birthday!=""){
+        $date = date_create_from_format("d/m/Y", $request->birthday)->format("Y-m-d");
+      }
 
-       echo $date = date_create_from_format("d/m/Y", $request->birthday)->format("Y-m-d");
-      die();
+
 
 
       $dados = [
         'name' => $request->name,
         'lastname' => $request->lastname,
         'celular' => $request->celular,
-        'birthday' => Carbon::parse($request->birthday)->format('Y-m-d'),
+        'birthday' => $date,
         'reclamacao_privacidade' => $request->reclamacao_privacidade,
         'cpf' => $request->cpf,
         'password' => $request->password,
-
       ];
 
 
