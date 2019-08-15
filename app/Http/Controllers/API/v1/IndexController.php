@@ -147,7 +147,10 @@ class IndexController extends Controller
         'birthday' => $date,
         'reclamacao_privacidade' => $request->reclamacao_privacidade,
         'cpf' => $request->cpf,
-        'password' => $request->password,
+        if($request->password){
+          'password' => $request->password,
+        }
+
       ];
 
 
