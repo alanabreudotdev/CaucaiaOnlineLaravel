@@ -136,7 +136,7 @@ class IndexController extends Controller
         'name' => $request->name,
         'lastname' => $request->lastname,
         'celular' => $request->celular,
-        'birthday' => $request->birthday,
+        'birthday' => \Illuminate\Support\Facades\Date::createFromFormat('Y-m-d', $request->birthday),
         'reclamacao_privacidade' => $request->reclamacao_privacidade,
         'cpf' => $request->cpf,
         'password' => $request->password,
