@@ -157,7 +157,7 @@ class IndexController extends Controller
         $user = User::where('id', $request->id)->first();
         return response()->json([
           'success'=>true,
-          'data'=>$user
+          'user'=>$user 
         ]);
       }else{
         return response()->json([
