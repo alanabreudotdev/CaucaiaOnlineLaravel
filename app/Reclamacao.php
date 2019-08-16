@@ -10,7 +10,7 @@ class Reclamacao extends Model
 {
     use LogsActivity;
     use SoftDeletes;
-    
+
 
     /**
      * The database table used by the model.
@@ -31,9 +31,9 @@ class Reclamacao extends Model
      *
      * @var array
      */
-    protected $fillable = ['url_video','latitude','longitude','respondida','slug','reclama_category_id', 'reclama_sub_category_id', 'user_id', 'titulo', 'texto_reclamacao', 'foto_url_01', 'foto_url_02', 'foto_url_03', 'endereco', 'celular', 'telefone', 'status', 'resolvido'];
+    protected $fillable = ['apoio','url_video','latitude','longitude','respondida','slug','reclama_category_id', 'reclama_sub_category_id', 'user_id', 'titulo', 'texto_reclamacao', 'foto_url_01', 'foto_url_02', 'foto_url_03', 'endereco', 'celular', 'telefone', 'status', 'resolvido'];
 
-    
+
 
     /**
      * Change activity log event description
@@ -104,7 +104,7 @@ class Reclamacao extends Model
     public function mapJson($category = null, $id = null)
     {
          //pega a localizao para passar ao mapa
-         return $locations_get = Reclamacao::getLocationsToMap($id, $category);  
+         return $locations_get = Reclamacao::getLocationsToMap($id, $category);
     }
 
     /**
@@ -114,7 +114,7 @@ class Reclamacao extends Model
 
         // GERAR DADOS PARA ALIMENTAR O MAPA
         if(count($locations_get)>0){
-            
+
             foreach($locations_get as $loc)
             {
                 //$output['data'][] creates a new entry in the array
@@ -131,35 +131,35 @@ class Reclamacao extends Model
                 "marker"=> '/storage/'.$loc->categories->icon_image_url,
                 'apoio' =>$loc->apoio,
                 'endereco' => $loc->endereco
-            ]);	
+            ]);
 
-            
+
             }
                 }else{
-                    $locations['data'] = array('status'=>'');  
+                    $locations['data'] = array('status'=>'');
                 }
-           
+
     if(count($locations_get)>0){
-       
+
         $dados = array('listing' => $locations);
 
-        $status = $dados['status'] = 'found';             
+        $status = $dados['status'] = 'found';
         // Adiciona o identificador "Data" aos dados
         $locations = array('data' => $dados);
-        
+
 
         }else{
         // Adiciona o identificador "Contatos" aos dados
         $dados = array('listing' => $locations);
         // Atribui os 3 arrays apenas um array
 
-        $status = $dados['status'] = '';             
+        $status = $dados['status'] = '';
         // Adiciona o identificador "Data" aos dados
         $locations = array('data' => $dados);
-        
 
-    }       
-    array_push($dados,$status); 
+
+    }
+    array_push($dados,$status);
 
     return $locations = array_reverse($dados);
 

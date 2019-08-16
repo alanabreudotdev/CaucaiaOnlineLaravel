@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-   
+
     <!-- Row -->
     <div class="row ">
         <div class="col-xl-8 col-md-8">
@@ -25,15 +25,15 @@
                 </div>
                 <!-- /Title -->
             <section class="hk-sec-wrapper shadow-sm">
-        
+
                 <h4 class="hk-sec-title ">{{setting('nome_orgao_servico')}}</h5>
                  <h5 >{{ $reclamacao->categories->name}}</h6>
                  <small>{{ $reclamacao->subcategories->name}}</small>
 
             </section>
-           
+
             <!-- INICIO CARD RECLAMACAO -->
-            
+
             <div class="card">
                     <div class="card-header  media pa-20 ">
                             <img class="mr-15 circle d-50" src="@if($reclamacao->user->reclamacao_privacidade==1)
@@ -44,11 +44,11 @@
                                                                         @endif
                                                                     @else
                                                                     {{ asset('dist/img/img-thumb.jpg')}}
-                                                            
+
                                                                 @endif" alt="Reclamado por:">
                             <div class="media-body">
-                                
-                                Reclamado por: 
+
+                                Reclamado por:
                                 <br/>
                                 @if($reclamacao->user->reclamacao_privacidade==1)
                                                     {{$reclamacao->user->name}}
@@ -60,7 +60,7 @@
                                     <small>{{ \Carbon\Carbon::parse($reclamacao->created_at)->diffForHumans() }}</small>
                             </div>
                     </div>
-                        
+
                         <div class="card-body">
                             <div class="position-relative">
                                 <img class="card-img-top d-block" src="{{asset('storage'.$reclamacao->foto_url_01)}}" alt="Card image cap">
@@ -69,24 +69,24 @@
                                  <h5 class="card-title">{{ $reclamacao->titulo}} @if($reclamacao->resolvido)<span class="badge badge-success">Resolvido</span>@endif</h5>
                                     <p class="card-text">{!! $reclamacao->texto_reclamacao!!}</p>
                             </div>
-                          
+
                             <div class="form-group mt-30">
                                 <label for="url">Compartilhar:</label>
                             <input type="url" class="form-control filled-input mw-100" value="{{setting('site_url')}}/reclama/ver/{{$reclamacao->id}}/{{$reclamacao->slug}}" readonly>
                             </div>
-                           
+
                         </div>
-                        
+
                     <div class="card-footer justify-content-between">
                             <div>
-                                <a href="#!" id="reclamacao_apoio" onclick="apoioLike({{$reclamacao->id}})"><i class="ion-md-thumbs-up text-primary"></i>&nbsp;<span class="apoios-{{$reclamacao->id}}">@if($reclamacao->apoio ==0) 0 @else {{$reclamacao->apoio}}  @endif</span> &nbsp; pessoas apoiaram</a>
+                                <a href="#!" id="reclamacao_apoio" onclick="@if(Auth::user()) apoioLike({{$reclamacao->id}}, {{Auth::user()->id}} ) @else javascript:alert('Você precisa logar para apoiar.'); @endif"><i class="ion-md-thumbs-up text-primary"></i>&nbsp;<span class="apoios-{{$reclamacao->id}}">@if($reclamacao->apoio ==0) 0 @else {{$reclamacao->apoio}}  @endif</span> &nbsp; pessoas apoiaram</a>
                             </div>
                             <div>
-                                
+
                             </div>
                         </div>
-                </div> 
-                
+                </div>
+
                 <!-- FIM CARD RECLAMACAO -->
                 @if($reclamacao->foto_url_02 || $reclamacao->foto_url_02)
                     <!-- SECTION IMAGENS RECLAMACAO -->
@@ -94,23 +94,23 @@
                             <h5 class="hk-sec-title">+ Imagens enviadas pelo reclamante</h5>
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" role="tabpanel">
-                                    
+
                                     <div class="row hk-gallery">
-                                        @if($reclamacao->foto_url_01)      
+                                        @if($reclamacao->foto_url_01)
                                             <div class="col-lg-2 col-md-4 col-sm-4 col-6 mb-10" data-src="{{asset('storage'.$reclamacao->foto_url_01)}}">
                                                 <a href="#" class="">
                                                     <div class="gallery-img" style="background-image:url({{asset('storage'.$reclamacao->foto_url_01)}});"></div>
                                                 </a>
                                             </div>
                                         @endif
-                                        @if($reclamacao->foto_url_02)   
+                                        @if($reclamacao->foto_url_02)
                                         <div class="col-lg-2 col-md-4 col-sm-4 col-6 mb-10" data-src="{{asset('storage'.$reclamacao->foto_url_02)}}">
                                                 <a href="#" class="">
                                                     <div class="gallery-img" style="background-image:url({{asset('storage'.$reclamacao->foto_url_02)}});"></div>
                                                 </a>
                                             </div>
                                         @endif
-                                        @if($reclamacao->foto_url_03)   
+                                        @if($reclamacao->foto_url_03)
                                         <div class="col-lg-2 col-md-4 col-sm-4 col-6 mb-10" data-src="{{asset('storage'.$reclamacao->foto_url_03)}}">
                                                 <a href="#" class="">
                                                     <div class="gallery-img" style="background-image:url({{asset('storage'.$reclamacao->foto_url_03)}});"></div>
@@ -150,7 +150,7 @@
                                                             </div>
                                                     </div>
                                                     <div class="card-body pa-30">
-                                                        
+
                                                     <p class="card-text">{{$answers->texto_comentario}}</p>
                                                     </div>
                                                 </div>
@@ -173,7 +173,7 @@
                                                             </div>
                                                     </div>
                                                     <div class="card-body pa-30">
-                                                        
+
                                                     <p class="card-text">{{$answers->texto_comentario}}</p>
                                                     </div>
                                                 </div>
@@ -196,7 +196,7 @@
                                                             </div>
                                                     </div>
                                                     <div class="card-body pa-30">
-                                                        
+
                                                     <p class="card-text">{{$answers->texto_comentario}}</p>
                                                     </div>
                                                 </div>
@@ -218,7 +218,7 @@
                                                             </div>
                                                     </div>
                                                     <div class="card-body pa-30">
-                                                        
+
                                                     <p class="card-text">{{$answers->texto_comentario}}</p>
                                                     </div>
                                                 </div>
@@ -227,15 +227,15 @@
                                     <!-- FIM MOSTRAR RESPOSTA -->
                                 @endif
                             @endforeach
-                                    
+
                         @if(Auth::user() !=null)
                             @if(Auth::user()->id == $reclamacao->user_id)
-                            
+
                             @if($reclamacao->resolvido == 0)
                             <!-- RECLAMACAO RESOLVIDA -->
                             <section class="hk-sec-wrapper bg-light">
                                     <h5 class="hk-sec-title mb-25">Sua reclamação foi resolvida?</h5>
-                                    
+
                                     <div class="row">
                                         <div class="col-sm mb-25">
                                             <button class="btn btn-success btn-block mb-15" data-toggle="collapse" href="#collapseResolvido" role="button" aria-expanded="false" aria-controls="collapseResolvido ">FOI RESOLVIDA</button>
@@ -247,7 +247,7 @@
                                                                     <input type="hidden" name="tipo" value="3">
                                                                         <div class="form-group">
                                                                             <label for="reclamacao">Deixe sua opinião:</label>
-                                                                            <textarea required class="form-control   @error('texto_comentario') is-invalid @enderror"  rows=10 id="texto_comentario" name="texto_comentario" aria-hidden="true">{{old('texto_comentario')}}</textarea>                                    
+                                                                            <textarea required class="form-control   @error('texto_comentario') is-invalid @enderror"  rows=10 id="texto_comentario" name="texto_comentario" aria-hidden="true">{{old('texto_comentario')}}</textarea>
                                                                             @error('texto_comentario')
                                                                                 <div class="invalid-feedback">
                                                                                     {{ $message }}
@@ -255,10 +255,10 @@
                                                                             @enderror
                                                                         </div>
                                                                         <button type="button form-control" class="btn btn-success mb-20" >Enviar Resposta</button>
-                
+
                                                                     </form>
                                                                     <small>Verifique a resposta antes de enviar, pois não será possível editar.</small>
-                
+
                                                     </div>
                                             </div>
                                             <button class="btn btn-danger btn-block" data-toggle="collapse" href="#collapseNaoResolvido" role="button" aria-expanded="false" aria-controls="collapseNaoResolvido">NÃO FOI RESOLVIDA</button>
@@ -270,7 +270,7 @@
                                                                     <input type="hidden" name="tipo" value="2">
                                                                         <div class="form-group">
                                                                             <label for="reclamacao">Responda abaixo a reclamação:</label>
-                                                                            <textarea required class="form-control  @error('texto_comentario') is-invalid @enderror"  rows=10 id="texto_comentario" name="texto_comentario" aria-hidden="true">{{old('texto_comentario')}}</textarea>                                    
+                                                                            <textarea required class="form-control  @error('texto_comentario') is-invalid @enderror"  rows=10 id="texto_comentario" name="texto_comentario" aria-hidden="true">{{old('texto_comentario')}}</textarea>
                                                                             @error('texto_comentario')
                                                                                 <div class="invalid-feedback">
                                                                                     {{ $message }}
@@ -278,10 +278,10 @@
                                                                             @enderror
                                                                         </div>
                                                                         <button type="button form-control" class="btn btn-success mb-20" >Enviar Resposta</button>
-                
+
                                                                     </form>
                                                                     <small>Verifique a resposta antes de enviar, pois não será possível editar.</small>
-                
+
                                                     </div>
                                             </div>
                                         </div>
@@ -291,8 +291,8 @@
                                                     <small> *Somente você que abriu esta reclamação é que vai pode responder.</small>
                                             </div>
                                     </div>
-                                   
-                                    
+
+
                             </section>
                             <!--FIM RECLAMACAO RESOLVIDA -->
                                 @endif
@@ -301,9 +301,9 @@
                     @endif
                 <section class="hk-sec-wrapper">
                         <div id="disqus_thread"></div>
-                </section>             
+                </section>
         </div>
-           
+
             <!-- COLUNA DIREITA  -->
             <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 col-xl-4 mb-10">
                 @include('components.categorias_problemas_mais_frequentes')
@@ -322,5 +322,5 @@
     <script>
         var data = <?php print_r(json_encode($locations)) ?>;
     </script>
-    
+
 @endsection

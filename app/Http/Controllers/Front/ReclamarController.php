@@ -14,6 +14,7 @@ use App\Reclamacao;
 use Illuminate\Support\Str;
 use App\ReclamaAnswer;
 use App\ReclamacaoApoioLog;
+use App\ReclamaApoio;
 
 use App\Traits\UploadTrait;
 
@@ -257,6 +258,54 @@ class ReclamarController extends Controller
     }
 
     public function ajaxApoio($id = null, Request $request){
+
+
+      if($id == null){
+        $id = $request->id;
+      }
+
+      $apoio = ReclamaApoio::where('user_id',$request->user_id)->where('reclamacao_id', $id)->first();
+      if($apoio == null){
+        //PEGA DADOS ADICIONA +1 APOIO
+        $dados = $this->rcl->getTotalApoio($id);
+        $apoio['apoio'] = $dados->apoio +1;
+
+        $save = $this->rcl->where('id',$id)->update($apoio);
+
+        $dadosApoio = [
+            'user_id' => $request->user_id,
+            'reclamacao_id' => $id
+        ];
+
+        $saveApoio = ReclamaApoio::create($dadosApoio);
+
+        $retorno = $this->rcl->getTotalApoio($id);
+      }else {
+        //PEGA DADOS ADICIONA -1 APOIO
+        $dados = $this->rcl->getTotalApoio($id);
+        $total = $dados->apoio -1;
+        
+        $apoio = [
+          'id' =>$id,
+          'apoio' => $total
+        ];
+
+
+        //dd($this->rcl->where('id',$id)->first());
+        $save = $this->rcl->where('id',$id)->update($apoio);
+
+        $apoio = ReclamaApoio::where('user_id',$request->user_id)->where('reclamacao_id', $id)->first();
+        $apoio->destroy($apoio->id);
+
+        $retorno = $this->rcl->getTotalApoio($id);
+
+      }
+
+      return $retorno->apoio;
+
+    }
+    /*
+    public function ajaxApoio($id = null, Request $request){
         if($id == null){
           $id = $request->id;
         }
@@ -295,5 +344,6 @@ class ReclamarController extends Controller
         return $retorno->apoio;
 
     }
+    */
 
 }

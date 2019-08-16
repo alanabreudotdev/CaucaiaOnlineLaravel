@@ -8,7 +8,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class ReclamaApoio extends Model
 {
     use LogsActivity;
-    
+
 
     /**
      * The database table used by the model.
@@ -31,7 +31,7 @@ class ReclamaApoio extends Model
      */
     protected $fillable = ['user_id', 'reclamacao_id'];
 
-    
+
 
     /**
      * Change activity log event description
@@ -44,4 +44,5 @@ class ReclamaApoio extends Model
     {
         return __CLASS__ . " model has been {$eventName}";
     }
+
 }

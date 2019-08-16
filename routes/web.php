@@ -20,7 +20,7 @@ Route::get('/reclamar/{id}', 'Front\\ReclamarController@reclamarOpen')->middlewa
 Route::get('/reclamar/listar/{id}', 'Front\\ReclamarController@reclamarListar')->name('reclamacao.front.listar');
 Route::get('/reclamar/ver/{id}/{slug}', 'Front\\ReclamarController@reclamarVer')->name('reclamacao.front.ver');
 Route::post('/reclamar/responder','Front\ReclamarController@reclamacaoResponder')->name('reclamacao.front.responder');
-Route::get('/reclamar/apoio/{id}','Front\ReclamarController@ajaxApoio');
+Route::get('/reclamar/apoio/{id}/{user_id}','Front\ReclamarController@ajaxApoio');
 
 //ROTAS NOTICIAS
 Route::get('/noticias','Front\\NoticiasController@index')->name('noticias.front.index');

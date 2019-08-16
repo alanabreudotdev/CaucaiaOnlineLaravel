@@ -44,7 +44,7 @@
                         </div>
                         <div class="card-footer justify-content-between">
                             <div>
-                                <a href="#!" id="reclamacao_apoio" onclick="apoioLike({{$rcl->id}})"><i class="ion-md-thumbs-up text-primary"></i><span class="apoios-{{$rcl->id}}">@if($rcl->apoio ==0) 0 @else{{$rcl->apoio}}  @endif</span> &nbsp; pessoas apoiaram</a>
+                                <a href="#!" id="reclamacao_apoio" onclick="@if(Auth::user()) apoioLike({{$rcl->id}}, {{Auth::user()->id}} ) @else javascript:alert('Você precisa logar para apoiar.'); @endif"><i class="ion-md-thumbs-up text-primary"></i><span class="apoios-{{$rcl->id}}">@if($rcl->apoio ==0) 0 @else{{$rcl->apoio}}  @endif</span> &nbsp; pessoas apoiaram</a>
                             </div>
                             <div>
 
