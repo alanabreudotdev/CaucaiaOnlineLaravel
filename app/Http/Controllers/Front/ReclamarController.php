@@ -284,7 +284,7 @@ class ReclamarController extends Controller
         //PEGA DADOS ADICIONA -1 APOIO
         $dados = $this->rcl->getTotalApoio($id);
         $total = $dados->apoio -1;
-        
+
         $apoio = [
           'id' =>$id,
           'apoio' => $total
@@ -300,8 +300,22 @@ class ReclamarController extends Controller
         $retorno = $this->rcl->getTotalApoio($id);
 
       }
+      if($request->app == false){
+          return $retorno->apoio;
+      }else{
+        if($retorno){
+        return response()->json([
+          'success'=>true,
+          'data'=>$retorno
+        ]);
+      }else{
+        return response()->json([
+          'success'=>false,
+          'message'=> 'Error'
+        ]);
+      }
+    }
 
-      return $retorno->apoio;
 
     }
     /*
