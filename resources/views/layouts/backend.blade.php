@@ -8,16 +8,16 @@
     <meta name="description" content="A responsive bootstrap 4 admin dashboard template by hencework" />
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="favicon.ico">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-	
+    <link rel="shortcut icon" href="favicon.png">
+    <link rel="icon" href="favicon.png" type="image/x-png">
+
 	<!-- Morris Charts CSS -->
     <link href="{{asset('vendors/morris.js/morris.css')}}" rel="stylesheet" type="text/css" />
-	
+
     <!-- Toggles CSS -->
     <link href="{{asset('vendors/jquery-toggles/css/toggles.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('vendors/jquery-toggles/css/themes/toggles-light.css')}}" rel="stylesheet" type="text/css">
-	
+
 	<!-- Toastr CSS -->
     <link href="{{asset('vendors/jquery-toast-plugin/dist/jquery.toast.min.css')}}" rel="stylesheet" type="text/css">
 
@@ -33,12 +33,12 @@
         <div class="loader-pendulums"></div>
     </div>
     <!-- /Preloader -->
-	
+
 	<!-- HK Wrapper -->
 	<div class="hk-wrapper hk-vertical-nav">
 
         @include('parts.topbar_backend')
-        
+
         @include('parts.menu_backend')
 
         <!-- Main Content -->
@@ -48,7 +48,7 @@
                 @yield('content')
             </div>
             <!-- /Container -->
-			
+
             <!-- Footer -->
             <div class="hk-footer-wrap container-fluid">
                 <footer class="footer">
@@ -71,7 +71,7 @@
 
     </div>
     <!-- /HK Wrapper -->
-    
+
     <!-- jQuery -->
     <script src="{{asset('vendors/jquery/dist/jquery.min.js')}}"></script>
 
@@ -91,21 +91,21 @@
     <!-- Toggles JavaScript -->
     <script src="{{asset('vendors/jquery-toggles/toggles.min.js')}}"></script>
     <script src="{{asset('dist/js/toggle-data.js')}}"></script>
-	
+
 	<!-- Toastr JS -->
     <script src="{{asset('vendors/jquery-toast-plugin/dist/jquery.toast.min.js')}}"></script>
-    
+
 	<!-- Counter Animation JavaScript -->
 	<script src="{{asset('vendors/waypoints/lib/jquery.waypoints.min.js')}}"></script>
 	<script src="{{asset('vendors/jquery.counterup/jquery.counterup.min.js')}}"></script>
-	
+
 	<!-- Morris Charts JavaScript -->
     <script src="{{asset('vendors/raphael/raphael.min.js')}}"></script>
     <script src="{{asset('vendors/morris.js/morris.min.js')}}"></script>
-	
+
 	<!-- Easy pie chart JS -->
     <script src="{{asset('vendors/easy-pie-chart/dist/jquery.easypiechart.min.js')}}"></script>
-	
+
 	<!-- Flot Charts JavaScript -->
     <script src="{{asset('vendors/flot/excanvas.min.js')}}"></script>
     <script src="{{asset('vendors/flot/jquery.flot.js')}}"></script>
@@ -115,14 +115,14 @@
     <script src="{{asset('vendors/flot/jquery.flot.stack.js')}}"></script>
     <script src="{{asset('vendors/flot/jquery.flot.crosshair.js')}}"></script>
     <script src="{{asset('vendors/jquery.flot.tooltip/js/jquery.flot.tooltip.min.js')}}"></script>
-	
+
 	<!-- EChartJS JavaScript -->
     <script src="{{asset('vendors/echarts/dist/echarts-en.min.js')}}"></script>
-    
+
     <!-- GOOGLE MAPS -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALrzYRwELsgB6HKpOrq5etlg8KyeGmEdg"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.js"></script>
-   
+
 
     <!-- Init JavaScript -->
     <script src="{{asset('dist/js/init.js')}}"></script>
@@ -141,7 +141,7 @@
 
     @yield('scripts')
     @yield('js_after')
-	
+
 </body>
 
 </html>

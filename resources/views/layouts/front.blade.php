@@ -11,8 +11,8 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{asset('favicon.ico')}}">
-    <link rel="icon" href="{{asset('favicon.ico')}}" type="image/x-icon">
+    <link rel="shortcut icon" href="{{asset('favicon.png')}}">
+    <link rel="icon" href="{{asset('favicon.png')}}" type="image/x-png">
 
 	<!-- Morris Charts CSS -->
     <link href="{{asset('vendors/morris.js/morris.css')}}" rel="stylesheet" type="text/css" />
