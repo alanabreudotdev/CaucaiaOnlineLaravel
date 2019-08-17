@@ -13,7 +13,7 @@
 
 Route::get('/', function(){
   echo 'ok!';
-})
+});
 //Route::get('/', 'HomeController@index')->name('home');
 
 //ROTAS RECLAMAÇÃO
