@@ -133,8 +133,13 @@ class IndexController extends Controller
 
     public function userUpdate(Request $request){
 
-      if($request->birthday!=""){
+      if(strlen($request->birthday)==10){
         $date = date_create_from_format("d/m/Y", $request->birthday)->format("Y-m-d");
+      }else{
+        return response()->json([
+          'success'=>false,
+          'message'=> 'Data invalida. Digite corretamente.'
+        ]);
       }
 
 
@@ -157,7 +162,7 @@ class IndexController extends Controller
         $user = User::where('id', $request->id)->first();
         return response()->json([
           'success'=>true,
-          'user'=>$user 
+          'user'=>$user
         ]);
       }else{
         return response()->json([
