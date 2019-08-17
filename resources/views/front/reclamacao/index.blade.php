@@ -30,9 +30,9 @@
                                                         <h6 class="card-subtitle mb-2 text-muted">reclamações</h6>
                                                         <a href="{{ url('reclamar/listar/'.$cat->id)}}" class="btn btn-light ">Ver</a>
                                                         @if (Auth::check())
-                                                            <a href="{{ url('reclamar/'.$cat->id)}}" class="btn btn-green ">Solicitar</a>
+                                                            <a href="{{ url('reclamar/'.$cat->id)}}" class="btn btn-green ">Reclamar</a>
                                                         @else
-                                                            <button  data-toggle="modal" data-target="#modalLogin" class="btn btn-green ">Solicitar</button>
+                                                            <button  data-toggle="modal" data-target="#modalLogin" class="btn btn-green ">Reclamar</button>
                                                         @endif
                                                     </div>
                                                 </div>
