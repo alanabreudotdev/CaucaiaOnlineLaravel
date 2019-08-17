@@ -20388,7 +20388,7 @@ table.dataTable {
 /*Auth pages*/
 .hk-pg-wrapper.hk-auth-wrapper {
   padding: 0;
-  background: #f1f3f9; }
+  background: #607d8b24; }
   .hk-pg-wrapper.hk-auth-wrapper > header {
     position: absolute;
     top: 0;
