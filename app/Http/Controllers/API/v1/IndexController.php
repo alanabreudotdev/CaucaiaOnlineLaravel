@@ -138,7 +138,7 @@ class IndexController extends Controller
       }else{
         return response()->json([
           'success'=>false,
-          'message'=> 'Data invalida.\n Digite corretamente.\n Ex: 10/06/1990'
+          'message'=> 'Data invalida. Digite corretamente. Ex: 10/06/1990'
         ]);
       }
 
