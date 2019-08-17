@@ -132,7 +132,8 @@ class IndexController extends Controller
     }
 
     public function userUpdate(Request $request){
-
+      $request->birthday = str_replace($request->birthday, '', '-');
+      print_r($request->birthday);
       if(strlen($request->birthday)==10){
         $date = date_create_from_format("d/m/Y", $request->birthday)->format("Y-m-d");
       }else{
