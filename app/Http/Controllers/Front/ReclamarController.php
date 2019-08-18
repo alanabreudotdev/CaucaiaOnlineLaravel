@@ -349,6 +349,9 @@ class ReclamarController extends Controller
             imagejpeg($image, $path, $quality);
 
     }
+
+  
+
     /*
     public function ajaxApoio($id = null, Request $request){
         if($id == null){
