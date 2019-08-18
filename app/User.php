@@ -5,9 +5,10 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Notifications\ResetPassword;
 
-//class User extends Authenticatable implements MustVerifyEmail
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
+//class User extends Authenticatable
 {
     use Notifiable, HasRoles;
 
@@ -60,4 +61,10 @@ class User extends Authenticatable
     public function reclamacao(){
         return $this->hasMany('App\Reclamacao','id');
     }
+
+    public function sendPasswordResetNotification($token)
+{
+    // Não esquece: use App\Notifications\ResetPassword;
+    $this->notify(new ResetPassword($token));
+}
 }

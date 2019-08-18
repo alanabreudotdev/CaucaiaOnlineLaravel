@@ -108,8 +108,8 @@ Route::group([ 'prefix' => 'gerenciador', 'middleware' => ['auth', 'roles'], 'ro
 
 });
 
-//Auth::routes(['verify' => true]);
-Auth::routes();
+Auth::routes(['verify' => true]);
+//Auth::routes();
 
 
 

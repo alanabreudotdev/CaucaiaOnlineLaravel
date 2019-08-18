@@ -12,6 +12,7 @@
         "appzcoder/laravel-admin": "^3.1",
         "consoletvs/profanity": "^2.0",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.3",
         "hepplerdotnet/flash-toastr": "5.6.1.1",
         "intervention/image": "^2.5",
         "laravel/framework": "5.8.*",
