@@ -6,7 +6,7 @@
 @if ($level === 'error')
 # @lang('Whoops!')
 @else
-# @lang('Hello!')
+# @lang('Olá!')
 @endif
 @endif
 
@@ -25,7 +25,7 @@
             $color = $level;
             break;
         default:
-            $color = 'primary';
+            $color = 'success';
     }
 ?>
 @component('mail::button', ['url' => $actionUrl, 'color' => $color])
