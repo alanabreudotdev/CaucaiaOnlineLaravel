@@ -41,9 +41,9 @@ class VerifyEmail extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+                    ->subject('Valide seu email')
+                    ->action('Clique aqui para validar', $this->verificationUrl($notifiable))
+                    ->line('Se você não criou uma conta, nenhuma outra ação será necessária.');
     }
 
     /**
