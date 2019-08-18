@@ -105,7 +105,7 @@ class ReclamarController extends Controller
                 //dd(storage_path().'/app/public'.$filePath);
                 $this->uploadOne($image, $folder, 'public', $name);
 
-                $this->compressedImage(storage_path().'/app/public'.$filePath, storage_path().'/app/public'.$filePath,50);
+                $this->compressedImage(storage_path().'/app/public'.$filePath, storage_path().'/app/public'.$filePath,30);
                 // Set user profile image path in database to filePath
                 $save->foto_url_01 = $filePath;
                 $save->save();
@@ -126,7 +126,7 @@ class ReclamarController extends Controller
             // Set user profile image path in database to filePath
 
             //compress image
-             $this->compressedImage(storage_path().'/app/public'.$filePath, storage_path().'/app/public'.$filePath,50);
+             $this->compressedImage(storage_path().'/app/public'.$filePath, storage_path().'/app/public'.$filePath,30);
 
             $save->foto_url_02 = $filePath;
             $save->save();
@@ -146,7 +146,7 @@ class ReclamarController extends Controller
             $this->uploadOne($image, $folder, 'public', $name);
             // Set user profile image path in database to filePath
            //compress image
-            $this->compressedImage(storage_path().'/app/public'.$filePath, storage_path().'/app/public'.$filePath,50);
+            $this->compressedImage(storage_path().'/app/public'.$filePath, storage_path().'/app/public'.$filePath,30);
 
             $save->foto_url_03 = $filePath;
             $save->save();
