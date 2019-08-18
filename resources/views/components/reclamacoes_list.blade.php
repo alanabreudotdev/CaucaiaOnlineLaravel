@@ -29,9 +29,9 @@
                                     <div class="position-relative">
                                         <a href="/reclamar/ver/{{$rcl->id}}/{{$rcl->slug}}">
                                             @if($rcl->foto_url_01)
-                                                <img class="card-img-top d-block h-400p" src="{{asset('storage'.$rcl->foto_url_01)}}" alt="{{$rcl->titulo}}">
+                                                <img class="card-img-top d-block h-300p" src="{{asset('storage'.$rcl->foto_url_01)}}" alt="{{$rcl->titulo}}">
                                             @else
-                                                <img class="card-img-top d-block h-400p" src="{{asset('dist/img/default_reclamacao.jpg')}}" alt="{{$rcl->titulo}}">
+                                                <img class="card-img-top d-block h-300p" src="{{asset('dist/img/default_reclamacao.jpg')}}" alt="{{$rcl->titulo}}">
                                             @endif
                                             <a href="/reclamar/ver/{{$rcl->id}}/{{$rcl->slug}}" class="btn btn-light btn-wth-icon icon-wthot-bg btn-sm btn-rounded btn-pg-link"><span class="icon-label"><i class="ion ion-md-link"></i></span><span class="btn-text">visualizar</span></a>
                                         </a>
@@ -44,11 +44,11 @@
                         </div>
                         <div class="card-footer justify-content-between">
                             <div>
-                                <a href="#!" id="reclamacao_apoio" onclick="@if(Auth::user()) apoioLike({{$rcl->id}}, {{Auth::user()->id}} ) @else javascript:alert('Você precisa logar para apoiar.'); @endif"><i class="ion-md-thumbs-up text-primary"></i><span class="apoios-{{$rcl->id}}">@if($rcl->apoio ==0) 0 @else{{$rcl->apoio}}  @endif</span> &nbsp; pessoas apoiaram</a>
+                                <a href="#!" id="reclamacao_apoio" onclick="@if(Auth::user()) apoioLike({{$rcl->id}}, {{Auth::user()->id}} ) @else javascript:alert('Você precisa logar para apoiar.'); @endif">
+                                  <i class="ion-md-thumbs-up text-primary"></i>
+                                  <span class="apoios-{{$rcl->id}}">@if($rcl->apoio ==0) 0 @else{{$rcl->apoio}}  @endif</span> &nbsp; pessoas apoiaram</a>
                             </div>
-                            <div>
 
-                            </div>
                         </div>
                     </div>
                 </div>
