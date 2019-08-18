@@ -143,8 +143,8 @@ function sp_init_map_script(_map_id){
 				infobox_html += '<small>'+response_data[i].endereco+'</small>';
                 infobox_html += '</div>';
 				infobox_html += '</div>';
-				infobox_html += '<ul class="list-group list-group-flush  text-right">';
-                infobox_html += '            <li class="list-group-item">';
+				//infobox_html += '<ul class="list-group list-group-flush  text-right">';
+          //      infobox_html += '            <li class="list-group-item">';
 				//infobox_html += '               <div class="text-left justify-content-between d-flex">';
 				//if(response_data[i].apoio){
 				//	infobox_html += '                <small class="text-muted"><i class="fa fa-users" ></i> <span class="apoios-'+response_data[i].id+'">'+response_data[i].apoio+'</span> pessoas apoiaram</small>';
@@ -154,8 +154,8 @@ function sp_init_map_script(_map_id){
 				//}
 				//infobox_html += '                  <a href="#!" class="btn  btn-outline-light btn-xs" id="reclamacao_apoio" onclick="apoioLike('+response_data[i].id+','+response_data[i].id+')"><i class="ion ion-md-thumbs-up text-primary"></i> APOIAR  </a>     ';
 				//infobox_html += '               </div>';
-                infobox_html += '            </li>';
-                infobox_html += '    </ul>';
+          //      infobox_html += '            </li>';
+            //    infobox_html += '    </ul>';
 			boxText.innerHTML = infobox_html;
 			var myOptions = {
 				content: boxText,
