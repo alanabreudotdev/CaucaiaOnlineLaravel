@@ -162,7 +162,7 @@ function sp_init_map_script(_map_id){
 				disableAutoPan: true,
 				maxWidth: 0,
 				alignBottom: true,
-				pixelOffset: new google.maps.Size( -100, -10 ),
+				pixelOffset: new google.maps.Size( -100, 10 ),
 				zIndex: null,
 				closeBoxMargin: "0 0 -16px -16px",
 				closeBoxURL: dir_close_marker,
