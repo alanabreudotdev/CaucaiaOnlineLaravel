@@ -21,7 +21,7 @@ Route::get('/', 'HomeController@index')->name('home');
 //ROTAS RECLAMAÇÃO
 Route::get('/reclamar', 'Front\\ReclamarController@index')->name('reclamacao.front.index');
 Route::post('/reclamar', 'Front\\ReclamarController@reclamarPost')->middleware('auth')->name('reclamacao.front.post');
-Route::get('/reclamar/{id}', 'Front\\ReclamarController@reclamarOpen')->middleware('auth')->name('reclamacao.front.open');
+Route::get('/reclamar/{id}', 'Front\\ReclamarController@reclamarOpen')->middleware('auth','verified')->name('reclamacao.front.open');
 Route::get('/reclamar/listar/{id}', 'Front\\ReclamarController@reclamarListar')->name('reclamacao.front.listar');
 Route::get('/reclamar/ver/{id}/{slug}', 'Front\\ReclamarController@reclamarVer')->name('reclamacao.front.ver');
 Route::post('/reclamar/responder','Front\ReclamarController@reclamacaoResponder')->name('reclamacao.front.responder');
