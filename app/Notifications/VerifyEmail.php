@@ -44,6 +44,7 @@ class VerifyEmail extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
+                  ->from('contato@caucaia.online', 'Caucaia Online')
                     ->subject('Valide seu email')
                     ->action('Clique aqui para validar', $this->verificationUrl($notifiable))
                     ->line('Se você não criou uma conta, nenhuma outra ação será necessária.');

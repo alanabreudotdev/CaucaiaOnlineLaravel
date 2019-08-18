@@ -54,6 +54,7 @@ class ResetPassword extends Notification
     public function toMail($notifiable)
     {
     return (new MailMessage)
+        ->from('contato@caucaia.online', 'Caucaia Online')
         ->subject('Alterar Senha - Caucaia Online')
         ->line('Você está recebendo este e-mail porque recebemos um pedido de redefinição de senha para sua conta.')
         ->action('Resetar Senha', url(config('app.url').route('password.reset', [$this->token, $notifiable->email], false)))
