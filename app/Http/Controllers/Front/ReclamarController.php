@@ -90,6 +90,8 @@ class ReclamarController extends Controller
 
             // Check if a profile image has been uploaded
             if ($request->has('foto_url_01')) {
+
+              //dd($request->file('foto_url_01')['name']);
                 // Get image file
                 $image = $request->file('foto_url_01');
                 // Make a image name based on user name and current timestamp
@@ -99,7 +101,11 @@ class ReclamarController extends Controller
                 // Make a file path where image will be stored [ folder path + file name + file extension]
                 $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
                 // Upload image
+
+                //dd(storage_path().'/app/public'.$filePath);
                 $this->uploadOne($image, $folder, 'public', $name);
+
+                $this->compressedImage(storage_path().'/app/public'.$filePath, storage_path().'/app/public'.$filePath,50);
                 // Set user profile image path in database to filePath
                 $save->foto_url_01 = $filePath;
                 $save->save();
@@ -118,6 +124,10 @@ class ReclamarController extends Controller
             // Upload image
             $this->uploadOne($image, $folder, 'public', $name);
             // Set user profile image path in database to filePath
+
+            //compress image
+             $this->compressedImage(storage_path().'/app/public'.$filePath, storage_path().'/app/public'.$filePath,50);
+
             $save->foto_url_02 = $filePath;
             $save->save();
         }
@@ -135,6 +145,9 @@ class ReclamarController extends Controller
             // Upload image
             $this->uploadOne($image, $folder, 'public', $name);
             // Set user profile image path in database to filePath
+           //compress image
+            $this->compressedImage(storage_path().'/app/public'.$filePath, storage_path().'/app/public'.$filePath,50);
+
             $save->foto_url_03 = $filePath;
             $save->save();
         }
@@ -316,6 +329,24 @@ class ReclamarController extends Controller
       }
     }
 
+
+    }
+
+    // Compress image
+    public function compressedImage($source, $path, $quality) {
+
+            $info = getimagesize($source);
+
+            if ($info['mime'] == 'image/jpeg')
+                $image = imagecreatefromjpeg($source);
+
+            elseif ($info['mime'] == 'image/gif')
+                $image = imagecreatefromgif($source);
+
+            elseif ($info['mime'] == 'image/png')
+                $image = imagecreatefrompng($source);
+
+            imagejpeg($image, $path, $quality);
 
     }
     /*

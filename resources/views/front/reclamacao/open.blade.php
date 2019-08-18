@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="container-fluid mt-xl-50 mt-sm-30 mt-15">
-   
+
     <!-- Row -->
     <div class="row ">
             <div class="col-xl-12 col-md-12">
@@ -42,19 +42,19 @@
 
                                     <div class="form-group">
                                         <label for="titulo">Título*</label>
-                                            <input required class="form-control  @error('titulo') is-invalid @enderror" maxlength="220" value="{{old('titulo')}}" name="titulo" id="titulo" placeholder="Título" type="text">    
+                                            <input required class="form-control  @error('titulo') is-invalid @enderror" maxlength="220" value="{{old('titulo')}}" name="titulo" id="titulo" placeholder="Título" type="text">
                                             @error('titulo')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
                                             </div>
-                                               
+
                                             @enderror
-                                            
+
                                     </div>
 
                                     <div class="form-group">
                                         <label for="email">Reclamação*</label>
-                                        <textarea placeholder="Gostaríamos de saber mais detalhes da sua reclamação." required class="form-control  @error('texto_reclamacao') is-invalid @enderror"  rows=10 id="texto_reclamacao" name="texto_reclamacao" aria-hidden="true">{{old('texto_reclamacao')}}</textarea>                                    
+                                        <textarea placeholder="Gostaríamos de saber mais detalhes da sua reclamação." required class="form-control  @error('texto_reclamacao') is-invalid @enderror"  rows=10 id="texto_reclamacao" name="texto_reclamacao" aria-hidden="true">{{old('texto_reclamacao')}}</textarea>
                                         @error('texto_reclamacao')
                                         <div class="invalid-feedback">
                                             {{ $message }}
@@ -70,7 +70,7 @@
                                                 {{ $message }}
                                             </div>
                                             @enderror
-                                            
+
                                         </div>
                                         <div class="col-md-3 form-group">
                                                 <label for="address">&nbsp</label>
@@ -99,7 +99,7 @@
                                             <input class="form-control" name="telefone" data-mask="(99) 9999-9999"  id="telefone" placeholder="" type="tel">
                                        </div>
                                     </div>
-                                    
+
                                     <hr>
                                     <h5 class="hk-sec-title">Imagens</h5>
                                     <h5 class="mb-25">Adicione até 03 fotos</h5>
@@ -147,7 +147,7 @@
                                                     </div>
                                             </div>
                                     </div>
-                                    
+
                                         <hr>
                                         <h5 class="hk-sec-title ">Adicione um Video</h5>
                                         <div class="form-group">
@@ -160,7 +160,7 @@
                                                 <small>Informe somente o codigo do video após /embed/. Ex: zpOULjyy-n8</small>
 
                                         </div>
-                                           
+
                                    <hr>
                                     <small class="mb-25">Campos com * são obrigatórios</small>
                                     <br/><br/>
@@ -169,7 +169,7 @@
                             </div>
                         </div>
                     </section>
-           
+
         </div>
 </div>
 </div>
@@ -188,7 +188,7 @@
             let size = $(document).height() * 0.0;
             $("html, body").animate({scrollTop: size}, "slow");
         }
-       
+
        // Example starter JavaScript for disabling form submissions if there are invalid fields
        (function() {
           'use strict';
@@ -206,14 +206,14 @@
                   $(this).find(':input[type=submit]').removeAttr('disabled', 'disabled');
                 }
                 form.classList.add('was-validated');
-                
+
               }, false);
             });
           }, false);
         })();
     </script>
 
-    
 
-   
+
+
 @endsection
