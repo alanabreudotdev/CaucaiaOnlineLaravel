@@ -114,7 +114,6 @@ function sp_init_map_script(_map_id){
 	});
 
 	if( _data_list.status == 'found' ){
-		console.log(response_data);
 		jQuery('#gmap-noresult').html('').hide(); //Hide No Result Div
 		var markers = new Array();
 		var info_windows = new Array();
@@ -153,7 +152,7 @@ function sp_init_map_script(_map_id){
 					infobox_html += '                <small class="text-muted"><i class="fa fa-users" ></i> <span class="apoios-'+response_data[i].id+'">0</span> pessoas apoiaram</small>';
 
 				}
-				infobox_html += '                  <a href="#!" class="btn  btn-outline-light btn-xs" id="reclamacao_apoio" onclick="apoioLike('+response_data[i].id+','+response_data[i].id+')"><i class="ion ion-md-thumbs-up text-primary"></i> APOIAR  </a>     ';
+				infobox_html += '                  <a href="#!" class="btn  btn-outline-light btn-xs" id="reclamacao_apoio" onclick="@if(Auth::user()) '+response_data[i].id+', {{Auth::user()->id}} ) @else javascript:alert('Você precisa logar para apoiar.'); @endif"><i class="ion ion-md-thumbs-up text-primary"></i> APOIAR  </a>     ';
 				infobox_html += '               </div>';
                 infobox_html += '            </li>';
                 infobox_html += '    </ul>';
