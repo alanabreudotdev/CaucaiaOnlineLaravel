@@ -54,7 +54,7 @@ function sp_init_map_script(_map_id){
 	var bounds = new google.maps.LatLngBounds();
 
 	//Zoom In
-	if(document.getElementById('doc-mapplus') ){ 
+	if(document.getElementById('doc-mapplus') ){
 		google.maps.event.addDomListener(document.getElementById('doc-mapplus'), 'click', function () {
 			var current= parseInt( map.getZoom(),10 );
 			current++;
@@ -66,7 +66,7 @@ function sp_init_map_script(_map_id){
 	}
 
 	//Zoom Out
-	if(document.getElementById('doc-mapminus') ){ 
+	if(document.getElementById('doc-mapminus') ){
 		google.maps.event.addDomListener(document.getElementById('doc-mapminus'), 'click', function () {
 			var current= parseInt( map.getZoom(),10);
 			current--;
@@ -78,20 +78,20 @@ function sp_init_map_script(_map_id){
 	}
 
 	//Lock Map
-	if( document.getElementById('doc-lock') ){ 
+	if( document.getElementById('doc-lock') ){
 		google.maps.event.addDomListener(document.getElementById('doc-lock'), 'click', function () {
 			if(lock == 'lock'){
-				map.setOptions({ 
+				map.setOptions({
 						scrollwheel: true,
-						draggable: true 
+						draggable: true
 					}
 				);
 				jQuery("#doc-lock").html('<i class="fa fa-unlock-alt" aria-hidden="true"></i>');
 				lock = 'unlock';
 			}else if(lock == 'unlock'){
-				map.setOptions({ 
+				map.setOptions({
 						scrollwheel: false,
-						draggable: false 
+						draggable: false
 					}
 				);
 				jQuery("#doc-lock").html('<i class="fa fa-lock" aria-hidden="true"></i>');
@@ -112,8 +112,9 @@ function sp_init_map_script(_map_id){
 			map.setCenter(location_center);
 		},1000);
 	});
-			
+
 	if( _data_list.status == 'found' ){
+		console.log(response_data);
 		jQuery('#gmap-noresult').html('').hide(); //Hide No Result Div
 		var markers = new Array();
 		var info_windows = new Array();
@@ -135,7 +136,7 @@ function sp_init_map_script(_map_id){
             if(response_data[i].image){
 			    infobox_html += '<figure class="listar-featuredimg "><a href="'+response_data[i].url+'"><img class="h-150p card-img-top" src="/storage'+response_data[i].image+'" alt="'+response_data[i].title+'"></a></figure>';
 			}
-			
+
             infobox_html += '<div class="card-body">';
             infobox_html += '<small class="listar-themepostfoot"><a class="listar-location" href="javascript:void(0);"><i class="icon-icons74"></i><em>'+response_data[i].categoria_name+'</em></a></small>';
 
@@ -152,7 +153,7 @@ function sp_init_map_script(_map_id){
 					infobox_html += '                <small class="text-muted"><i class="fa fa-users" ></i> <span class="apoios-'+response_data[i].id+'">0</span> pessoas apoiaram</small>';
 
 				}
-				infobox_html += '                  <a href="#!" class="btn  btn-outline-light btn-xs" id="reclamacao_apoio" onclick="apoioLike('+response_data[i].id+')"><i class="ion ion-md-thumbs-up text-primary"></i> APOIAR  </a>     ';                                           
+				infobox_html += '                  <a href="#!" class="btn  btn-outline-light btn-xs" id="reclamacao_apoio" onclick="apoioLike('+response_data[i].id+','+response_data[i].id+')"><i class="ion ion-md-thumbs-up text-primary"></i> APOIAR  </a>     ';
 				infobox_html += '               </div>';
                 infobox_html += '            </li>';
                 infobox_html += '    </ul>';
@@ -203,10 +204,10 @@ function attachInfoBoxToMarker( map, marker, infoBox ){
 		var pointHalfScreenAbove = new google.maps.Point( markerScreenPosition.x, markerScreenPosition.y - offsety );
 		var aboveMarkerLatLng = projection.fromPointToLatLng( pointHalfScreenAbove );
 		map.setCenter( aboveMarkerLatLng );
-		
+
 		jQuery(".listar-infoBox").hide();
 		infoBox.open( map, marker );
-		
+
 	});
 }
 sp_init_map_script('mapa')
