@@ -84,37 +84,40 @@ class RegisterController extends Controller
 
     public function registerAPI(Request $request)
     {
-      //Define your validation rules here.
-  $rules = [
-      'name' => 'required',
-      'email' => 'required | email | unique:users,email',
-      'password' => ['required', 'string', 'min:8', 'confirmed'],
-  ];
-  //Create a validator, unlike $this->validate(), this does not automatically redirect on failure, leaving the final control to you :)
-  $validated = Validator::make($request->all(), $rules);
+      $rules = [
+          'name' => 'required',
+          'cpf' => 'required',
+          'lastname' => 'required',
+          'email' => 'required | email | unique:users,email',
+          'password' => ['required', 'string', 'min:6', 'confirmed'],
+      ];
+      //Create a validator, unlike $this->validate(), this does not automatically redirect on failure, leaving the final control to you :)
+      $validated = Validator::make($request->all(), $rules);
 
-  //Check if the validation failed, return your custom formatted code here.
-  if($validated->fails())
-  {
-      return response()->json(['success' => false, 'messages' => 'Dados inválidos.', 'errors' => $validated->errors()]);
-  }
+      //Check if the validation failed, return your custom formatted code here.
+      if($validated->fails())
+      {
+          return response()->json(['success' => false, 'messages' => 'Dados inválidos.', 'errors' => $validated->errors()]);
+      }
 
-  //If not failed, the code will reach here
-  $newUser = $this->user->create([
-      'name' => $request->get('name'),
-      'email' => $request->get('email'),
-      'password' => Hash::make($data['password']),
-  ]);
-  //This would be your own error response, not linked to validation
-  if (!$newUser) {
-      return response()->json(['success'=>false,'message'=>'failed_to_create_new_user'], 500);
-  }
+      //If not failed, the code will reach here
+      $newUser = $this->user->create([
+          'name' => $request->get('name'),
+          'email' => $request->get('email'),
+          'lastname' => $request->get('lastname'),
+          'cpf' => $request->get('cpf'),
+          'password' => Hash::make($data['password']),
+      ]);
+      //This would be your own error response, not linked to validation
+      if (!$newUser) {
+          return response()->json(['success'=>false,'message'=>'failed_to_create_new_user'], 500);
+      }
 
-  //All went well
-  return response()->json([
-      'sucess' => true,
-      'token' => $this->jwtauth->fromUser($newUser)
-  ]);
+      //All went well
+      return response()->json([
+          'sucess' => true
+
+      ]);
     }
 
 
