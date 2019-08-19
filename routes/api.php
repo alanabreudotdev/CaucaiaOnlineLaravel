@@ -40,6 +40,8 @@ Route::group(['middleware' => 'auth:api'], function(){
   Route::get('reclamacao-ver','API\v1\ReclamacaoController@getReclamacaoView');
   Route::post('reclamacao-postar','API\v1\ReclamacaoController@postReclamacao');
   Route::post('user-update','API\v1\ReclamacaoController@userUpdate');
+  Route::get('reclamacao-abuso','API\v1\ReclamacaoController@reportarAbuso');
+
 
 
 

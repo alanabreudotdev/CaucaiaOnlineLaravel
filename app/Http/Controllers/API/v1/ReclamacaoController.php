@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\ReclamaCategory;
 use App\Reclamacao;
+use App\ReclamacaoAbuso;
 use App\ReclamaSubCategory;
 use App\User;
 use App\Traits\UploadTrait;
@@ -170,4 +171,55 @@ class ReclamacaoController extends Controller
     }
 
   }
+
+/***
+* REPORTAR ABUSO / Reclamacao
+* params: reclamacao id, user id
+*/
+public function reportarAbuso($id = null, Request $request){
+
+
+  if($id == null){
+    $id = $request->id;
+  }
+
+    //verifica se o usuario ja reportou abuso
+    $check = ReclamacaoAbuso::where('reclamacao_id',$request->id)->where('user_id',$request->user_id)->count();
+    if($check>0){
+      return response()->json([
+        'success'=>true,
+        'message'=>'Você já solicitou análise desta reclamação.'
+      ]);
+    }else{
+
+      $dados = [
+        'reclamacao_id' =>$id,
+        'user_id' => $request->user_id,
+        'status' =>1,
+        'analisada' =>0
+      ];
+
+      $retorno = ReclamacaoAbuso::create($dados);
+
+        if($retorno){
+          return response()->json([
+            'success'=>true,
+            'message'=>'Iremos analisar esta reclamação.'
+          ]);
+        }else{
+          return response()->json([
+            'success'=>false,
+            'message'=> 'Error'
+          ]);
+      }
+    }
+
+
+
+
+
+
+
+}
+
 }
