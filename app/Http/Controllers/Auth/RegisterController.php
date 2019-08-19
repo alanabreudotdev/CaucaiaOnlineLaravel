@@ -141,13 +141,17 @@ class RegisterController extends Controller
        $user = User::where('activation_token', $token)->first();
 
        if (!$user){
-           return response()->json(['message'  =>  'O link de ativação já foi usado!'], 404);
+         $message = 'O link de ativação já foi usado!';
+          return view('auth.validationapi', compact('message'));
+           //return response()->json(['message'  =>  'O link de ativação já foi usado!'], 404);
        }
        $user->active = true;
        $user->activation_token = '';
        $user->save();
 
-       return view('auth.validationapi');
+       $message= '';
+       
+       return view('auth.validationapi', compact('message'));
    }
 
 

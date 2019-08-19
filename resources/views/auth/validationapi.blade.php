@@ -11,6 +11,7 @@
                             <img class="brand-img" src="{{asset('dist/img/logo-light.png')}}" alt="brand"/>
                         </a>
                         <div class="card">
+                          @if($message=="")
                             <div class="card-header">{{ __('EMAIL VALIDADO COM SUCESSO') }}</div>
 
                             <div class="card-body">
@@ -18,6 +19,15 @@
 
                                 {{ __('Seu email foi validado com sucesso. Abra o APP do Caucaia Online e logue.') }}
                             </div>
+                            @else
+                            <div class="card-header">{{ __('EMAIL JÁ VALIDADO) }}</div>
+
+                            <div class="card-body">
+
+
+                                {{ __('Seu email já foi validado. Abra o APP do Caucaia Online e logue.') }}
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
