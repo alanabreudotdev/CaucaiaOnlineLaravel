@@ -4,7 +4,7 @@
 <!-- Row -->
 <div class="row ">
 
-  <div class="col-sm mt-50">
+  <div class="col-sm">
     <div class="card align-items-center justify-content-center">
       <div class="card-img card-img-bg text-white  h-400p align-items-center justify-content-center" style="background-image: url(dist/img/home_banner.jpg);">
         <div class="card-img-overlay text-white bg-trans-dark-60  h-400p align-items-center justify-content-center">
