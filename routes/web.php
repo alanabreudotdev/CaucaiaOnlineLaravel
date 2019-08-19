@@ -119,3 +119,5 @@ Auth::routes(['verify' => true]);
 
 
 Route::resource('admin/reclama-apoio', 'Admin\\ReclamaApoioController');
+
+Route::resource('admin/reclamacao-abuso', 'Admin\\ReclamacaoAbusoController');

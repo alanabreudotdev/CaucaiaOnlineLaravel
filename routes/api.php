@@ -33,13 +33,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:api'], function(){
 
-  Route::get('reclamacao-categorias','API\v1\IndexController@getReclamaCategories');
-  Route::get('reclamacao-subcategorias','API\v1\IndexController@getReclamaSubCategories');
-  Route::get('reclamacao-index','API\v1\IndexController@getReclamacao');
+  Route::get('reclamacao-categorias','API\v1\ReclamacaoController@getReclamaCategories');
+  Route::get('reclamacao-subcategorias','API\v1\ReclamacaoController@getReclamaSubCategories');
+  Route::get('reclamacao-index','API\v1\ReclamacaoController@getReclamacao');
   Route::get('reclamacao-apoio','Front\ReclamarController@ajaxApoio');
-  Route::get('reclamacao-ver','API\v1\IndexController@getReclamacaoView');
-  Route::post('reclamacao-postar','API\v1\IndexController@postReclamacao');
-  Route::post('user-update','API\v1\IndexController@userUpdate');
+  Route::get('reclamacao-ver','API\v1\ReclamacaoController@getReclamacaoView');
+  Route::post('reclamacao-postar','API\v1\ReclamacaoController@postReclamacao');
+  Route::post('user-update','API\v1\ReclamacaoController@userUpdate');
 
 
 

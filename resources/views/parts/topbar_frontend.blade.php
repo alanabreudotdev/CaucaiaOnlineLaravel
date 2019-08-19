@@ -10,6 +10,11 @@
                         INÍCIO
                     </a>
                 </li>
+                <li class="nav-item  show-on-hover {{ (request()->is('noticias*')) ? 'active' : '' }}">
+                    <a class="nav-link " href="{{ url('/noticias')}}" role="button"  aria-haspopup="true" aria-expanded="false">
+                        NOTÍCIAS
+                    </a>
+                </li>
                 <li class="nav-item  show-on-hover {{ (request()->is('reclamar*')) ? 'active' : '' }}">
                     <a class="nav-link " href="{{ url('/reclamar/listar/todas')}}" role="button"  aria-haspopup="true" aria-expanded="false">
                         RECLAMAÇÕES
