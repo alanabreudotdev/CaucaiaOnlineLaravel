@@ -11,7 +11,7 @@ class IndexController extends Controller
 {
     public function noticiasListar(){
 
-      $perPage = 6;
+      $perPage = 1;
 
       $noticias = News::latest()->with('category')->where('status','1')->paginate($perPage);
 
