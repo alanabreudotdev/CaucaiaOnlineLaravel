@@ -93,6 +93,7 @@ class RegisterController extends Controller
       ];
       $messages = [
         'name.required' => 'O Nome é obrigatório.',
+        'email.unique' => 'Email já está sendo utilizado.',
         'cpf.required' => 'O CPF é obrigatório.',
         'lastname.required' => 'O Sobrenome é obrigatório.',
         'email.required' => 'O Email é obrigatório.',
