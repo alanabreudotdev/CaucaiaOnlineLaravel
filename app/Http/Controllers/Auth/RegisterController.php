@@ -125,7 +125,7 @@ class RegisterController extends Controller
 
       //All went well
       return response()->json([
-          'sucess' => true
+          'success' => true
 
       ]);
     }
