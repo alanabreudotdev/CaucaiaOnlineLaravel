@@ -111,7 +111,7 @@ class RegisterController extends Controller
       }
 
       //If not failed, the code will reach here
-      $newUser = $this->user->create([
+      $newUser = User::create([
           'name' => $request->get('name'),
           'email' => $request->get('email'),
           'lastname' => $request->get('lastname'),
