@@ -68,7 +68,7 @@
                                                     <label for="input_tags">Data de Nascimento</label>
                                                     <input class="form-control" type="date" name="birthday" value="{{ Auth::user()->birthday }}" />
                                                 </div>
-                                                <hr>
+                                                
 
                                                 <!--PRIVACIDADE
                                                 <h3 class="text-capitalize font-weight-500 text-dark">Privacidade</h3>
