@@ -16,7 +16,7 @@ class IndexController extends Controller
       $noticias = News::latest()->with('category')->where('status','1')->paginate($perPage);
 
 
-      if($noticas){
+      if($noticias){
         return response()->json([
           'success' => true,
           'data' => $noticias
