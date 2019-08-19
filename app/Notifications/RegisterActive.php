@@ -44,6 +44,7 @@ class RegisterActive extends Notification
          $url = url('api/register/activate/' . $notifiable->activation_token);
 
          return (new MailMessage)
+             ->from('contato@caucaia.online', 'Caucaia Online')
              ->subject('Confirme sua conta')
              ->line('Obrigado por se cadastrar! Agora verifique seu e-mail.')
              ->action('Confirme sua Conta.', url($url))
