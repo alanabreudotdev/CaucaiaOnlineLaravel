@@ -42,49 +42,13 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-
-    public function create(Illuminate\Http\Request $request)
-{
-    //Define your validation rules here.
-    $rules = [
-        'name' => 'required',
-        'email' => 'required | email | unique:users,email',
-        'password' => 'required'
-    ];
-    //Create a validator, unlike $this->validate(), this does not automatically redirect on failure, leaving the final control to you :)
-    $validated = Illuminate\Support\Facades\Validator::make($request->all(), $rules);
-
-    //Check if the validation failed, return your custom formatted code here.
-    if($validated->fails())
-    {
-        return response()->json(['status' => 'error', 'messages' => 'The given data was invalid.', 'errors' => $validated->errors()]);
-    }
-
-    //If not failed, the code will reach here
-    $newUser = $this->user->create([
-        'name' => $request->get('name'),
-        'email' => $request->get('email'),
-        'password' => bcrypt($request->get('password'))
-    ]);
-    //This would be your own error response, not linked to validation
-    if (!$newUser) {
-        return response()->json(['status'=>'error','message'=>'failed_to_create_new_user'], 500);
-    }
-
-    //All went well
-    return response()->json([
-        'status' => 'success',
-        'token' => $this->jwtauth->fromUser($newUser)
-    ]);
-}
-
     /**
      * Get a validator for an incoming registration request.
      *
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validatorrrr(array $data)
+    protected function validator(array $data)
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
@@ -94,14 +58,13 @@ class RegisterController extends Controller
         ]);
     }
 
-
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return \App\User
      */
-    protected function create_old(array $data)
+    protected function create(array $data)
     {
         return User::create([
             'name' => $data['name'],
@@ -121,25 +84,37 @@ class RegisterController extends Controller
 
     public function registerAPI(Request $request)
     {
-        // Here the request is validated. The validator method is located
-        // inside the RegisterController, and makes sure the name, email
-        // password and password_confirmation fields are required.
-        //$this->validator($request->all())->validate();
+      //Define your validation rules here.
+  $rules = [
+      'name' => 'required',
+      'email' => 'required | email | unique:users,email',
+      'password' => 'required'
+  ];
+  //Create a validator, unlike $this->validate(), this does not automatically redirect on failure, leaving the final control to you :)
+  $validated = Illuminate\Support\Facades\Validator::make($request->all(), $rules);
 
-        // A Registered event is created and will trigger any relevant
-        // observers, such as sending a confirmation email or any
-        // code that needs to be run as soon as the user is created.
-        event(new registered($user = $this->create($request->all())));
+  //Check if the validation failed, return your custom formatted code here.
+  if($validated->fails())
+  {
+      return response()->json(['status' => 'error', 'messages' => 'The given data was invalid.', 'errors' => $validated->errors()]);
+  }
 
-        // After the user is created, he's logged in.
-        $this->guard()->login($user);
+  //If not failed, the code will reach here
+  $newUser = $this->user->create([
+      'name' => $request->get('name'),
+      'email' => $request->get('email'),
+      'password' => bcrypt($request->get('password'))
+  ]);
+  //This would be your own error response, not linked to validation
+  if (!$newUser) {
+      return response()->json(['status'=>'error','message'=>'failed_to_create_new_user'], 500);
+  }
 
-        // And finally this is the hook that we want. If there is no
-        // registered() method or it returns null, redirect him to
-        // some other URL. In our case, we just need to implement
-        // that method to return the correct response.
-        return $this->registeredAPI($request, $user)
-                        ?: redirect($this->redirect('/'));
+  //All went well
+  return response()->json([
+      'status' => 'success',
+      'token' => $this->jwtauth->fromUser($newUser)
+  ]);
     }
 
 
