@@ -20,7 +20,7 @@
                                 {{ __('Seu email foi validado com sucesso. Abra o APP do Caucaia Online e logue.') }}
                             </div>
                             @else
-                            <div class="card-header">{{ __('EMAIL JÁ VALIDADO) }}</div>
+                            <div class="card-header">{{ __('EMAIL JÁ VALIDADO') }}</div>
 
                             <div class="card-body">
 
