@@ -91,7 +91,7 @@ class RegisterController extends Controller
       'password' => 'required'
   ];
   //Create a validator, unlike $this->validate(), this does not automatically redirect on failure, leaving the final control to you :)
-  $validated = Illuminate\Support\Facades\Validator::make($request->all(), $rules);
+  $validated = Validator::make($request->all(), $rules);
 
   //Check if the validation failed, return your custom formatted code here.
   if($validated->fails())
