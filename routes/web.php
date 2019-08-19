@@ -16,7 +16,8 @@ Route::get('/', function(){
   echo 'ok!';
 });
 */
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'Front\\IndexController@index')->name('home');
+//Route::get('/', 'HomeController@index')->name('home');
 
 //ROTAS RECLAMAÇÃO
 Route::get('/reclamar', 'Front\\ReclamarController@index')->name('reclamacao.front.index');

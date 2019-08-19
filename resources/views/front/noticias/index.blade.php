@@ -5,7 +5,7 @@
 <div class="container-fluid mt-xl-50 mt-sm-30 mt-15">
 
     <!-- Row -->
-    
+
     <div class="row ">
         <div class="col-xl-8 col-md-8 mb-20">
                <!-- Title -->
@@ -13,11 +13,11 @@
         <h4 class="hk-pg-title">Notícias</h4>
     </div>
     <!-- /Title -->
-                @if(Request::get('page')==null) 
+                @if(Request::get('page')==null)
                 <!-- NOTICIAS EM DESTAQUE -->
                 <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12">
-                        <a href="/noticias/{{$noticiaDestaque->id}}/{{$noticiaDestaque->slug}}">    
+                        <a href="/noticias/{{$noticiaDestaque->id}}/{{$noticiaDestaque->slug}}">
                             <div class="card mb-20">
                                 <img class="card-img-top" src="{{asset('storage'.$noticiaDestaque->image_url)}}" alt="Card image cap">
                                     <div class="card-body">
@@ -31,8 +31,8 @@
                                 </div>
                             </div>
                         </a>
-                    </div>  
-                     <!-- FIM NOTICIAS EM DESTAQUE -->  
+                    </div>
+                     <!-- FIM NOTICIAS EM DESTAQUE -->
                 @endif
                      <!-- publicidade -->
                      <div class="w-100 mb-20">
@@ -41,42 +41,40 @@
                      <!-- fim publicidade -->
 
                      <!--NOTICIAS HORIZONTAL -->
-                     <div class="hk-sec-wrapper">
+                     <div class="">
 
                      @foreach ($noticias as $not)
                         @if($not->id != $noticiaDestaque->id)
-                        <a href="/noticias/{{$not->id}}/{{$not->slug}}">    
+                        <a href="/noticias/{{$not->id}}/{{$not->slug}}">
                             <div class="row mb-10">
-                                    <div class="col-sm">
-                                        <div class="media pa-20 border border-2 border-light ">
-                                            <img class="mr-15 circle d-74" src="{{asset('storage'.$not->image_url)}}" alt="{{$not->title}}">
-                                            <div class="media-body">
-                                                    <small class="text-muted">{{$not->category->name}}</small>
+                              <div class="col-lg-6 col-md-6 col-sm-12">
+                                        <div class="card mb-20">
+                                            <img class="card-img-top" src="{{asset('storage'.$not->image_url)}}" alt="{{$not->title}}">
+                                            <div class="card-body">
+                                              <small class="text-muted">{{$not->category->name}}</small>
+                                                <h5 class="card-title">{{$not->title}}</h5>
 
-                                            <h5 class="mb-5">{{$not->title}}</h5> 
-                                            <p class="card-text text-muted">
-                                                   @if(strlen($not->description)>200) {!!substr($not->description,0,201)!!}... @else {!!$not->description!!} @endif
-                                            </p>
-                                            <p class="card-text">
-                                                    <small class="text-muted">{{ \Carbon\Carbon::parse($not->created_at)->diffForHumans() }}</small>
-                                            </p>
+                                                <p class="card-text">@if(strlen($not->description)>200) {!!substr($not->description,0,201)!!}... @else {!!$not->description!!} @endif</p>
+                                                <p class="card-text"><small class="text-muted">{{ \Carbon\Carbon::parse($not->created_at)->diffForHumans() }}</small></p>
                                             </div>
                                         </div>
-                                    </div>
+                                </div>
+
+
                             </div>
                         </a>
-                    
+
                         @endif
                      @endforeach
                     </div>
                     <!-- FIM NOTICIAS HORIZONTAL -->
                     <div class="pagination-wrap  justify-content-center mb-25">
                             {{$noticias->links()}}
-                    </div>   
+                    </div>
         </div>
-       
+
         <!-- FIM CONTEUDO -->
-           
+
             <!-- COLUNA DIREITA  -->
             <div class="col-xl-4 col-md-4 ">
                         <!-- Title -->
@@ -84,9 +82,9 @@
         <h4 class="hk-pg-title">Categorias</h4>
     </div>
     <!-- /Title -->
-                
+
                 <div class="mb-20">
-                        
+
                         <div class="row">
                             <div class="col-sm">
                                 <div class="row">
@@ -97,7 +95,7 @@
                                                 <a href="{{url('/noticias/categoria/'.$cat->id)}}">- {{$cat->name}}</a>
                                                 </li>
                                             @endforeach
-                                            
+
                                         </ul>
                                     </div>
                                 </div>
@@ -122,5 +120,5 @@
 
 @section('js_after')
 
-      
+
 @endsection

@@ -3,7 +3,7 @@
 
 @section('content')
 
-<div class="container-fluid">
+<div class="container-fluid ">
         <div class="row mb-40">
                 <div class="col-xl-12 pa-0 ">
                     <div id="mapa" class="gmap w-auto h-450p border-bottom border-3" ></div>
@@ -23,9 +23,9 @@
                 <!-- Title -->
         <div class="hk-pg-header">
                 @if($categoria)
-                    <h4 class="hk-pg-title "><span class="pg-title-icon">{{$titulo}}</h4>
+                    <h4 class="hk-pg-title "><span >{{$titulo}}</h4>
                 @else
-                    <h4 class="hk-pg-title "><span class="pg-title-icon">Reclamações</h4>
+                    <h4 class="hk-pg-title"><span >Reclamações</h4>
                 @endif
         </div>
         <!-- /Title -->

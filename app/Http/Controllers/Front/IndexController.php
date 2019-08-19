@@ -7,5 +7,9 @@ use App\Http\Controllers\Controller;
 
 class IndexController extends Controller
 {
-    //
+    public function index(){
+
+      $titulo = 'Seja Bem-vindo(a).';
+      return view('front.index', compact('titulo'));
+    }
 }
