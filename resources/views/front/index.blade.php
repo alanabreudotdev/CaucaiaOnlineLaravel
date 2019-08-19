@@ -47,10 +47,10 @@
         </div>
         <div class="row col-12 align-items-center justify-content-center">
 
-          <a href="/reclamar/listar/todas" class="btn btn-gradient-danger mr-5">Reclamar</a>
-          <a href="#!" onclick="javascript:alert('Em breve');" class="btn btn-gradient-success mr-5">Anunciar/Comprar</a>
-          <a href="#!" onclick="javascript:alert('Em breve');" class="btn btn-gradient-primary mr-5">Noticias</a>
-          <a href="#!" onclick="javascript:alert('Em breve');" class="btn btn-gradient-info mr-5">Lugares</a>
+          <a href="/reclamar/listar/todas" class="btn btn-gradient-danger mr-5 mt-5">Reclamar</a>
+          <a href="#!" onclick="javascript:alert('Em breve');" class="btn btn-gradient-success mr-5 mt-5">Anunciar/Comprar</a>
+          <a href="#!" onclick="javascript:alert('Em breve');" class="btn btn-gradient-primary mr-5 mt-5">Noticias</a>
+          <a href="#!" onclick="javascript:alert('Em breve');" class="btn btn-gradient-info mr-5 mt-5">Lugares</a>
 
         </div>
 
