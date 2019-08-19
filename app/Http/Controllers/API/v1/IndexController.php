@@ -4,170 +4,30 @@ namespace App\Http\Controllers\API\v1;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\ReclamaCategory;
-use App\Reclamacao;
-use App\ReclamaSubCategory;
-use App\User;
-use App\Traits\UploadTrait;
-use Illuminate\Support\Str;
-use Intervention\Image\ImageManagerStatic as Image;
-use Carbon\Carbon;
+use App\News;
+
 
 class IndexController extends Controller
 {
-    use UploadTrait;
+    public function noticiasListar(){
 
-    public function __construct(Reclamacao $rcl, ReclamaCategory $rclCat, ReclamaSubCategory $rclSubCat, Request $rqst){
-        $this->rcl = $rcl;
-        $this->rclCat = $rclCat;
-        $this->rclSubCat = $rclSubCat;
-        $this->rqst = $rqst;
-    }
+      $perPage = 6;
 
-    /***
-    * PEGA AS CATEGORIAS PARA ABRIR UMA NOVA RECLAMACAO
-    */
-    public function getReclamaCategories(){
+      $noticias = News::latest()->with('category')->where('status','1')->paginate($perPage);
 
-        $categorias = $this->rclCat->orderby('name','asc')->get();
 
+      if($noticas){
         return response()->json([
           'success' => true,
-          'data' => $categorias
-        ]);
-    }
-
-    public function getReclamaSubCategories(Request $request){
-
-        $categorias = $this->rclSubCat->where('reclama_category_id',$request->categoryid)->orderby('name','asc')->get();
-
-        return response()->json([
-          'success' => true,
-          'data' => $categorias
-        ]);
-    }
-
-    public function getReclamacao($id = null){
-
-
-        $reclamacoes = Reclamacao::latest()->select('id','created_at','reclama_category_id',
-          'titulo', 'texto_reclamacao','foto_url_01', 'apoio', 'endereco', 'views', 'user_id' )
-                                  ->with('user','categories')
-                                  ->paginate(5);
-
-      return response()->json([
-        'success' => true,
-        'reclamacoes' => $reclamacoes
-      ]);
-    }
-
-    public function getReclamacaoView(Request $request){
-
-      $reclamacao = Reclamacao::where('id', $request->id)->with('user','categories')->first();
-
-      return response()->json([
-          'success' =>true,
-          'data' => $reclamacao
-      ]);
-
-    }
-
-    public function postReclamacao(Request $request){
-
-      $latLong = $request->LatLong;
-      $latLong = substr($latLong,7, -1);
-      $latLong = explode(",",$latLong);
-      $latitude = $latLong[0];
-      $longitude = $latLong[1];
-      $slug = str_slug($request->titulo);
-
-      $dados = [
-        'reclama_category_id' => $request->categoria,
-        'reclama_sub_category_id' => $request->subcategoria,
-        'user_id' => $request->user_id,
-        'titulo' => $request->titulo,
-        'texto_reclamacao' => $request->textoReclamacao,
-        'endereco' => $request->endereco,
-        'celular' =>$request->celular,
-        'longitude' => $longitude,
-        'latitude' =>$latitude,
-        'slug' => $slug,
-        'status'=> 1
-      ];
-
-
-      //GET TOTAL RECLAMACOES PER CATEGORY
-      $total = $this->rclCat->getTotalReclamacao($request->categoria);
-      $total->total_reclamacoes = $total->total_reclamacoes + 1;
-      $total->save();
-
-      // Persist user record to database
-      $save = Reclamacao::create($dados);
-
-      if($save){
-        if($request->has('foto_url_01')){
-
-          $name = str_slug($save->id.'_'.time().'_'. str_random(10)). '.jpg';
-          // Define folder path
-          $storageFolder = '/app/public/uploads/images/reclamacao/';
-          $folder = '/uploads/images/reclamacao/';
-          // Make a file path where image will be stored [ folder path + file name + file extension]
-          $filePath = $folder . $name;
-        //  dd($filePath);
-          $image = $request->foto_url_01;  // your base64 encoded
-
-          \File::put(storage_path(). $storageFolder . $name, base64_decode($image));
-
-          // Set user profile image path in database to filePath
-          $save->foto_url_01 = $filePath;
-          $save->save();
-        }
-      }
-
-
-      return response()->json([
-        'success'=>true,
-        'data'=> 'Foi'
-      ]);
-    }
-
-    public function userUpdate(Request $request){
-      $request->birthday = str_replace('-','', $request->birthday);
-
-      if(strlen($request->birthday)==10){
-        $date = date_create_from_format("d/m/Y", $request->birthday)->format("Y-m-d");
+          'data' => $noticias
+        ], 200);
       }else{
         return response()->json([
-          'success'=>false,
-          'message'=> 'Data invalida. Digite corretamente. Ex: 10/06/1990'
+          'success' => false,
+          'message' => 'Nenhuma noticia encontrada.'
         ]);
       }
 
-      $dados = [
-        'name' => $request->name,
-        'lastname' => $request->lastname,
-        'celular' => $request->celular,
-        'birthday' => $date,
-        'reclamacao_privacidade' => $request->reclamacao_privacidade,
-        'cpf' => $request->cpf
-
-      ];
-
-      $user = User::where('id', $request->id)->first();
-
-      $save = $user->update($dados);
-      if($save){
-        $user = User::where('id', $request->id)->first();
-        return response()->json([
-          'success'=>true,
-          'user'=>$user
-        ]);
-      }else{
-        return response()->json([
-          'success'=>false,
-          'message'=> 'Error'
-        ]);
-      }
 
     }
 }
