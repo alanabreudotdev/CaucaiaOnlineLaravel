@@ -40,8 +40,18 @@
   <div class="row mt-40 mb-40">
     <div class="col-12">
       <div class="row align-items-center justify-content-center">
+        <div class="row col-12 align-items-center justify-content-center mb-20">
+          <h5>O QUE VOCÊ DESEJA? </h5>
+
+
+        </div>
         <div class="row col-12 align-items-center justify-content-center">
-          <h3>O GUIA DA CIDADE DE CAUCAIA</h3>
+
+          <a href="/reclamar/listar/todas" class="btn btn-gradient-danger mr-5">Reclamar</a>
+          <a href="#!" onclick="javascript:alert('Em breve');" class="btn btn-gradient-success mr-5">Anunciar/Comprar</a>
+          <a href="#!" onclick="javascript:alert('Em breve');" class="btn btn-gradient-primary mr-5">Noticias</a>
+          <a href="#!" onclick="javascript:alert('Em breve');" class="btn btn-gradient-info mr-5">Lugares</a>
+
         </div>
 
       </div>
