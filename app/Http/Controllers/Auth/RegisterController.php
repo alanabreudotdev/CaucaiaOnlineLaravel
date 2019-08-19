@@ -84,7 +84,7 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validatorrrr(array $data)
     {
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
@@ -124,7 +124,7 @@ class RegisterController extends Controller
         // Here the request is validated. The validator method is located
         // inside the RegisterController, and makes sure the name, email
         // password and password_confirmation fields are required.
-        $this->validator($request->all())->validate();
+        //$this->validator($request->all())->validate();
 
         // A Registered event is created and will trigger any relevant
         // observers, such as sending a confirmation email or any
