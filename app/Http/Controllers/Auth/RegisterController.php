@@ -88,7 +88,7 @@ class RegisterController extends Controller
   $rules = [
       'name' => 'required',
       'email' => 'required | email | unique:users,email',
-      'password' => 'required'
+      'password' => ['required', 'string', 'min:8', 'confirmed'],
   ];
   //Create a validator, unlike $this->validate(), this does not automatically redirect on failure, leaving the final control to you :)
   $validated = Validator::make($request->all(), $rules);
@@ -103,7 +103,7 @@ class RegisterController extends Controller
   $newUser = $this->user->create([
       'name' => $request->get('name'),
       'email' => $request->get('email'),
-      'password' => bcrypt($request->get('password'))
+      'password' => Hash::make($data['password']),
   ]);
   //This would be your own error response, not linked to validation
   if (!$newUser) {
