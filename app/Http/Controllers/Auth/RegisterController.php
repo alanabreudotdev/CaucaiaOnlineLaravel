@@ -42,6 +42,42 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
+
+    public function create(Illuminate\Http\Request $request)
+{
+    //Define your validation rules here.
+    $rules = [
+        'name' => 'required',
+        'email' => 'required | email | unique:users,email',
+        'password' => 'required'
+    ];
+    //Create a validator, unlike $this->validate(), this does not automatically redirect on failure, leaving the final control to you :)
+    $validated = Illuminate\Support\Facades\Validator::make($request->all(), $rules);
+
+    //Check if the validation failed, return your custom formatted code here.
+    if($validated->fails())
+    {
+        return response()->json(['status' => 'error', 'messages' => 'The given data was invalid.', 'errors' => $validated->errors()]);
+    }
+
+    //If not failed, the code will reach here
+    $newUser = $this->user->create([
+        'name' => $request->get('name'),
+        'email' => $request->get('email'),
+        'password' => bcrypt($request->get('password'))
+    ]);
+    //This would be your own error response, not linked to validation
+    if (!$newUser) {
+        return response()->json(['status'=>'error','message'=>'failed_to_create_new_user'], 500);
+    }
+
+    //All went well
+    return response()->json([
+        'status' => 'success',
+        'token' => $this->jwtauth->fromUser($newUser)
+    ]);
+}
+
     /**
      * Get a validator for an incoming registration request.
      *
@@ -58,13 +94,14 @@ class RegisterController extends Controller
         ]);
     }
 
+
     /**
      * Create a new user instance after a valid registration.
      *
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    protected function create_old(array $data)
     {
         return User::create([
             'name' => $data['name'],
