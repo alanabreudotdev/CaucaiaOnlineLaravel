@@ -2,7 +2,7 @@
         <div class="">
                 <div class="hk-pg-header mb-0">
                     <div>
-                        <h4 class="hk-pg-title mb-20">Problemas + frenquentes</h4>
+                        <h4 class="hk-pg-title mb-10">+ reclamados</h4>
                     </div>
                 </div>
 
