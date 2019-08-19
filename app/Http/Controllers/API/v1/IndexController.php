@@ -20,7 +20,7 @@ class IndexController extends Controller
         return response()->json([
           'success' => true,
           'data' => $noticias
-        ], 200);
+        ]);
       }else{
         return response()->json([
           'success' => false,
