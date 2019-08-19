@@ -20,7 +20,7 @@
                         RECLAMAÇÕES
                     </a>
                 </li>
-
+                <!--
                 <li class="nav-item  show-on-hover">
                         <a class="nav-link " href="#!" role="button"  aria-haspopup="true" aria-expanded="false">
                             AJUDA
@@ -29,6 +29,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="#!" >CONTATO</a>
                 </li>
+                --->
             </ul>
         </div>
 

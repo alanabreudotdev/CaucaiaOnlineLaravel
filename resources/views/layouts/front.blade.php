@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>@if(setting('Titulo')) {{ setting('Titulo')  }} @else SiSCriatees @endif  @if(!empty($titulo)) - {{$titulo}} @endif</title>
+    <title>@if(setting('Titulo')) {{ setting('Titulo')  }} @else Criatees - Soluções Web @endif  @if(!empty($titulo)) - {{$titulo}} @endif</title>
     <meta name="description" content="" />
 
     <!-- CSRF Token -->
@@ -62,13 +62,12 @@
                 <footer class="footer">
                     <div class="row">
                         <div class="col-md-6 col-sm-12">
-                            <p>{{setting('footer-text')}}</p>
+                            <p>{{setting('footer-text')}} </p>
                         </div>
                         <div class="col-md-6 col-sm-12">
-                            <p class="d-inline-block">Redes Sociais</p>
-                            <a href="#" class="d-inline-block btn btn-icon btn-icon-only btn-indigo btn-icon-style-4"><span class="btn-icon-wrap"><i class="fa fa-facebook"></i></span></a>
-                            <a href="#" class="d-inline-block btn btn-icon btn-icon-only btn-indigo btn-icon-style-4"><span class="btn-icon-wrap"><i class="fa fa-twitter"></i></span></a>
-                            <a href="#" class="d-inline-block btn btn-icon btn-icon-only btn-indigo btn-icon-style-4"><span class="btn-icon-wrap"><i class="fa fa-google-plus"></i></span></a>
+
+                            <p class="d-inline-block"> <a href="#">Política de Privacidade</a> | Redes Sociais</p>
+                            <a href="https://www.instagram.com/caucaia.online" class="d-inline-block btn btn-icon btn-icon-only btn-indigo btn-icon-style-4"><span class="btn-icon-wrap"><i class="fa fa-instagram"></i></span></a>
                         </div>
                     </div>
                 </footer>
@@ -125,6 +124,16 @@
         @yield('js_after')
 
         <script src="{{asset('dist/js/mapas/map.js')}}"></script>
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-3NERRDCHH7"></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', 'G-3NERRDCHH7');
+        </script>
 </body>
 
 </html>

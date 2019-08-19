@@ -63,6 +63,9 @@ Route::post('/usuario/conta','Front\UsuarioController@contaPost')->middleware('a
 Route::get('/usuario/reclamacoes','Front\UsuarioController@reclamacoes')->middleware('auth')->name('usuario.reclamacoes');
 
 
+//PAGES
+Route::get('/politica-privacidade', 'Front\PagesController@privacidade');
+
 
 //ROTAS PARA ADMIN
 Route::group([ 'prefix' => 'admin', 'middleware' => ['auth', 'roles','verified'], 'roles' => 'admin'], function () {
