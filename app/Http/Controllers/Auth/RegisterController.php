@@ -116,7 +116,7 @@ class RegisterController extends Controller
           'email' => $request->get('email'),
           'lastname' => $request->get('lastname'),
           'cpf' => $request->get('cpf'),
-          'password' => Hash::make($data['password']),
+          'password' => Hash::make($request->get('password')),
       ]);
       //This would be your own error response, not linked to validation
       if (!$newUser) {
