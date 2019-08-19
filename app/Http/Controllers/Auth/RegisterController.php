@@ -32,6 +32,11 @@ class RegisterController extends Controller
      */
     protected $redirectTo = '/';
 
+    protected $validator;
+
+      protected $code = 422;
+
+
     /**
      * Create a new controller instance.
      *
@@ -40,7 +45,17 @@ class RegisterController extends Controller
     public function __construct()
     {
         $this->middleware('guest');
+        $this->validator = $validator;
     }
+
+    public function render()
+      {
+        // return a json with desired format
+        return response()->json([
+            "error" => "form validation error",
+            "message" => $this->validator->errors()->first()
+        ], $this->code);
+      }
 
     /**
      * Get a validator for an incoming registration request.
@@ -102,7 +117,7 @@ class RegisterController extends Controller
         // some other URL. In our case, we just need to implement
         // that method to return the correct response.
         return $this->registeredAPI($request, $user)
-                        ?: redirect($this->redirect('/home'));
+                        ?: redirect($this->redirect('/'));
     }
 
 
