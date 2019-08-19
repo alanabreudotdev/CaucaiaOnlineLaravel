@@ -3,7 +3,7 @@
         {!! Form::label('destaque', 'Destaque', ['class' => 'control-label']) !!}
         <div class="checkbox">
         <label>{!! Form::radio('destaque', '1') !!} Sim</label>
-   
+
         <label>{!! Form::radio('destaque', '0', true) !!} Não</label>
     </div>
         {!! $errors->first('destaque', '<p class="help-block">:message</p>') !!}
@@ -12,7 +12,7 @@
         {!! Form::label('title', 'Categoria', ['class' => 'control-label']) !!}
         {!! Form::select('category_id', $categories, '',['class' => 'form-control']) !!}
         {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
-</div>    
+</div>
 <div class="form-group{{ $errors->has('title') ? 'has-error' : ''}}">
     {!! Form::label('title', 'Título', ['class' => 'control-label']) !!}
     {!! Form::text('title', null, ('required' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
@@ -25,7 +25,7 @@
 </div>
 <div class="form-group{{ $errors->has('description') ? 'has-error' : ''}}">
     {!! Form::label('description', 'Descrição', ['class' => 'control-label']) !!}
-    {!! Form::textarea('description', null, ('required' == 'required') ? ['class' => 'form-control crud-richtext', 'required' => 'required'] : ['class' => 'form-control crud-richtext']) !!}
+    {!! Form::textarea('description', null, ('required' == 'required') ? ['class' => 'form-control ', 'required' => 'required'] : ['class' => 'form-control crud-richtext']) !!}
     {!! $errors->first('description', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group{{ $errors->has('image_url') ? 'has-error' : ''}}">

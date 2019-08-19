@@ -32,6 +32,10 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::get('sair', 'Auth\LoginController@logoutAPI');
     Route::get('register/activate/{token}', 'Auth\RegisterController@registerActivate');
 
+
+    //noticias
+    Route::get('noticias-index','API\v1\IndexController@noticiasListar');
+
 Route::group(['middleware' => 'auth:api'], function(){
 
   Route::get('reclamacao-categorias','API\v1\ReclamacaoController@getReclamaCategories');
@@ -43,8 +47,7 @@ Route::group(['middleware' => 'auth:api'], function(){
   Route::post('user-update','API\v1\ReclamacaoController@userUpdate');
   Route::get('reclamacao-abuso','API\v1\ReclamacaoController@reportarAbuso');
 
-  //noticias
-  Route::get('noticias-index','API\v1\IndexController@noticiasListar');
+
 
 
 
