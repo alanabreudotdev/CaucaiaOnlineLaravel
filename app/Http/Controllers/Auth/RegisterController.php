@@ -90,8 +90,8 @@ class RegisterController extends Controller
           'lastname' => 'required',
           'email' => 'required | email | unique:users,email',
           'password' => ['required', 'string', 'min:6', 'confirmed'],
-      ],
-      [
+      ];
+      $message = [
         'name.required' => 'O Nome é obrigatório.',
         'cpf.required' => 'O CPF é obrigatório.',
         'lastname.required' => 'O Sobrenome é obrigatório.',
