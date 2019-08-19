@@ -117,6 +117,7 @@ class RegisterController extends Controller
           'lastname' => $request->get('lastname'),
           'cpf' => $request->get('cpf'),
           'password' => Hash::make($request->get('password')),
+          'activation_token'  =>  str_random(60),
       ]);
       //This would be your own error response, not linked to validation
       if (!$newUser) {
@@ -124,11 +125,29 @@ class RegisterController extends Controller
       }
 
       //All went well
+      $newUser->notify(new RegisterActive($newUser));
       return response()->json([
           'success' => true
 
       ]);
     }
+
+    /**
+    * @param $token
+    * @return \Illuminate\Http\JsonResponse
+    */
+   public function registerActivate($token){
+       $user = User::where('activation_token', $token)->first();
+
+       if (!$user){
+           return response()->json(['message'  =>  'O link de ativação já foi usado!'], 404);
+       }
+       $user->active = true;
+       $user->activation_token = '';
+       $user->save();
+
+       return $user;
+   }
 
 
 }

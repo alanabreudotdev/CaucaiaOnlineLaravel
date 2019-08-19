@@ -30,6 +30,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::post('cadastrar', 'Auth\RegisterController@registerAPI');
     Route::post('entrar', 'Auth\LoginController@loginAPI');
     Route::get('sair', 'Auth\LoginController@logoutAPI');
+    Route::get('register/activate/{token}', 'Auth\RegisterController@registerActivate');
 
 Route::group(['middleware' => 'auth:api'], function(){
 
