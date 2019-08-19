@@ -46,14 +46,22 @@ class LoginController extends Controller
 
         if ($this->attemptLogin($request)) {
             $user = $this->guard()->user();
-            dd($user);
-            $user->generateToken();
+            if($user->active){
+              $user->generateToken();
 
-            return response()->json([
-                'success' => true,
-                'token' => $user->api_token,
-                'user' => $user
-            ]);
+              return response()->json([
+                  'success' => true,
+                  'token' => $user->api_token,
+                  'user' => $user
+              ]);
+            }else{
+              return response()->json([
+                  'success' => false,
+                  'message' => 'Você precisa validar seu email.'
+                  
+              ]);
+            }
+
         }else{
           return response()->json([
                 'success' => false,
