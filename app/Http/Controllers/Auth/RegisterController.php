@@ -96,7 +96,7 @@ class RegisterController extends Controller
   //Check if the validation failed, return your custom formatted code here.
   if($validated->fails())
   {
-      return response()->json(['status' => 'error', 'messages' => 'The given data was invalid.', 'errors' => $validated->errors()]);
+      return response()->json(['success' => false, 'messages' => 'Dados inválidos.', 'errors' => $validated->errors()]);
   }
 
   //If not failed, the code will reach here
@@ -107,12 +107,12 @@ class RegisterController extends Controller
   ]);
   //This would be your own error response, not linked to validation
   if (!$newUser) {
-      return response()->json(['status'=>'error','message'=>'failed_to_create_new_user'], 500);
+      return response()->json(['success'=>false,'message'=>'failed_to_create_new_user'], 500);
   }
 
   //All went well
   return response()->json([
-      'status' => 'success',
+      'sucess' => true,
       'token' => $this->jwtauth->fromUser($newUser)
   ]);
     }
