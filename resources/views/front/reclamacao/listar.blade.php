@@ -29,11 +29,11 @@
                 @endif
         </div>
         <!-- /Title -->
-        <small>Total de Reclamações: {{count($reclamacoes)}}</small>
+
                 <!-- LISTAR RECLAMACÇÕES -->
                 @include('components.reclamacoes_list')
                 <!-- FIM LISTAR RECLAMACOES -->
-
+                <small>Total de Reclamações: {{count($reclamacoes)}}</small>
                 <div class="pagination-wrap  justify-content-center mb-25">
                     {{$reclamacoes->links()}}
                 </div>
