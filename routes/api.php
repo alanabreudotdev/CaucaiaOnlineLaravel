@@ -31,7 +31,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::post('entrar', 'Auth\LoginController@loginAPI');
     Route::get('sair', 'Auth\LoginController@logoutAPI');
 
-Route::group(['middleware' => ['auth','verified']], function(){
+Route::group(['middleware' => 'auth:api'], function(){
 
   Route::get('reclamacao-categorias','API\v1\ReclamacaoController@getReclamaCategories');
   Route::get('reclamacao-subcategorias','API\v1\ReclamacaoController@getReclamaSubCategories');
