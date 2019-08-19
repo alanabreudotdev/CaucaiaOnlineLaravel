@@ -91,7 +91,7 @@ class RegisterController extends Controller
           'email' => 'required | email | unique:users,email',
           'password' => ['required', 'string', 'min:6', 'confirmed'],
       ];
-      $message = [
+      $messages = [
         'name.required' => 'O Nome é obrigatório.',
         'cpf.required' => 'O CPF é obrigatório.',
         'lastname.required' => 'O Sobrenome é obrigatório.',
@@ -101,7 +101,7 @@ class RegisterController extends Controller
       ]
       ;
       //Create a validator, unlike $this->validate(), this does not automatically redirect on failure, leaving the final control to you :)
-      $validated = Validator::make($request->all(), $rules);
+      $validated = Validator::make($request->all(), $rules,$messages);
 
       //Check if the validation failed, return your custom formatted code here.
       if($validated->fails())
