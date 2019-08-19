@@ -147,7 +147,7 @@ class RegisterController extends Controller
        $user->activation_token = '';
        $user->save();
 
-       return $user;
+       return view('auth.validationapi');
    }
 
 
