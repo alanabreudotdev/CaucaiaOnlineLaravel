@@ -9,6 +9,7 @@ use App\News;
 
 class IndexController extends Controller
 {
+
     public function noticiasListar(){
 
       $perPage = 6;
@@ -27,7 +28,28 @@ class IndexController extends Controller
           'message' => 'Nenhuma noticia encontrada.'
         ]);
       }
+    }
 
+    /**
+     * VER NOTICIAS
+     * param: id/slug
+     */
+    public function noticiasVer($id){
+
+        $noticia = $this->noticias->where('id',$id)->with('category')->first();
+        ///$noticiasCategorias = $this->categorias->where('status','1')->orderby('name','asc')->get();
+
+        if($noticias){
+          return response()->json([
+            'success' => true,
+            'noticias' => $noticia
+          ]);
+        }else{
+          return response()->json([
+            'success' => false,
+            'message' => 'Nenhuma noticia encontrada.'
+          ]);
+        }
 
     }
 }

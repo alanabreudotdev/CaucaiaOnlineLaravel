@@ -45,6 +45,7 @@ Route::group(['middleware' => 'auth:api'], function(){
 
   //noticias
   Route::get('noticias-index','API\v1\IndexController@noticiasListar');
+  Route::get('noticias-ver','API\v1\IndexController@noticiasVer');
 
 
 
