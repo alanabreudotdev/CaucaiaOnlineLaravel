@@ -36,7 +36,7 @@ class IndexController extends Controller
      */
     public function noticiasVer(Request $request){
 
-        $noticia = $this->noticias->where('id',$request->id)->with('category')->first();
+        $noticia =  News::where('id',$request->id)->with('category')->first();
         ///$noticiasCategorias = $this->categorias->where('status','1')->orderby('name','asc')->get();
 
         if($noticia){
