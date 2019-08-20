@@ -34,12 +34,12 @@ class IndexController extends Controller
      * VER NOTICIAS
      * param: id/slug
      */
-    public function noticiasVer($id){
+    public function noticiasVer(Request $request){
 
-        $noticia = $this->noticias->where('id',$id)->with('category')->first();
+        $noticia = $this->noticias->where('id',$request->id)->with('category')->first();
         ///$noticiasCategorias = $this->categorias->where('status','1')->orderby('name','asc')->get();
 
-        if($noticias){
+        if($noticia){
           return response()->json([
             'success' => true,
             'noticias' => $noticia
