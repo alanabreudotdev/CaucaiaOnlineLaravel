@@ -16,6 +16,8 @@ use App\ReclamaAnswer;
 use App\ReclamacaoApoioLog;
 use App\ReclamaApoio;
 use SEO;
+use SEOMeta;
+use OpenGraph;
 
 use App\Traits\UploadTrait;
 
@@ -223,13 +225,24 @@ class ReclamarController extends Controller
        //TRATA OS DADOS E TRANSFORMANDO EM JSON
        $locations = $this->rcl->toJson($locations);
 
-       SEO::setTitle($reclamacao->titulo);
-       SEO::setDescription($reclamacao->titulo);
-       SEO::opengraph()->setUrl(setting('site_url'));
-       SEO::setCanonical('https://caucaia.online/reclamar/ver/'.$reclamacao->id.'/'.$reclamacao->slug);
-       SEO::opengraph()->addProperty('type', 'articles');
-       SEO::twitter()->setSite('@caucaia.online');
-       SEO::jsonLd()->addImage('https://caucaia.online/storage'.$reclamacao->foto_url_01);
+
+      //SEOMeta::setTitle($reclamacao->titulo);
+      SEOMeta::setDescription($reclamacao->titulo);
+      SEOMeta::addMeta('article:published_time', $reclamacao->created_at->toW3CString(), 'property');
+      SEOMeta::addMeta('article:section', $reclamacao->categories->name, 'property');
+      SEOMeta::addKeyword(['caucaia', 'caucaia online', 'prefeitura caucaia', 'cumbuco', 'reclamar caucaia']);
+
+      OpenGraph::setDescription($reclamacao->titulo);
+      //OpenGraph::setTitle($reclamacao->titulo);
+      OpenGraph::setUrl('https://caucaia.online/reclamar/ver/'.$reclamacao->id.'/'.$reclamacao->slug);
+      OpenGraph::addProperty('type', 'article');
+      OpenGraph::addProperty('locale', 'pt-br');
+      OpenGraph::addProperty('locale:alternate', ['pt-pt', 'en-us']);
+
+      OpenGraph::addImage('https://caucaia.online/storage'.$reclamacao->foto_url_01);
+      //OpenGraph::addImage($post->images->list('url'));
+      OpenGraph::addImage(['url' => 'https://caucaia.online/storage'.$reclamacao->foto_url_01, 'size' => 300]);
+      OpenGraph::addImage('https://caucaia.online/storage'.$reclamacao->foto_url_01, ['height' => 300, 'width' => 300]);
 
     return view('front.reclamacao.ver',compact('titulo','reclamacao', 'locations', 'categorias'));
     }

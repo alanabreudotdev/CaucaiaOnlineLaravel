@@ -8,8 +8,7 @@
     {!! SEOMeta::generate() !!}
     {!! OpenGraph::generate() !!}
     {!! Twitter::generate() !!}
-    <!-- OR -->
-    {!! SEO::generate() !!}
+
 
     <!-- MINIFIED -->
     {!! SEO::generate(true) !!}
