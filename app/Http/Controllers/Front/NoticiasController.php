@@ -8,6 +8,8 @@ use App\News;
 use App\NewsCategory;
 use Flash;
 use SEO;
+use OpenGraph;
+use SEOMeta;
 
 class NoticiasController extends Controller
 {
@@ -112,13 +114,24 @@ class NoticiasController extends Controller
 
         $titulo = $noticia->category->name. ' | '.$noticia->title;
 
-        SEO::setTitle($noticia->title);
-        SEO::setDescription($noticia->title);
-        SEO::opengraph()->setUrl(setting('site_url'));
-        SEO::setCanonical('https://caucaia.online/noticias/'.$noticia->id.'/'.$noticia->slug);
-        SEO::opengraph()->addProperty('type', 'articles');
-        SEO::twitter()->setSite('@caucaia.online');
-        SEO::jsonLd()->addImage('https://caucaia.online/storage'.$noticia->image_url);
+        //SEOMeta::setTitle($reclamacao->titulo);
+        SEOMeta::setDescription($noticia->title);
+        SEOMeta::addMeta('article:published_time', $noticia->created_at->toW3CString(), 'property');
+        SEOMeta::addMeta('article:section', $noticia->category->name, 'property');
+        SEOMeta::addKeyword(['caucaia','noticias caucaia', 'caucaia online', 'prefeitura caucaia', 'cumbuco', 'reclamar caucaia']);
+
+        OpenGraph::setDescription($noticia->title);
+        //OpenGraph::setTitle($reclamacao->titulo);
+        OpenGraph::setUrl('https://caucaia.online/reclamar/ver/'.$noticia->id.'/'.$noticia->slug);
+        OpenGraph::addProperty('type', 'article');
+        OpenGraph::addProperty('locale', 'pt-br');
+        OpenGraph::addProperty('locale:alternate', ['pt-pt', 'en-us']);
+
+        OpenGraph::addImage('https://caucaia.online/storage'.$noticia->image_url);
+        //OpenGraph::addImage($post->images->list('url'));
+        OpenGraph::addImage(['url' => 'https://caucaia.online/storage'.$noticia->image_url, 'size' => 300]);
+        OpenGraph::addImage('https://caucaia.online/storage'.$noticia->image_url, ['height' => 300, 'width' => 300]);
+
 
         return view('front.noticias.ver', compact('titulo', 'noticia','noticiasCategorias'));
     }
