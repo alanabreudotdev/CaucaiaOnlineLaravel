@@ -5,7 +5,14 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>@if(setting('Titulo')) {{ setting('Titulo')  }} @else Criatees - Soluções Web @endif  @if(!empty($titulo)) - {{$titulo}} @endif</title>
-    <meta name="description" content="" />
+    {!! SEOMeta::generate() !!}
+    {!! OpenGraph::generate() !!}
+    {!! Twitter::generate() !!}
+    <!-- OR -->
+    {!! SEO::generate() !!}
+
+    <!-- MINIFIED -->
+    {!! SEO::generate(true) !!}
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">

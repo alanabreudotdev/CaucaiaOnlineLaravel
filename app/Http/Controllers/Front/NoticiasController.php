@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\News;
 use App\NewsCategory;
 use Flash;
+use SEO;
 
 class NoticiasController extends Controller
 {
@@ -26,7 +27,7 @@ class NoticiasController extends Controller
 
         if (!empty($keyword)) {
             $noticias = News::where('title', 'LIKE', "%$keyword%")
-                
+
                 ->orWhere('description', 'LIKE', "%$keyword%")
                  ->with('category')
                  ->where('status','1')
@@ -48,19 +49,19 @@ class NoticiasController extends Controller
 
         $noticiasCategorias = $this->categorias->where('status','1')->orderby('name','asc')->get();
 
-        
+
         $noticias = News::latest()->where('category_id',$id)->where('status','1')->with('category')->paginate($perPage);
         $noticiaDestaque = $this->noticias->where('category_id',$id)->where('destaque','1')->where('status','1')->with('category')->orderby('id', 'desc')->first();
-        
+
         $nomeCategoria = $this->categorias->where('id',$id)->orderby('name','asc')->first();
-        
+
         //VERIFICA SE TEM ALGUMA NOTICIA
         if(count($noticias)==0){
             Flash::info('','Nenhuma notícia encontrada para esta categoria');
             return redirect('/noticias');
         }
         $titulo = $nomeCategoria->name;
-       
+
         return view('front.noticias.porCategoria', compact('titulo','noticias','noticiasCategorias','noticiaDestaque'));
 
     }
@@ -68,7 +69,7 @@ class NoticiasController extends Controller
     /**
      * por busca
      */
-    
+
     public function search(Request $request){
 
         $perPage = 10;
@@ -79,7 +80,7 @@ class NoticiasController extends Controller
             return redirect('/noticias');
         }
 
-        $noticias = News::where('title', 'LIKE', "%$keyword%")       
+        $noticias = News::where('title', 'LIKE', "%$keyword%")
             ->orWhere('description', 'LIKE', "%$keyword%")
             ->orWhere('tags','LIKE',"%$keyword%")
             ->with('category')
@@ -88,14 +89,14 @@ class NoticiasController extends Controller
 
 
         $noticiasCategorias = $this->categorias->where('status','1')->orderby('name','asc')->get();
-                
+
         //VERIFICA SE TEM ALGUMA NOTICIA
         if(count($noticias)==0){
             Flash::info('','Nenhuma notícia encontrada para essa pesquisa');
             return redirect('/noticias');
         }
         $titulo = "Busca por: ".$keyword ;
-       
+
         return view('front.noticias.search', compact('titulo','noticias','noticiasCategorias','noticiaDestaque'));
 
     }
@@ -105,11 +106,19 @@ class NoticiasController extends Controller
      * param: id/slug
      */
     public function noticiasVer($id, $slug){
-        
+
         $noticia = $this->noticias->where('id',$id)->where('slug',$slug)->with('category')->first();
         $noticiasCategorias = $this->categorias->where('status','1')->orderby('name','asc')->get();
 
         $titulo = $noticia->category->name. ' | '.$noticia->title;
+
+        SEO::setTitle($noticia->title);
+        SEO::setDescription($noticia->title);
+        SEO::opengraph()->setUrl(setting('site_url'));
+        SEO::setCanonical('https://caucaia.online/noticias/'.$noticia->id.'/'.$noticia->slug);
+        SEO::opengraph()->addProperty('type', 'articles');
+        SEO::twitter()->setSite('@caucaia.online');
+        SEO::jsonLd()->addImage('https://caucaia.online/storage'.$noticia->image_url);
 
         return view('front.noticias.ver', compact('titulo', 'noticia','noticiasCategorias'));
     }

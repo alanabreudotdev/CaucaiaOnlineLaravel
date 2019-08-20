@@ -15,6 +15,7 @@ use Illuminate\Support\Str;
 use App\ReclamaAnswer;
 use App\ReclamacaoApoioLog;
 use App\ReclamaApoio;
+use SEO;
 
 use App\Traits\UploadTrait;
 
@@ -222,6 +223,14 @@ class ReclamarController extends Controller
        //TRATA OS DADOS E TRANSFORMANDO EM JSON
        $locations = $this->rcl->toJson($locations);
 
+       SEO::setTitle($reclamacao->titulo);
+       SEO::setDescription($reclamacao->titulo);
+       SEO::opengraph()->setUrl(setting('site_url'));
+       SEO::setCanonical('https://caucaia.online/reclamar/ver/'.$reclamacao->id.'/'.$reclamacao->slug);
+       SEO::opengraph()->addProperty('type', 'articles');
+       SEO::twitter()->setSite('@caucaia.online');
+       SEO::jsonLd()->addImage('https://caucaia.online/storage'.$reclamacao->foto_url_01);
+
     return view('front.reclamacao.ver',compact('titulo','reclamacao', 'locations', 'categorias'));
     }
 
@@ -350,7 +359,7 @@ class ReclamarController extends Controller
 
     }
 
-  
+
 
     /*
     public function ajaxApoio($id = null, Request $request){
