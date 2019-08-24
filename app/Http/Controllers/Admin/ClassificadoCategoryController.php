@@ -22,7 +22,7 @@ class ClassificadoCategoryController extends Controller
      */
     public function index(Request $request)
     {
-       
+
         $keyword = $request->get('search');
         $perPage = 25;
 
@@ -35,7 +35,7 @@ class ClassificadoCategoryController extends Controller
                 ->latest()->paginate($perPage);
         } else {
             $classificadocategory = ClassificadoCategory::latest()->with('children')->paginate($perPage);
-            
+
         }
 
         return view('admin.classificado-category.index', compact('classificadocategory'));
@@ -48,7 +48,7 @@ class ClassificadoCategoryController extends Controller
      */
     public function create()
     {
-       
+
         $categorias = $this->classCat->getCategoriesToSelect();
         return view('admin.classificado-category.create', compact('categorias'));
     }
@@ -63,8 +63,8 @@ class ClassificadoCategoryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-			'name' => 'required',
-			'parent_id' => 'required',
+			      'name' => 'required',
+			      'parent_id' => 'required',
             'published' => 'required',
             'logo'     =>  'image|mimes:jpeg,png,jpg,gif|max:2048'
 		]);
@@ -85,7 +85,7 @@ class ClassificadoCategoryController extends Controller
             // Set user profile image path in database to filePath
             $requestData['logo'] = $filePath;
         }
-        
+
         ClassificadoCategory::create($requestData);
 
         return redirect('admin/classificado-category')->with('flash_message', 'ClassificadoCategory added!');
@@ -153,7 +153,7 @@ class ClassificadoCategoryController extends Controller
             // Set user profile image path in database to filePath
             $requestData['logo'] = $filePath;
         }
-        
+
         $classificadocategory = ClassificadoCategory::findOrFail($id);
         $classificadocategory->update($requestData);
 

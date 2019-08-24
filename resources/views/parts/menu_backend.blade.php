@@ -12,9 +12,9 @@
                             <span class="nav-link-text">Painel</span>
                         </a>
                     </li>
-                
+
                 </ul>
-                
+
                 <hr class="nav-separator">
                 <div class="nav-header">
                     <span>MÓDULOS</span>
@@ -35,7 +35,28 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{ url('/admin/news-category')}}">Categorias</a>
                                     </li>
-                                    
+
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#forms_drp">
+                            <span class="feather-icon"><i data-feather="server"></i></span>
+                            <span class="nav-link-text">Empresas</span>
+                        </a>
+                        <ul id="forms_drp" class="nav flex-column collapse collapse-level-1">
+                            <li class="nav-item">
+                                <ul class="nav flex-column">
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{url('/admin/empresas')}}">Empresas</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{url('/admin/empresas-category')}}">Categorias</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{url('/admin/classificado-category')}}">Ofertas</a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>
@@ -53,24 +74,6 @@
                                     </li>
                                     <li class="nav-item">
                                     <a class="nav-link" href="{{url('/admin/classificado-category')}}">Categorias</a>
-                                    </li>                
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="form-layout.html">Form Layout</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="form-mask.html">Form Mask</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="form-validation.html">Form Validation</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="form-wizard.html">Form Wizard</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="file-upload.html">File Upload</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="editor.html">Editor</a>
                                     </li>
                                 </ul>
                             </li>
@@ -96,8 +99,8 @@
                                     <li class="nav-item">
                                             <a class="nav-link" href="{{ url('admin/reclama-answer')}}">Respostas</a>
                                     </li>
-                                
-                                    
+
+
                                 </ul>
                             </li>
                         </ul>
@@ -151,7 +154,7 @@
                         </ul>
                     </li>
                 </ul>
-            
+
                 <hr class="nav-separator">
                 <div class="nav-header">
                     <span>Recursos</span>
@@ -182,7 +185,7 @@
                                 <span class="nav-link-text">Páginas</span>
                             </a>
                     </li>
-                    
+
                     <li class="nav-item">
                         <a class="nav-link" href="{{url('/admin/settings')}}" >
                             <span class="feather-icon"><i data-feather="book"></i></span>
@@ -202,14 +205,14 @@
                             <span class="badge badge-sm badge-danger badge-pill">v 1.0</span>
                         </a>
                     </li>
-                    
+
                 </ul>
             </div>
         @endif
         <!--FIM MENU ADMIN -->
 
         <!-- INICIO MENU GERENCIADOR -->
-        @if (Auth::check() && Auth::user()->hasRole('gerenciador')) 
+        @if (Auth::check() && Auth::user()->hasRole('gerenciador'))
         <div class="navbar-nav-wrap">
                 <ul class="navbar-nav flex-column">
                     <li class="nav-item active">
@@ -218,16 +221,16 @@
                             <span class="nav-link-text">Painel</span>
                         </a>
                     </li>
-                
+
                 </ul>
-                
+
                 <hr class="nav-separator">
                 <div class="nav-header">
                     <span>MÓDULOS</span>
                     <span>MOD</span>
                 </div>
                 <ul class="navbar-nav flex-column">
-                    
+
                     <li class="nav-item">
                         <a class="nav-link" href="javascript:void(0);" data-toggle="collapse" data-target="#tables_drp">
                             <span class="feather-icon"><i data-feather="list"></i></span>
@@ -248,15 +251,15 @@
                                     <li class="nav-item">
                                             <a class="nav-link" href="{{ url('admin/reclama-answer')}}">Respostas</a>
                                     </li>
-                                
-                                    
+
+
                                 </ul>
                             </li>
                         </ul>
                     </li>
-                    
+
                 </ul>
-            
+
                 <hr class="nav-separator">
                 <div class="nav-header">
                     <span>Recursos</span>
@@ -268,7 +271,7 @@
                             <span class="feather-icon"><i data-feather="users"></i></span>
                             <span class="nav-link-text">Usuários</span>
                         </a>
-                    </li> 
+                    </li>
                 </ul>
             </div>
         @endif
