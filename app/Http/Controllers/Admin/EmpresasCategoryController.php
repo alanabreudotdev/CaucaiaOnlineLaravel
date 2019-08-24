@@ -68,7 +68,7 @@ class EmpresasCategoryController extends Controller
             // Make a image name based on user name and current timestamp
             $name = str_slug($requestData['name']).'_'.time();
             // Define folder path
-            $folder = '/uploads/images/reclamacao/categorias/';
+            $folder = '/uploads/images/empresas/categorias/';
             // Make a file path where image will be stored [ folder path + file name + file extension]
             $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
             // Upload image

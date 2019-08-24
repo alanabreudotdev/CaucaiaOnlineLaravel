@@ -11,16 +11,17 @@ class EmpresasController extends Controller
     public function getCategorias(){
 
     $categorias = EmpresasCategory::where('status',1)->select('id', 'name', 'icon_url')->paginate(30);
+    $categorias->total = 1;
     if($categorias){
-    return response()->json([
-      'success' => true,
-      'categorias' => $categorias
-    ]);
-  }else{
-    return response()->json([
-      'success' => false,
-      'message' => 'Nenhuma categoria encontrada.'
-    ]);
+      return response()->json([
+        'success' => true,
+        'categorias' => $categorias
+      ]);
+    }else{
+      return response()->json([
+        'success' => false,
+        'message' => 'Nenhuma categoria encontrada.'
+      ]);
   }
 
 
