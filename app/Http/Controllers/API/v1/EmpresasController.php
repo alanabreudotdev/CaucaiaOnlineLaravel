@@ -8,10 +8,10 @@ use App\EmpresasCategory;
 
 class EmpresasController extends Controller
 {
-    public getCategorias(){
+    public function getCategorias(){
 
-    $categorias = EmpresaCategory::where('status',1)->paginate(30);
-
+    $categorias = EmpresasCategory::where('status',1)->select('id', 'name', 'icon_url')->paginate(30);
+    if($categorias){
     return response()->json([
       'success' => true,
       'categorias' => $categorias
@@ -21,6 +21,7 @@ class EmpresasController extends Controller
       'success' => false,
       'message' => 'Nenhuma categoria encontrada.'
     ]);
+  }
 
 
     }

@@ -36,6 +36,9 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::get('noticias-index','API\v1\IndexController@noticiasListar');
     Route::get('noticias-ver','API\v1\IndexController@noticiasVer');
 
+    //Empresas
+    Route::get('empresas-categorias','API\v1\EmpresasController@getCategorias');
+
 Route::group(['middleware' => 'auth:api'], function(){
 
   Route::get('reclamacao-categorias','API\v1\ReclamacaoController@getReclamaCategories');
