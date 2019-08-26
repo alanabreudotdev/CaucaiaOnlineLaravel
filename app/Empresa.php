@@ -10,7 +10,7 @@ class Empresa extends Model
 {
     use LogsActivity;
     use SoftDeletes;
-    
+
 
     /**
      * The database table used by the model.
@@ -33,7 +33,7 @@ class Empresa extends Model
      */
     protected $fillable = ['nome', 'tipo_conta_premium_id', 'whatsapp', 'telefone', 'latitude', 'longitude', 'total_reviews', 'website_url', 'address', 'description', 'category_id', 'instagram', 'facebook', 'twitter', 'youtube', 'foto_01', 'foto_02', 'foto_03', 'foto_04', 'foto_05', 'foto_06', 'foto_07', 'foto_08', 'foto_09', 'foto_10', 'status', 'owner_user_id', 'featured'];
 
-    
+
 
     /**
      * Change activity log event description

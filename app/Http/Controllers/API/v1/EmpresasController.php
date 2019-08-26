@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\EmpresasCategory;
 use App\Empresa;
+use DB;
 
 
 class EmpresasController extends Controller
@@ -40,7 +41,27 @@ class EmpresasController extends Controller
 
     public function getEmpresas(Request $request){
 
-      $empresas = Empresa::latest()->where('status',1)->where('category_id',$request->categoria)->paginate(2);
+      $lat = -3.7314623;
+      $lon = -38.5421579;
+      $max_distance = 500;
+
+    $empresas = DB::table("empresas")
+    ->select("empresas.id, empresas.nome, empresas.total_reviews, imagem_principal"
+        ,
+        DB::raw("6371 * acos(cos(radians(" . $lat . "))
+        * cos(radians(empresas.latitude))
+        * cos(radians(empresas.longitude) - radians(" . $lon . "))
+        + sin(radians(" .$lat. "))
+        * sin(radians(empresas.latitude))) AS distance"))
+        ->latest()
+        ->where('status',1)
+        ->where('category_id',$request->categoria)
+        ->paginate(2);
+        //->having('distance','<=',20)
+        //->get();
+
+
+      //$empresas = Empresa::latest()->where('status',1)->where('category_id',$request->categoria)->paginate(2);
 
       if($empresas){
         return response()->json([
