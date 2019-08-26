@@ -109,7 +109,7 @@ class EmpresasController extends Controller
     "empresas.foto_06",
     "empresas.foto_07",
     "empresas.foto_08",
-    "empresas.foto_09",
+    "empresas.foto_09"
         ,
         DB::raw("6371 * acos(cos(radians(" . $lat . "))
         * cos(radians(empresas.latitude))
