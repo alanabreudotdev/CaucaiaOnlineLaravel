@@ -40,7 +40,7 @@ class EmpresasController extends Controller
 
     public function getEmpresas(){
 
-      $empresas = Empresa::latest()->where('status',1)->paginate(10);
+      $empresas = Empresa::latest()->where('status',1)->paginate(2);
 
       if($empresas){
         return response()->json([
@@ -50,7 +50,7 @@ class EmpresasController extends Controller
       }else{
         return response()->json([
           'success' => false,
-          'message' => 'Nenhuma categoria encontrada.'
+          'message' => 'Nenhuma empresa encontrada.'
         ]);
       }
     }
