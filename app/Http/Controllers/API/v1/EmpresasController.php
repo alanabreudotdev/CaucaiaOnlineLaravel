@@ -102,7 +102,7 @@ class EmpresasController extends Controller
         //->having('distance','<=',20)
         //->get();
 
-      if($empresas){
+      if($empresa){
         return response()->json([
           'success' => true,
           'empresa' => $empresa,
