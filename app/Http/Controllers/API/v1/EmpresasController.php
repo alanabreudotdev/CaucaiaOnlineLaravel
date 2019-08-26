@@ -41,8 +41,8 @@ class EmpresasController extends Controller
 
     public function getEmpresas(Request $request){
 
-      $lat = -3.7314623;
-      $lon = -38.5421579;
+      $lat = -3.769712;
+      $lon = -38.652216;
       $max_distance = 500;
 
     $empresas = DB::table("empresas")
