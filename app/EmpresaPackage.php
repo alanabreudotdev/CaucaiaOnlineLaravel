@@ -4,20 +4,18 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Activitylog\Traits\LogsActivity;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Empresa extends Model
+class EmpresaPackage extends Model
 {
     use LogsActivity;
-    use SoftDeletes;
-
+    
 
     /**
      * The database table used by the model.
      *
      * @var string
      */
-    protected $table = 'empresas';
+    protected $table = 'empresa_packages';
 
     /**
     * The database primary key value.
@@ -31,9 +29,13 @@ class Empresa extends Model
      *
      * @var array
      */
-    protected $fillable = ['nome', 'empresa_package_id', 'whatsapp', 'telefone', 'latitude', 'longitude', 'total_reviews', 'website_url', 'address', 'description', 'category_id', 'instagram', 'facebook', 'twitter', 'youtube', 'foto_01', 'foto_02', 'foto_03', 'foto_04', 'foto_05', 'foto_06', 'foto_07', 'foto_08', 'foto_09', 'imagem_principal', 'status', 'owner_user_id', 'featured'];
+    protected $fillable = ['name', 'price', 'status', 'free'];
 
-
+    public function empresa()
+    {
+        return $this->belongsTo('App\Empresa');
+    }
+    
 
     /**
      * Change activity log event description

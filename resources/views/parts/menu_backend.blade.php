@@ -57,6 +57,9 @@
                                     <li class="nav-item">
                                         <a class="nav-link" href="{{url('/admin/classificado-category')}}">Ofertas</a>
                                     </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{url('/admin/empresa-package')}}">Pacotes</a>
+                                    </li>
                                 </ul>
                             </li>
                         </ul>

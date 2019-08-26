@@ -95,6 +95,8 @@ Route::group([ 'prefix' => 'admin', 'middleware' => ['auth', 'roles','verified']
     Route::resource('reclama-sub-category', 'Admin\\ReclamaSubCategoryController');
     Route::get('reclamacao-categorias/{id}','Admin\\ReclamacaoController@reclamacaoCategorias');
     Route::resource('reclama-answer', 'Admin\\ReclamaAnswerController');
+    Route::resource('reclama-apoio', 'Admin\\ReclamaApoioController');
+    Route::resource('reclamacao-abuso', 'Admin\\ReclamacaoAbusoController');
 
     //CLASSIFICADOS
     Route::resource('classificado-category', 'Admin\\ClassificadoCategoryController');
@@ -102,13 +104,11 @@ Route::group([ 'prefix' => 'admin', 'middleware' => ['auth', 'roles','verified']
 
 
 
-    Route::resource('reclama-apoio', 'Admin\\ReclamaApoioController');
 
-    Route::resource('reclamacao-abuso', 'Admin\\ReclamacaoAbusoController');
-
+    //EMPRESAS
     Route::resource('empresas', 'Admin\\EmpresasController');
-
     Route::resource('empresas-category', 'Admin\\EmpresasCategoryController');
+    Route::resource('empresa-package', 'Admin\\EmpresaPackageController');
 
 
 });
