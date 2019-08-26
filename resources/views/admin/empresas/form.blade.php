@@ -22,7 +22,7 @@
   <div class="col-4">
     <div class="form-group{{ $errors->has('title') ? 'has-error' : ''}}">
             {!! Form::label('title', 'Categoria', ['class' => 'control-label']) !!}
-            {!! Form::select('category_id', $categorias, $empresa->category_id,['class' => 'form-control']) !!}
+            {!! Form::select('category_id', $categorias, $formMode === 'edit' ? $empresa->category_id: '',['class' => 'form-control']) !!}
             {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
     </div>
   </div>
