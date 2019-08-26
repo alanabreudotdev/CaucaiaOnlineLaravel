@@ -98,7 +98,7 @@ class EmpresasController extends Controller
         ->where('status',1)
         ->where('id',$request->id)
         ->orderby('distance', 'asc')
-        ->paginate(10);
+        ->first();
         //->having('distance','<=',20)
         //->get();
 
