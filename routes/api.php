@@ -39,6 +39,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     //Empresas
     Route::get('empresas-categorias','API\v1\EmpresasController@getCategorias');
     Route::get('empresas','API\v1\EmpresasController@getEmpresas');
+    Route::get('empresa/{id}','API\v1\EmpresasController@getEmpresa');
 
 Route::group(['middleware' => 'auth:api'], function(){
 
