@@ -8,7 +8,7 @@ use Spatie\Activitylog\Traits\LogsActivity;
 class EmpresaPackage extends Model
 {
     use LogsActivity;
-    
+
 
     /**
      * The database table used by the model.
@@ -33,9 +33,9 @@ class EmpresaPackage extends Model
 
     public function empresa()
     {
-        return $this->belongsTo('App\Empresa');
+        return $this->hasMany('App\Empresa');
     }
-    
+
 
     /**
      * Change activity log event description

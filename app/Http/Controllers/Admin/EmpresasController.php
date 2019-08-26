@@ -10,6 +10,7 @@ use App\EmpresasCategory;
 use App\User;
 use App\Traits\UploadTrait;
 use Validator;
+use App\EmpresaPackage;
 
 use Illuminate\Http\Request;
 
@@ -58,10 +59,11 @@ class EmpresasController extends Controller
      */
     public function create()
     {
+        $packages = EmpresaPackage::pluck('name','id');
         $categorias = EmpresasCategory::pluck('name','id');
         $users = User::pluck('name','id');
 
-        return view('admin.empresas.create', compact('categorias', 'users'));
+        return view('admin.empresas.create', compact('categorias', 'users','packages'));
     }
 
     /**
@@ -174,10 +176,11 @@ class EmpresasController extends Controller
     public function edit($id)
     {
         $empresa = Empresa::findOrFail($id);
-        $categorias = EmpresasCategory::pluck('name','id'); 
+        $categorias = EmpresasCategory::pluck('name','id');
+        $packages = EmpresaPackage::pluck('name','id');
         $users = User::pluck('name','id');
 
-        return view('admin.empresas.edit', compact('empresa','categorias','users'));
+        return view('admin.empresas.edit', compact('empresa','categorias','users','packages'));
     }
 
     /**

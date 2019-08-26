@@ -12,17 +12,24 @@
 
 
    <hr>
-  <div class="col-8">
+  <div class="col-12">
     <div class="form-group{{ $errors->has('nome') ? 'has-error' : ''}}">
         {!! Form::label('nome', 'Nome', ['class' => 'control-label']) !!}
         {!! Form::text('nome', null, ('required' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
         {!! $errors->first('nome', '<p class="help-block">:message</p>') !!}
     </div>
   </div>
-  <div class="col-4">
+  <div class="col-6">
     <div class="form-group{{ $errors->has('title') ? 'has-error' : ''}}">
             {!! Form::label('title', 'Categoria', ['class' => 'control-label']) !!}
             {!! Form::select('category_id', $categorias, $formMode === 'edit' ? $empresa->category_id: '',['class' => 'form-control']) !!}
+            {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
+    </div>
+  </div>
+  <div class="col-6">
+    <div class="form-group{{ $errors->has('title') ? 'has-error' : ''}}">
+            {!! Form::label('pacote', 'Pacote', ['class' => 'control-label']) !!}
+            {!! Form::select('empresa_package_id', $packages, $formMode === 'edit' ? $empresa->empresa_package_id: '',['class' => 'form-control']) !!}
             {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
     </div>
   </div>
@@ -126,25 +133,23 @@
       </div>
     </div>
     <div class="col-4">
-
         <div class="form-group{{ $errors->has('featured') ? 'has-error' : ''}}">
             {!! Form::label('featured', 'Destaque', ['class' => 'control-label']) !!}
             <div class="checkbox">
-            <label>{!! Form::radio('featured', '1') !!} Yes</label>
+            <label>{!! Form::radio('featured', '1') !!} Sim</label>
 
-            <label>{!! Form::radio('featured', '0', true) !!} No</label>
+            <label>{!! Form::radio('featured', '0', true) !!} Não</label>
         </div>
             {!! $errors->first('featured', '<p class="help-block">:message</p>') !!}
         </div>
-
     </div>
     <div class="col-4">
       <div class="form-group{{ $errors->has('status') ? 'has-error' : ''}}">
           {!! Form::label('status', 'Status', ['class' => 'control-label']) !!}
           <div class="checkbox">
-          <label>{!! Form::radio('status', '1') !!} Yes</label>
+          <label>{!! Form::radio('status', '1') !!} Ativo</label>
 
-          <label>{!! Form::radio('status', '0', true) !!} No</label>
+          <label>{!! Form::radio('status', '0', true) !!} Inativo</label>
       </div>
           {!! $errors->first('status', '<p class="help-block">:message</p>') !!}
       </div>

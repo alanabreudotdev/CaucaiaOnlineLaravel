@@ -87,7 +87,29 @@ class EmpresasController extends Controller
       $max_distance = 500;
 
     $empresa = DB::table("empresas")
-    ->select("empresas.id", "empresas.address", "empresas.nome","empresas.total_reviews", "empresas.imagem_principal", "empresas.featured","empresas.empresa_package_id"
+    ->select("empresas.id",
+    "empresas.address",
+    "empresas.nome",
+    "empresas.total_reviews",
+    "empresas.imagem_principal",
+    "empresas.featured",
+    "empresas.telefone",
+    "empresas.whatsapp",
+    "empresas.instagram",
+    "empresas.facebook",
+    "empresas.twitter",
+    "empresas.youtube",
+    "empresas.latitude",
+    "empresas.longitude",
+    "empresas.foto_01",
+    "empresas.foto_02",
+    "empresas.foto_03",
+    "empresas.foto_04",
+    "empresas.foto_05",
+    "empresas.foto_06",
+    "empresas.foto_07",
+    "empresas.foto_08",
+    "empresas.foto_09",
         ,
         DB::raw("6371 * acos(cos(radians(" . $lat . "))
         * cos(radians(empresas.latitude))

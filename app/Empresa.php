@@ -46,4 +46,8 @@ class Empresa extends Model
     {
         return __CLASS__ . " model has been {$eventName}";
     }
+
+    public function package(){
+      return $this->belongsTo('App\EmpresaPackage', 'empresa_packages_id');
+    }
 }
