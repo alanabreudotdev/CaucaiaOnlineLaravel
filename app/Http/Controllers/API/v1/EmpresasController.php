@@ -56,6 +56,7 @@ class EmpresasController extends Controller
         ->latest()
         ->where('status',1)
         ->where('category_id',$request->categoria)
+        ->orderby('distance, asc')
         ->paginate(2);
         //->having('distance','<=',20)
         //->get();
