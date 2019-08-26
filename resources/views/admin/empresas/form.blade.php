@@ -41,6 +41,13 @@
         {!! $errors->first('description', '<p class="help-block">:message</p>') !!}
     </div>
   </div>
+  <div class="col-12">
+    <div class="form-group{{ $errors->has('horario_func') ? 'has-error' : ''}}">
+        {!! Form::label('horario_func', 'Horario de Funcionamento', ['class' => 'control-label']) !!}
+        {!! Form::textarea('horario_func', null, ('' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}
+        {!! $errors->first('horario_func', '<p class="help-block">:message</p>') !!}
+    </div>
+  </div>
     <div class="col-6">
       <div class="form-group{{ $errors->has('whatsapp') ? 'has-error' : ''}}">
           {!! Form::label('whatsapp', 'Whatsapp (somente numeros Ex: 8599998998)', ['class' => 'control-label']) !!}
