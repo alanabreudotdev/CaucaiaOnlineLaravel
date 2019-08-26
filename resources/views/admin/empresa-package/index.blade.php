@@ -36,7 +36,7 @@
                                 <tbody>
                                 @foreach($empresapackage as $item)
                                     <tr>
-                                        <td>{{ $loop->iteration or $item->id }}</td>
+                                        <td>{{ $item->id }}</td>
                                         <td>{{ $item->name }}</td><td>{{ $item->price }}</td><td>{{ $item->status }}</td>
                                         <td>
                                             <a href="{{ url('/admin/empresa-package/' . $item->id) }}" title="View EmpresaPackage"><button class="btn btn-info btn-sm"><i class="fa fa-eye" aria-hidden="true"></i></button></a>
