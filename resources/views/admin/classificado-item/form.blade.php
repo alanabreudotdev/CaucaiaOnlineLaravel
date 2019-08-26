@@ -1,18 +1,18 @@
 <div class="form-group{{ $errors->has('titulo') ? 'has-error' : ''}}">
-        {!! Form::label('inputCategory', 'Categoria', array('class'=> ' control-label')) !!}                        
-        
+        {!! Form::label('inputCategory', 'Categoria', array('class'=> ' control-label')) !!}
+
           <select name="category_id" class="form-control " id="inputCategory">
           @foreach($categories as $category)
             <option value="{!!$category->id!!}">{!!$category->name!!}</option>
             if($category->subCategory)
                 @foreach($category->subCategory as $subcategory)
                     <option value="{!!$subcategory->id!!}">|--{!!$subcategory->name!!}</option>
-                @endforeach    
+                @endforeach
             @end if
           @endforeach
           </select>
-        
-</div> 
+
+</div>
 <div class="form-group{{ $errors->has('titulo') ? 'has-error' : ''}}">
     {!! Form::label('titulo', 'Titulo', ['class' => 'control-label']) !!}
     {!! Form::text('titulo', null, ('required' == 'required') ? ['class' => 'form-control', 'required' => 'required'] : ['class' => 'form-control']) !!}

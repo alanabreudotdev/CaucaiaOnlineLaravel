@@ -1,7 +1,7 @@
 @extends('layouts.backend')
 
 @section('content')
-    <div class="container">
+    <div class="container mt-50">
         <div class="row">
             @include('admin.sidebar')
 
@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-header">Nova Empresa</div>
                     <div class="card-body">
-                        <a href="{{ url('/admin/empresas') }}" title="Back"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</button></a>
+                        <a href="{{ url('/admin/empresas') }}" title="Voltar"><button class="btn btn-warning btn-sm"><i class="fa fa-arrow-left" aria-hidden="true"></i> Voltar</button></a>
                         <br />
                         <br />
 

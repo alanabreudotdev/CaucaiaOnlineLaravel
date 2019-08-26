@@ -10,7 +10,7 @@
     </div>
 <div class="form-group{{ $errors->has('title') ? 'has-error' : ''}}">
         {!! Form::label('title', 'Categoria', ['class' => 'control-label']) !!}
-        {!! Form::select('category_id', $categories, '',['class' => 'form-control']) !!}
+        {!! Form::select('category_id', $categories, $news->category_id,['class' => 'form-control']) !!}
         {!! $errors->first('title', '<p class="help-block">:message</p>') !!}
 </div>
 <div class="form-group{{ $errors->has('title') ? 'has-error' : ''}}">

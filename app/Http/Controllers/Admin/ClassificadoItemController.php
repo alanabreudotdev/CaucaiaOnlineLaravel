@@ -25,7 +25,7 @@ class ClassificadoItemController extends Controller
         $keyword = $request->get('search');
         $perPage = 25;
 
-        
+
 
         if (!empty($keyword)) {
             $classificadoitem = ClassificadoItem::where('category_id', 'LIKE', "%$keyword%")
@@ -88,7 +88,7 @@ class ClassificadoItemController extends Controller
 			'user_id' => 'required'
 		]);
         $requestData = $request->all();
-        
+
         ClassificadoItem::create($requestData);
 
         return redirect('admin/classificado-item')->with('flash_message', 'ClassificadoItem added!');
@@ -118,8 +118,10 @@ class ClassificadoItemController extends Controller
     public function edit($id)
     {
         $classificadoitem = ClassificadoItem::findOrFail($id);
+        $Category = new ClassificadoCategory;
+        $categories = $Category->getCategories();
 
-        return view('admin.classificado-item.edit', compact('classificadoitem'));
+        return view('admin.classificado-item.edit', compact('classificadoitem','categories'));
     }
 
     /**
@@ -143,7 +145,7 @@ class ClassificadoItemController extends Controller
 			'user_id' => 'required'
 		]);
         $requestData = $request->all();
-        
+
         $classificadoitem = ClassificadoItem::findOrFail($id);
         $classificadoitem->update($requestData);
 

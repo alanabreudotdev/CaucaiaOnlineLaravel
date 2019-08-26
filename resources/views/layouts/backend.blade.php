@@ -14,6 +14,9 @@
 	<!-- Morris Charts CSS -->
     <link href="{{asset('vendors/morris.js/morris.css')}}" rel="stylesheet" type="text/css" />
 
+    <!-- select2 CSS -->
+    <link href="{{asset('vendors/select2/dist/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
+
     <!-- Toggles CSS -->
     <link href="{{asset('vendors/jquery-toggles/css/toggles.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('vendors/jquery-toggles/css/themes/toggles-light.css')}}" rel="stylesheet" type="text/css">
@@ -23,6 +26,7 @@
 
     <!-- Custom CSS -->
     <link href="{{asset('dist/css/style.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('dist/css/FileUploader.css')}}" rel="stylesheet" type="text/css">
     @yield('css_before')
 </head>
 
@@ -105,6 +109,8 @@
 
 	<!-- Easy pie chart JS -->
     <script src="{{asset('vendors/easy-pie-chart/dist/jquery.easypiechart.min.js')}}"></script>
+    <!-- file uploader -->
+    <script src="{{asset('dist/js/fileuploader.min.js')}}"></script>
 
 	<!-- Flot Charts JavaScript -->
     <script src="{{asset('vendors/flot/excanvas.min.js')}}"></script>
@@ -118,6 +124,10 @@
 
 	<!-- EChartJS JavaScript -->
     <script src="{{asset('vendors/echarts/dist/echarts-en.min.js')}}"></script>
+
+    <!-- Select2 JavaScript -->
+      <script src="{{asset('vendors/select2/dist/js/select2.full.min.js')}}"></script>
+      <script src="{{asset('dist/js/select2-data.js')}}"></script>
 
     <!-- GOOGLE MAPS -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALrzYRwELsgB6HKpOrq5etlg8KyeGmEdg"></script>
@@ -136,6 +146,23 @@
         $(function () {
             // Navigation active
             $('ul.navbar-nav a[href="{{ "http://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]" }}"]').closest('li').addClass('active');
+        });
+
+        $(document).ready(function() {
+
+        // enable fileuploader plugin
+        $('input[name="files"]').fileuploader({
+              addMore: true,
+              limit: 9
+          });
+
+
+
+        // enable fileuploader plugin
+        $('input[name="imagem_principal"]').fileuploader({
+              addMore: false
+          });
+
         });
     </script>
 

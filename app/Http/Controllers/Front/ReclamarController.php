@@ -147,7 +147,7 @@ class ReclamarController extends Controller
             $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
             // Upload image
             $this->uploadOne($image, $folder, 'public', $name);
-            // Set user profile image path in database to filePath
+            
            //compress image
             $this->compressedImage(storage_path().'/app/public'.$filePath, storage_path().'/app/public'.$filePath,30);
 
