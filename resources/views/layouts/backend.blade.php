@@ -26,7 +26,7 @@
 
     <!-- Custom CSS -->
     <link href="{{asset('dist/css/style.css')}}" rel="stylesheet" type="text/css">
-    <link href="{{asset('dist/css/FileUploader.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('dist/css/fileuploader.css')}}" rel="stylesheet" type="text/css">
     @yield('css_before')
 </head>
 
