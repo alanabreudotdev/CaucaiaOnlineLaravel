@@ -38,9 +38,9 @@ class EmpresasController extends Controller
     **
     *******/
 
-    public function getEmpresas(){
+    public function getEmpresas(Request $request){
 
-      $empresas = Empresa::latest()->where('status',1)->paginate(2);
+      $empresas = Empresa::latest()->where('status',1)->where('category_id',$request->categoria)->paginate(2);
 
       if($empresas){
         return response()->json([
