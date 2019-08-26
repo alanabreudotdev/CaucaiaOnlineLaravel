@@ -174,7 +174,7 @@ class EmpresasController extends Controller
     public function edit($id)
     {
         $empresa = Empresa::findOrFail($id);
-        $categorias = EmpresasCategory::pluck('name','id');
+        $categorias = EmpresasCategory::pluck('name','id'); 
         $users = User::pluck('name','id');
 
         return view('admin.empresas.edit', compact('empresa','categorias','users'));
