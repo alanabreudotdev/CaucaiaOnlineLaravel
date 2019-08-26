@@ -90,6 +90,7 @@ class EmpresasController extends Controller
     ->select("empresas.id",
     "empresas.address",
     "empresas.nome",
+    "empresas.description",
     "empresas.total_reviews",
     "empresas.imagem_principal",
     "empresas.featured",
