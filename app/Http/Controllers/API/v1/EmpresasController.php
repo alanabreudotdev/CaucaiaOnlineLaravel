@@ -46,7 +46,7 @@ class EmpresasController extends Controller
       $max_distance = 500;
 
     $empresas = DB::table("empresas")
-    ->select("id, nome, total_reviews, imagem_principal, category_id"
+    ->select("empresas.id"
         ,
         DB::raw("6371 * acos(cos(radians(" . $lat . "))
         * cos(radians(empresas.latitude))
