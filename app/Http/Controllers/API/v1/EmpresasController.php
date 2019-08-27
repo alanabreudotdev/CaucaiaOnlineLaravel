@@ -166,7 +166,6 @@ class EmpresasController extends Controller
           $save = EmpresaReview::create($dados);
 
 
-
         if($save){
           //$totalReviews = EmpresaReview->getTotalReviews($request->empresa_id);
           return response()->json([

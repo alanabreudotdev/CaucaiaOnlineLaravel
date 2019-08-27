@@ -109,6 +109,7 @@ Route::group([ 'prefix' => 'admin', 'middleware' => ['auth', 'roles','verified']
     Route::resource('empresas', 'Admin\\EmpresasController');
     Route::resource('empresas-category', 'Admin\\EmpresasCategoryController');
     Route::resource('empresa-package', 'Admin\\EmpresaPackageController');
+    Route::resource('empresa-review', 'Admin\\EmpresaReviewController');
 
 
 });
@@ -126,5 +127,3 @@ Route::group([ 'prefix' => 'gerenciador', 'middleware' => ['auth', 'roles'], 'ro
 
 Auth::routes(['verify' => true]);
 //Auth::routes();
-
-Route::resource('admin/empresa-review', 'Admin\\EmpresaReviewController');
