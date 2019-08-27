@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\EmpresasCategory;
 use App\Empresa;
+use App\EmpresaReview;
 use DB;
 
 
