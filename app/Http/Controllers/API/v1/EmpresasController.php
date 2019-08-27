@@ -192,7 +192,7 @@ class EmpresasController extends Controller
 
     public function lugaresMapa(){
 
-      $lugares = Empresa::select('latitude', 'longitude', 'nome', 'address')->where('status',1)->paginate(100);
+      $lugares = Empresa::select('latitude', 'longitude', 'nome', 'address')->where('status',1)->limit(100)->get();
 
       if($lugares){
         //$totalReviews = EmpresaReview->getTotalReviews($request->empresa_id);
