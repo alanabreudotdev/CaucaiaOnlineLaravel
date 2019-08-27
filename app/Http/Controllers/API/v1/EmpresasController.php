@@ -158,6 +158,9 @@ class EmpresasController extends Controller
       }
     }
 
+    /****
+    *  UPDATE REVIEW FROM EMPRESAS/LUGARES
+    ****/
     public function updateReview(Request $request){
 
       if($request->empresa_id && $request->note){
@@ -185,8 +188,23 @@ class EmpresasController extends Controller
           'message' => 'Dados invalidos'
         ]);
       }
+    }
 
+    public function lugaresMapa(){
 
+      $lugares = Empresa::select('latitude', 'longitude', 'nome', 'address')->where('status',1)->paginate(100);
 
+      if($lugares){
+        //$totalReviews = EmpresaReview->getTotalReviews($request->empresa_id);
+        return response()->json([
+          'success' => true,
+          'lugares' => $lugares,
+        ]);
+      }else{
+        return response()->json([
+          'success' => false,
+          'message' => 'Nenhuma empresa encontrada.'
+        ]);
+      }
     }
 }
