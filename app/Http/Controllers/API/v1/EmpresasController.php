@@ -156,4 +156,37 @@ class EmpresasController extends Controller
         ]);
       }
     }
+
+    public function updateReview(Request $request){
+
+      if($request->empresa_id && $request->note){
+
+          $dados = $request->all();
+
+          $save = EmpresaReview::create($dados);
+
+
+
+        if($save){
+          //$totalReviews = EmpresaReview->getTotalReviews($request->empresa_id);
+          return response()->json([
+            'success' => true,
+            'reviews' => $save,
+          ]);
+        }else{
+          return response()->json([
+            'success' => false,
+            'message' => 'Nenhuma empresa encontrada.'
+          ]);
+        }
+      }else{
+        return response()->json([
+          'success' => false,
+          'message' => 'Dados invalidos'
+        ]);
+      }
+
+
+
+    }
 }

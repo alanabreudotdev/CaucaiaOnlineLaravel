@@ -126,3 +126,5 @@ Route::group([ 'prefix' => 'gerenciador', 'middleware' => ['auth', 'roles'], 'ro
 
 Auth::routes(['verify' => true]);
 //Auth::routes();
+
+Route::resource('admin/empresa-review', 'Admin\\EmpresaReviewController');
