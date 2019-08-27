@@ -115,7 +115,7 @@ class EmpresasController extends Controller
     "empresas.website_url",
     "empresas.horario_func"
         ,
-        DB::raw("6500 * acos(cos(radians(" . $lat . "))
+        DB::raw("7371 * acos(cos(radians(" . $lat . "))
         * cos(radians(empresas.latitude))
         * cos(radians(empresas.longitude) - radians(" . $lon . "))
         + sin(radians(" .$lat. "))
