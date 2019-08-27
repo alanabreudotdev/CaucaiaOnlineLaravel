@@ -83,12 +83,16 @@ class EmpresasController extends Controller
     public function getEmpresa(Request $request){
       if(!$request->lat){
         $lat = -3.769712;
+      }else{
+        $lat = $request->lat;
       }
-      if(!$request->lgt){
+      if(!$request->lon){
         $lon = -38.652216;
+      }else{
+        $lon = $request->lon;
       }
       $max_distance = 10;
-      
+
     $empresa = DB::table("empresas")
     ->select("empresas.id",
     "empresas.address",
