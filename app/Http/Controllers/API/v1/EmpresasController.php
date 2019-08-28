@@ -212,7 +212,7 @@ class EmpresasController extends Controller
         * cos(radians(empresas.longitude) - radians(" . $lon . "))
         + sin(radians(" .$lat. "))
         * sin(radians(empresas.latitude))) AS distance"),
-        DB::raw("count(empresas.featured) as totalFeatured where empresas.featured==1"))
+        DB::raw("count(empresas.featured) as totalFeatured"))
         ->latest()
         ->where('status',1)
         ->orderby('featured', 'desc')
