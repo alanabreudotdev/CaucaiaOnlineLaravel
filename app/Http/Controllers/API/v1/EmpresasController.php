@@ -211,7 +211,7 @@ class EmpresasController extends Controller
         * cos(radians(empresas.latitude))
         * cos(radians(empresas.longitude) - radians(" . $lon . "))
         + sin(radians(" .$lat. "))
-        * sin(radians(empresas.latitude))) AS distance")
+        * sin(radians(empresas.latitude))) AS distance"))
         ->latest()
         ->where('status',1)
         ->orderby('featured', 'desc')
