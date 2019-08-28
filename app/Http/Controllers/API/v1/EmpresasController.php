@@ -204,6 +204,7 @@ class EmpresasController extends Controller
       }
       $max_distance = 50;
 
+    //GET EMPRESAS TO MAP
     $empresas = DB::table("empresas")
     ->select("empresas.id","empresas.featured","empresas.latitude","empresas.longitude", "empresas.address", "empresas.nome","empresas.total_reviews", "empresas.imagem_principal", "empresas.featured","empresas.empresa_package_id"
         ,
@@ -220,10 +221,28 @@ class EmpresasController extends Controller
         //->having('distance','<=',$max_distance)
         ->get();
 
+      //GET EMPRESAS FEATURED
+      $empresasFeatured = DB::table("empresas")
+      ->select("empresas.id","empresas.featured","empresas.latitude","empresas.longitude", "empresas.address", "empresas.nome","empresas.total_reviews", "empresas.imagem_principal", "empresas.featured","empresas.empresa_package_id"
+          ,
+          DB::raw("7371 * acos(cos(radians(" . $lat . "))
+          * cos(radians(empresas.latitude))
+          * cos(radians(empresas.longitude) - radians(" . $lon . "))
+          + sin(radians(" .$lat. "))
+          * sin(radians(empresas.latitude))) AS distance"))
+          ->latest()
+          ->where('status',1)
+          ->where('featured',1)
+          ->orderby(DB::raw('RAND()'))
+          ->limit(25)
+          //->having('distance','<=',$max_distance)
+          ->get();
+
       if($empresas){
         return response()->json([
           'success' => true,
           'lugares' => $empresas,
+          'featured' = $empresasFeatured
         ]);
       }else{
         return response()->json([
