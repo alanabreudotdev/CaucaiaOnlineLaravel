@@ -190,15 +190,41 @@ class EmpresasController extends Controller
       }
     }
 
-    public function lugaresMapa(){
+    public function lugaresMapa(Request $request){
 
-      $lugares = Empresa::select('id','latitude', 'longitude', 'nome', 'address')->where('status',1)->limit(100)->get();
+      if(!$request->lat){
+        $lat = -3.769712;
+      }else{
+        $lat = $request->lat;
+      }
+      if(!$request->lon){
+        $lon = -38.652216;
+      }else{
+        $lon = $request->lon;
+      }
+      $max_distance = 50;
 
-      if($lugares){
-        //$totalReviews = EmpresaReview->getTotalReviews($request->empresa_id);
+    $empresas = DB::table("empresas")
+    ->select("empresas.id", "empresas.address", "empresas.nome","empresas.total_reviews", "empresas.imagem_principal", "empresas.featured","empresas.empresa_package_id"
+        ,
+        DB::raw("7371 * acos(cos(radians(" . $lat . "))
+        * cos(radians(empresas.latitude))
+        * cos(radians(empresas.longitude) - radians(" . $lon . "))
+        + sin(radians(" .$lat. "))
+        * sin(radians(empresas.latitude))) AS distance"))
+        ->latest()
+        ->where('status',1)
+        ->where('category_id',$request->categoria)
+        ->orderby('featured', 'desc')
+        ->orderby('distance', 'asc')
+        ->limit(50)
+        ->having('distance','<=',$max_distance)
+        ->get();
+
+      if($empresas){
         return response()->json([
           'success' => true,
-          'lugares' => $lugares,
+          'lugares' => $empresas,
         ]);
       }else{
         return response()->json([
