@@ -214,7 +214,6 @@ class EmpresasController extends Controller
         * sin(radians(empresas.latitude))) AS distance"))
         ->latest()
         ->where('status',1)
-        ->where('category_id',$request->categoria)
         ->orderby('featured', 'desc')
         ->orderby('distance', 'asc')
         ->limit(50)
