@@ -205,14 +205,14 @@ class EmpresasController extends Controller
       $max_distance = 50;
 
     $empresas = DB::table("empresas")
-    ->select("empresas.id","empresas.latitude","empresas.longitude", "empresas.address", "empresas.nome","empresas.total_reviews", "empresas.imagem_principal", "empresas.featured","empresas.empresa_package_id"
+    ->select("empresas.id","empresas.featured","empresas.latitude","empresas.longitude", "empresas.address", "empresas.nome","empresas.total_reviews", "empresas.imagem_principal", "empresas.featured","empresas.empresa_package_id"
         ,
         DB::raw("7371 * acos(cos(radians(" . $lat . "))
         * cos(radians(empresas.latitude))
         * cos(radians(empresas.longitude) - radians(" . $lon . "))
         + sin(radians(" .$lat. "))
         * sin(radians(empresas.latitude))) AS distance"),
-        DB::raw("sum(featured) as totalFeatured"))
+        DB::raw("count(empresas.featured) as totalFeatured where featured=1"))
         ->latest()
         ->where('status',1)
         ->orderby('featured', 'desc')
