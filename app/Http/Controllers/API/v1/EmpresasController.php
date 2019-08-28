@@ -217,7 +217,7 @@ class EmpresasController extends Controller
         ->orderby('featured', 'desc')
         ->orderby('distance', 'asc')
         ->limit(50)
-        ->having('distance','<=',$max_distance)
+        //->having('distance','<=',$max_distance)
         ->get();
 
       if($empresas){
