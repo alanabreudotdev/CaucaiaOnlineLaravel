@@ -57,7 +57,7 @@ class EmpresasCategoryController extends Controller
         $this->validate($request, [
 			'name' => 'required',
 			'icon_url' => 'required',
-      //'logo'     =>  'image|mimes:jpeg,png,jpg,gif|max:2048'
+      'logo'     =>  'image|mimes:jpeg,png,jpg,gif|max:2048'
 		]);
         $requestData = $request->all();
 
@@ -122,7 +122,7 @@ class EmpresasCategoryController extends Controller
     {
         $this->validate($request, [
 			'name' => 'required',
-			'icon_url' => 'required'
+			//'icon_url' => 'required'
 		]);
         $requestData = $request->all();
 
