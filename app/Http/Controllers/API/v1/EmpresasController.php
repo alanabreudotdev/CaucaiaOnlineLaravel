@@ -242,7 +242,7 @@ class EmpresasController extends Controller
         return response()->json([
           'success' => true,
           'lugares' => $empresas,
-          'featured' = $empresasFeatured
+          'featured' => $empresasFeatured,
         ]);
       }else{
         return response()->json([
