@@ -63,7 +63,6 @@ class IndexController extends Controller
 
     $reclamacoes = Reclamacao::latest()->select('id','created_at','reclama_category_id',
       'titulo', 'texto_reclamacao','foto_url_01', 'apoio', 'endereco', 'views', 'user_id', 'slug' )
-                              ->with('user','categories')
                               ->limit(5)
                               ->get();
 
