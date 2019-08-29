@@ -22,6 +22,12 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return Auth::guard('api')->user();
 
 });
+    /**
+    * HOME APP
+    *
+    */
+    Route::get('home','API\v1\IndexController@getHome');
+
 
     /**
      * RECLAMACAO API
