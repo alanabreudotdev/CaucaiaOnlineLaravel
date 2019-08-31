@@ -10,7 +10,7 @@ class EmpresasCategory extends Model
 {
     use LogsActivity;
     use SoftDeletes;
-    
+
 
     /**
      * The database table used by the model.
@@ -33,7 +33,7 @@ class EmpresasCategory extends Model
      */
     protected $fillable = ['name', 'icon_url', 'status'];
 
-    
+
 
     /**
      * Change activity log event description
@@ -45,5 +45,9 @@ class EmpresasCategory extends Model
     public function getDescriptionForEvent($eventName)
     {
         return __CLASS__ . " model has been {$eventName}";
+    }
+
+    public function empresa(){
+      return $this->hasMany('App\Empresa','id');
     }
 }

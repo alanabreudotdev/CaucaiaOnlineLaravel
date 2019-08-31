@@ -50,4 +50,8 @@ class Empresa extends Model
     public function package(){
       return $this->belongsTo('App\EmpresaPackage', 'empresa_packages_id');
     }
+
+    public function categoria(){
+      return $this->belongsTo('App\EmpresaCategory', 'category_id');
+    }
 }

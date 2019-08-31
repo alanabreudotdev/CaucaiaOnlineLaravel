@@ -17,12 +17,12 @@ class IndexController extends Controller
 
   /*** HOME  APP ****/
   public function getHome(Request $request){
-    if(!$request->lat){
+    if($request->lat == 0.0){
       $lat = -3.769712;
     }else{
       $lat = $request->lat;
     }
-    if(!$request->lon){
+    if($request->lon == 0.0){
       $lon = -38.652216;
     }else{
       $lon = $request->lon;
@@ -31,13 +31,14 @@ class IndexController extends Controller
 
   //GET EMPRESAS By Location
   $empresasByLocation = DB::table("empresas")
-  ->select("empresas.id","empresas.featured","empresas.latitude","empresas.longitude", "empresas.address", "empresas.nome","empresas.total_reviews", "empresas.imagem_principal", "empresas.featured","empresas.empresa_package_id"
+  ->select( "empresas.id","empresas.featured","empresas.latitude","empresas.longitude", "empresas.address", "empresas.nome","empresas.total_reviews", "empresas.imagem_principal", "empresas.featured","empresas.empresa_package_id"
       ,
       DB::raw("7371 * acos(cos(radians(" . $lat . "))
       * cos(radians(empresas.latitude))
       * cos(radians(empresas.longitude) - radians(" . $lon . "))
       + sin(radians(" .$lat. "))
-      * sin(radians(empresas.latitude))) AS distance"))
+      * sin(radians(empresas.latitude))) AS distance")
+      )
       ->latest()
       ->where('status',1)
       ->orderby('distance', 'asc')
@@ -53,6 +54,7 @@ class IndexController extends Controller
         )
         ->where('status',1)
         ->where('featured',1)
+        ->where('empresa_package_id',3)
         ->orderby(DB::raw('RAND()'))
         ->limit(5)
         //->having('distance','<=',$max_distance)
