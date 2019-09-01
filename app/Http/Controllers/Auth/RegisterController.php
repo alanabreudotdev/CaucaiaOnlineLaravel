@@ -87,7 +87,7 @@ class RegisterController extends Controller
     {
       $rules = [
           'name' => 'required',
-          'cpf' => 'required',
+
           'lastname' => 'required',
           'email' => 'required | email | unique:users,email',
           'password' => ['required', 'string', 'min:6', 'confirmed'],
@@ -95,7 +95,7 @@ class RegisterController extends Controller
       $messages = [
         'name.required' => 'O Nome é obrigatório.',
         'email.unique' => 'Email já está sendo utilizado.',
-        'cpf.required' => 'O CPF é obrigatório.',
+      
         'lastname.required' => 'O Sobrenome é obrigatório.',
         'email.required' => 'O Email é obrigatório.',
         'password.required' => 'Senha obrigatória.',
@@ -150,7 +150,7 @@ class RegisterController extends Controller
        $user->save();
 
        $message= '';
-       
+
        return view('auth.validationapi', compact('message'));
    }
 
