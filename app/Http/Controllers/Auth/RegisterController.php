@@ -87,7 +87,6 @@ class RegisterController extends Controller
     {
       $rules = [
           'name' => 'required',
-
           'email' => 'required | email | unique:users,email',
           'password' => ['required', 'string', 'min:6', 'confirmed'],
       ];
