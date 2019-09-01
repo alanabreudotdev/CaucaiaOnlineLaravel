@@ -88,15 +88,12 @@ class RegisterController extends Controller
       $rules = [
           'name' => 'required',
 
-          'lastname' => 'required',
           'email' => 'required | email | unique:users,email',
           'password' => ['required', 'string', 'min:6', 'confirmed'],
       ];
       $messages = [
         'name.required' => 'O Nome é obrigatório.',
         'email.unique' => 'Email já está sendo utilizado.',
-      
-        'lastname.required' => 'O Sobrenome é obrigatório.',
         'email.required' => 'O Email é obrigatório.',
         'password.required' => 'Senha obrigatória.',
         'password.confirmed' => 'Confirmação de senha não confere.',
