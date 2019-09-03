@@ -31,7 +31,7 @@ class Empresa extends Model
      *
      * @var array
      */
-    protected $fillable = ['nome', 'horario_func','empresa_package_id', 'whatsapp', 'telefone', 'latitude', 'longitude', 'total_reviews', 'website_url', 'address', 'description', 'category_id', 'instagram', 'facebook', 'twitter', 'youtube', 'foto_01', 'foto_02', 'foto_03', 'foto_04', 'foto_05', 'foto_06', 'foto_07', 'foto_08', 'foto_09', 'imagem_principal', 'status', 'owner_user_id', 'featured'];
+    protected $fillable = ['total_views','nome', 'horario_func','empresa_package_id', 'whatsapp', 'telefone', 'latitude', 'longitude', 'total_reviews', 'website_url', 'address', 'description', 'category_id', 'instagram', 'facebook', 'twitter', 'youtube', 'foto_01', 'foto_02', 'foto_03', 'foto_04', 'foto_05', 'foto_06', 'foto_07', 'foto_08', 'foto_09', 'imagem_principal', 'status', 'owner_user_id', 'featured'];
 
 
 

@@ -19,7 +19,7 @@ class EmpresasController extends Controller
   public function search(Request $request)
   {
       $keyword = $request->get('search');
-      $perPage = 4;
+      $perPage = 10;
 
       if(!$request->lat){
         $lat = -3.769712;
@@ -120,8 +120,7 @@ class EmpresasController extends Controller
       }
       $max_distance = 500;
 
-    $empresas = DB::table("empresas")
-    ->select("empresas.id", "empresas.address", "empresas.nome","empresas.total_reviews", "empresas.imagem_principal", "empresas.featured","empresas.empresa_package_id"
+    $empresas = Empresa::select("empresas.id", "empresas.address", "empresas.nome","empresas.total_reviews", "empresas.imagem_principal", "empresas.featured","empresas.empresa_package_id"
         ,
         DB::raw("7371 * acos(cos(radians(" . $lat . "))
         * cos(radians(empresas.latitude))
@@ -159,7 +158,10 @@ class EmpresasController extends Controller
     *******/
 
     public function getEmpresa(Request $request){
-      if(!$request->lat){
+
+
+
+    if(!$request->lat){
         $lat = -3.769712;
       }else{
         $lat = $request->lat;
@@ -171,8 +173,7 @@ class EmpresasController extends Controller
       }
       $max_distance = 10;
 
-    $empresa = DB::table("empresas")
-    ->select("empresas.id",
+    $empresa = Empresa::select("empresas.id",
     "empresas.address",
     "empresas.nome",
     "empresas.description",
@@ -198,7 +199,8 @@ class EmpresasController extends Controller
     "empresas.foto_09",
     "empresas.empresa_package_id",
     "empresas.website_url",
-    "empresas.horario_func"
+    "empresas.horario_func",
+    "empresas.total_views"
         ,
         DB::raw("7371 * acos(cos(radians(" . $lat . "))
         * cos(radians(empresas.latitude))
@@ -214,6 +216,13 @@ class EmpresasController extends Controller
         //->get();
 
       if($empresa){
+
+
+        $dados = [
+          'total_views' => $empresa->total_views+1
+        ];
+        $empresa->update($dados);
+
         return response()->json([
           'success' => true,
           'empresa' => $empresa,

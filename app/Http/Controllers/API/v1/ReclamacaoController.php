@@ -66,6 +66,12 @@ class ReclamacaoController extends Controller
 
     $reclamacao = Reclamacao::where('id', $request->id)->with('user','categories')->first();
 
+    $dados = [
+      'views' => $reclamacao->views+1
+    ];
+
+    $reclamacao->update($dados);
+    
     return response()->json([
         'success' =>true,
         'data' => $reclamacao
