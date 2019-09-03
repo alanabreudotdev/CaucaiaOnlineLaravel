@@ -61,7 +61,7 @@ class IndexController extends Controller
         ->get();
 
     //GET CATEGORIES GUIA COMERCIAL HOME
-    $categorias = EmpresasCategory::where('status',1)->select('id', 'name', 'icon_url')->limit(9)->get();
+    $categorias = EmpresasCategory::where('status',1)->select('id', 'name', 'icon_url')->orderby('total_views','desc')->limit(9)->get();
 
     $reclamacoes = Reclamacao::latest()->select('id','created_at','reclama_category_id',
       'titulo', 'texto_reclamacao','foto_url_01', 'apoio', 'endereco', 'views', 'user_id', 'slug' )
