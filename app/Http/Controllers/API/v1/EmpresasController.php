@@ -53,7 +53,16 @@ class EmpresasController extends Controller
 
               ->latest()->with('categoria')->paginate($perPage);
       } else {
-          $empresas = Empresa::latest()->paginate($perPage);
+          $empresas = Empresa::latest()
+          ->select("empresas.id", "empresas.address", "empresas.nome","empresas.total_reviews", "empresas.imagem_principal", "empresas.featured","empresas.empresa_package_id"
+              ,
+              DB::raw("7371 * acos(cos(radians(" . $lat . "))
+              * cos(radians(empresas.latitude))
+              * cos(radians(empresas.longitude) - radians(" . $lon . "))
+              + sin(radians(" .$lat. "))
+              * sin(radians(empresas.latitude))) AS distance"))
+
+          ->paginate($perPage);
       }
 
       if($empresas){
