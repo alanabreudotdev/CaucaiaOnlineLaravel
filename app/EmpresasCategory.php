@@ -31,7 +31,7 @@ class EmpresasCategory extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'icon_url', 'status'];
+    protected $fillable = ['total_views','name', 'icon_url', 'status'];
 
 
 

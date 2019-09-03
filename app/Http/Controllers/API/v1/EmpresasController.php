@@ -139,6 +139,13 @@ class EmpresasController extends Controller
         //->get();
 
       if($empresas){
+
+        $categoria = EmpresasCategory::where('id',$request->categoria)->get();
+        $dados = [
+          'total_views' => $categoria->total_views+1;
+        ];
+        $categoria->update($dados);
+
         return response()->json([
           'success' => true,
           'empresas' => $empresas,
