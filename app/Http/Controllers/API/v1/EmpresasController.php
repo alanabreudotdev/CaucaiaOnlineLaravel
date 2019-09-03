@@ -142,7 +142,7 @@ class EmpresasController extends Controller
 
         $categoria = EmpresasCategory::where('id',$request->categoria)->get();
         $dados = [
-          'total_views' => $categoria->total_views+1;
+          'total_views' => $categoria->total_views+1
         ];
         $categoria->update($dados);
 
