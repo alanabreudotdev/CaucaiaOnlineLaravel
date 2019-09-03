@@ -31,7 +31,7 @@ class Reclamacao extends Model
      *
      * @var array
      */
-    protected $fillable = ['apoio','url_video','latitude','longitude','respondida','slug','reclama_category_id', 'reclama_sub_category_id', 'user_id', 'titulo', 'texto_reclamacao', 'foto_url_01', 'foto_url_02', 'foto_url_03', 'endereco', 'celular', 'telefone', 'status', 'resolvido'];
+    protected $fillable = ['views','apoio','url_video','latitude','longitude','respondida','slug','reclama_category_id', 'reclama_sub_category_id', 'user_id', 'titulo', 'texto_reclamacao', 'foto_url_01', 'foto_url_02', 'foto_url_03', 'endereco', 'celular', 'telefone', 'status', 'resolvido'];
 
 
 

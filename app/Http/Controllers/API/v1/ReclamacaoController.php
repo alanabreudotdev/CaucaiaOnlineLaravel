@@ -71,7 +71,7 @@ class ReclamacaoController extends Controller
     ];
 
     $reclamacao->update($dados);
-    
+
     return response()->json([
         'success' =>true,
         'data' => $reclamacao
