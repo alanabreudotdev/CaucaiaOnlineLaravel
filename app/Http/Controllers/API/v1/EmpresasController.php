@@ -140,7 +140,8 @@ class EmpresasController extends Controller
 
       if($empresas){
 
-        $categoria = EmpresasCategory::where('id',$request->categoria)->get();
+        $categoria = EmpresasCategory::where('id',$request->categoria)->first();
+
         $dados = [
           'total_views' => $categoria->total_views+1
         ];
