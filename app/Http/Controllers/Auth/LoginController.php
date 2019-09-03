@@ -57,8 +57,8 @@ class LoginController extends Controller
             }else{
               return response()->json([
                   'success' => false,
-                  'message' => 'Você precisa validar seu email.'
-                  
+                  'message' => 'Você precisa validar seu email. Acesse seu email e valide.'
+
               ]);
             }
 

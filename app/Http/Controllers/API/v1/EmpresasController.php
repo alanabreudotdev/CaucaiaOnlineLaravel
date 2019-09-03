@@ -12,6 +12,44 @@ use DB;
 
 class EmpresasController extends Controller
 {
+
+  /**
+  * pesquisa de empresas
+  */
+  public function search(Request $request)
+  {
+      $keyword = $request->get('search');
+      $perPage = 10;
+
+      if (!empty($keyword)) {
+          $empresas = Empresa::where('nome', 'LIKE', "%$keyword%")
+              ->orWhere('website_url', 'LIKE', "%$keyword%")
+              ->orWhere('address', 'LIKE', "%$keyword%")
+              ->orWhere('description', 'LIKE', "%$keyword%")
+              ->orWhere('category_id', 'LIKE', "%$keyword%")
+              ->orWhere('instagram', 'LIKE', "%$keyword%")
+              ->orWhere('facebook', 'LIKE', "%$keyword%")
+              ->orWhere('twitter', 'LIKE', "%$keyword%")
+              ->orWhere('youtube', 'LIKE', "%$keyword%")
+
+              ->latest()->with('categoria')->paginate($perPage);
+      } else {
+          $empresas = Empresa::latest()->paginate($perPage);
+      }
+
+      if($empresas){
+        return response()->json([
+          'success' => true,
+          'empresas' => $empresas,
+        ]);
+      }else{
+        return response()->json([
+          'success' => false,
+          'message' => 'Nenhuma empresa encontrada.'
+        ]);
+      }
+  }
+
     /****
     * GET CATEGORIES EMPRESAS
     */
@@ -63,8 +101,10 @@ class EmpresasController extends Controller
         + sin(radians(" .$lat. "))
         * sin(radians(empresas.latitude))) AS distance"))
         ->latest()
+
         ->where('status',1)
         ->where('category_id',$request->categoria)
+
         ->orderby('featured', 'desc')
         ->orderby('distance', 'asc')
         ->paginate(10);

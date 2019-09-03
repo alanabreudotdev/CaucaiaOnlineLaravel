@@ -52,6 +52,6 @@ class Empresa extends Model
     }
 
     public function categoria(){
-      return $this->belongsTo('App\EmpresaCategory', 'category_id');
+      return $this->belongsTo('App\EmpresasCategory', 'category_id')->select('id','name', 'icon_url');
     }
 }

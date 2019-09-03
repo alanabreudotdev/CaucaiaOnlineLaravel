@@ -48,6 +48,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::get('empresa','API\v1\EmpresasController@getEmpresa');
     Route::get('empresa-review','API\v1\EmpresasController@updateReview');
     Route::get('empresa-mapa','API\v1\EmpresasController@lugaresMapa');
+    Route::get('empresa-search','API\v1\EmpresasController@search');
 
 Route::group(['middleware' => 'auth:api'], function(){
 
