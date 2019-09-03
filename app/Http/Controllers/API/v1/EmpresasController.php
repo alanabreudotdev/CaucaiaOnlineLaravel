@@ -19,7 +19,7 @@ class EmpresasController extends Controller
   public function search(Request $request)
   {
       $keyword = $request->get('search');
-      $perPage = 10;
+      $perPage = 4;
 
       if(!$request->lat){
         $lat = -3.769712;
