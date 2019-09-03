@@ -21,6 +21,18 @@ class EmpresasController extends Controller
       $keyword = $request->get('search');
       $perPage = 10;
 
+      if(!$request->lat){
+        $lat = -3.769712;
+      }else{
+        $lat = $request->lat;
+      }
+      if(!$request->lon){
+        $lon = -38.652216;
+      }else{
+        $lon = $request->lon;
+      }
+      $max_distance = 500;
+
       if (!empty($keyword)) {
           $empresas = Empresa::where('nome', 'LIKE', "%$keyword%")
               ->orWhere('website_url', 'LIKE', "%$keyword%")
@@ -31,6 +43,13 @@ class EmpresasController extends Controller
               ->orWhere('facebook', 'LIKE', "%$keyword%")
               ->orWhere('twitter', 'LIKE', "%$keyword%")
               ->orWhere('youtube', 'LIKE', "%$keyword%")
+              ->select("empresas.id", "empresas.address", "empresas.nome","empresas.total_reviews", "empresas.imagem_principal", "empresas.featured","empresas.empresa_package_id"
+                  ,
+                  DB::raw("7371 * acos(cos(radians(" . $lat . "))
+                  * cos(radians(empresas.latitude))
+                  * cos(radians(empresas.longitude) - radians(" . $lon . "))
+                  + sin(radians(" .$lat. "))
+                  * sin(radians(empresas.latitude))) AS distance"))
 
               ->latest()->with('categoria')->paginate($perPage);
       } else {
