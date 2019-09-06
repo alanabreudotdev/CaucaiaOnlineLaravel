@@ -198,6 +198,65 @@ class EmpresasController extends Controller
 		]);
         $requestData = $request->all();
 
+
+
+        //TRATAR IMAGEM PRINCIPAL DA EMPRESA
+        // Check if a profile image has been uploaded
+        if ($request->has('imagem_principal')) {
+            // Get image file
+            $image = $request->file('imagem_principal')[0];
+            // Make a image name based on user name and current timestamp
+            $name = str_slug($id.'_'.time().'_'. str_random(50));
+            // Define folder path
+            $folder = '/uploads/images/empresas/';
+            // Make a file path where image will be stored [ folder path + file name + file extension]
+            $filePath = $folder . $name. '.' . $image->getClientOriginalExtension();
+            // Upload image
+            $this->uploadOne($image, $folder, 'public', $name);
+
+           //compress image
+            $this->compressedImage(storage_path().'/app/public'.$filePath, storage_path().'/app/public'.$filePath,30);
+            $requestData['imagem_principal'] = $filePath;
+
+        }
+
+
+        //TRATAR FOTOS GALERIA MAX 9 FOTOS
+        // get the files
+        $files = $request->files;
+        // counting of uploaded images
+        $file_count = count($files);
+        // start count how many uploaded
+        $uploadcount = 0;
+        $fotoNumber = 1;
+
+        foreach ($files as $images) {
+          foreach ($images as $file) {
+
+            $rules = array('file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'); //'required|mimes:png,gif,jpeg,txt,pdf,doc'
+            $validator = Validator::make(array('file'=> $file), $rules);
+
+            if($validator->passes()){
+              $fotoColumn = 'foto_0'.$fotoNumber;
+              $destinationPath = storage_path().'/app/public/uploads/images/empresas/'; // upload folder in public directory
+              $filename = str_slug($id.'_'.time().'_'. str_random(50)). '.' . $file->getClientOriginalExtension();
+              $upload_success = $file->move($destinationPath, $filename);
+
+              $uploadcount ++;
+              $folder = '/uploads/images/empresas/';
+              // Make a file path where image will be stored [ folder path + file name + file extension]
+              $filePath = $folder . $filename;
+              // save into database
+              $extension = $file->getClientOriginalExtension();
+              $this->compressedImage(storage_path().'/app/public'.$filePath, storage_path().'/app/public'.$filePath,30);
+
+              $requestData[$fotoColumn] = $filePath;
+
+              $fotoNumber++;
+          }
+        }
+          }
+
         $empresa = Empresa::findOrFail($id);
         $empresa->update($requestData);
 
