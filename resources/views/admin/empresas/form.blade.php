@@ -10,7 +10,7 @@
       <input name="imagem_principal" class="form-control" type="file">
     </div>
 
-
+    
    <hr>
   <div class="col-12">
     <div class="form-group{{ $errors->has('nome') ? 'has-error' : ''}}">
