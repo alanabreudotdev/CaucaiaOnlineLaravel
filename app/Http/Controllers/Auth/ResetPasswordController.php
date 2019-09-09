@@ -36,4 +36,25 @@ class ResetPasswordController extends Controller
     {
         $this->middleware('guest');
     }
+
+    public function resetPassword(Request $request){
+      $rules = [
+
+          'password' => ['required', 'string', 'min:6', 'confirmed'],
+      ];
+      $messages = [
+
+        'password.required' => 'Senha obrigatória.',
+        'password.confirmed' => 'Confirmação de senha não confere.',
+      ];
+
+      $update = User::where('id',$requesti->id)->first();
+      $update->update([
+        'password' => Hash::make($request->get('password')),
+      ]);
+
+      print($update);
+
+
+    }
 }

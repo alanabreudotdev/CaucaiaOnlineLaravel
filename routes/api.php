@@ -37,6 +37,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     Route::post('entrar', 'Auth\LoginController@loginAPI');
     Route::get('sair', 'Auth\LoginController@logoutAPI');
     Route::get('register/activate/{token}', 'Auth\RegisterController@registerActivate');
+    Route::post('password-update', 'Auth\ResetPasswordController@resetPassword');
 
     //noticias
     Route::get('noticias-index','API\v1\IndexController@noticiasListar');
