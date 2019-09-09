@@ -93,7 +93,7 @@ class EmpresasController extends Controller
 
         //TRATAR IMAGEM PRINCIPAL DA EMPRESA
         // Check if a profile image has been uploaded
-        if ($request->has('imagem_principal')) {
+        if ($request->file('imagem_principal')[0]) {
             // Get image file
             $image = $request->file('imagem_principal')[0];
             // Make a image name based on user name and current timestamp
@@ -118,7 +118,7 @@ class EmpresasController extends Controller
         $files = $request->files;
         // counting of uploaded images
         $file_count = count($files);
-        dd($file_count);
+
         // start count how many uploaded
         $uploadcount = 0;
         $fotoNumber = 1;
