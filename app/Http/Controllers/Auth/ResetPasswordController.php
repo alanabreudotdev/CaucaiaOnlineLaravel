@@ -55,7 +55,19 @@ class ResetPasswordController extends Controller
         'password' => Hash::make($request->get('password')),
       ]);
 
-      print($update);
+      if ($update) {
+        
+          return response()->json([
+            'message' => 'Senha alterada com sucesso.',
+            'success' => true,
+          ], 200);
+      }else{
+
+          return response()->json([
+                'message' => 'Não foi possível alterar a senha.',
+                'success' => false,
+          ], 500);
+      }
 
 
     }
