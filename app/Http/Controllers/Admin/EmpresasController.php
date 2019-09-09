@@ -93,9 +93,9 @@ class EmpresasController extends Controller
 
         //TRATAR IMAGEM PRINCIPAL DA EMPRESA
         // Check if a profile image has been uploaded
-        if ($request->file('imagem_principal')[0]) {
+        if ($request->has('imagem_principal')) {
             // Get image file
-            $image = $request->file('imagem_principal')[0];
+            $image = $request->file('imagem_principal');
             // Make a image name based on user name and current timestamp
             $name = str_slug($save->id.'_'.time().'_'. str_random(50));
             // Define folder path
