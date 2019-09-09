@@ -114,12 +114,15 @@ class EmpresasController extends Controller
 
         //TRATAR FOTOS GALERIA MAX 9 FOTOS
         // get the files
+        if($request->has('files')){
         $files = $request->files;
         // counting of uploaded images
         $file_count = count($files);
         // start count how many uploaded
         $uploadcount = 0;
         $fotoNumber = 1;
+
+
 
         foreach ($files as $images) {
           foreach ($images as $file) {
@@ -145,6 +148,7 @@ class EmpresasController extends Controller
               $save->save();
               $fotoNumber++;
           }
+        }
         }
           }
 
