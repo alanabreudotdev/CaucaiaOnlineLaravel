@@ -156,10 +156,6 @@
               limit: 9
           });
 
-        // enable fileuploader plugin
-        $('input[name="imagem_principal"]').fileuploader({
-              addMore: false
-          });
 
         });
     </script>
