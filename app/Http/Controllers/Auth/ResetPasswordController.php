@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 
@@ -52,6 +53,15 @@ class ResetPasswordController extends Controller
         'password.required' => 'Senha obrigatória.',
         'password.confirmed' => 'Confirmação de senha não confere.',
       ];
+
+      //Create a validator, unlike $this->validate(), this does not automatically redirect on failure, leaving the final control to you :)
+      $validated = Validator::make($request->all(), $rules,$messages);
+
+      //Check if the validation failed, return your custom formatted code here.
+      if($validated->fails())
+      {
+          return response()->json(['success' => false, 'messages' => 'Dados inválidos.', 'errors' => $validated->errors()]);
+      }
 
       $update = User::where('id',$request->id)->first();
       $update->update([
