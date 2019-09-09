@@ -118,6 +118,7 @@ class EmpresasController extends Controller
         $files = $request->files;
         // counting of uploaded images
         $file_count = count($files);
+        dd($file_count);
         // start count how many uploaded
         $uploadcount = 0;
         $fotoNumber = 1;
