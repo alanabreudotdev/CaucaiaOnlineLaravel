@@ -4,6 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
+use App\User;
+use Illuminate\Support\Facades\Hash;
 
 use Auth;
 
@@ -50,13 +53,13 @@ class ResetPasswordController extends Controller
         'password.confirmed' => 'Confirmação de senha não confere.',
       ];
 
-      $update = User::where('id',$requesti->id)->first();
+      $update = User::where('id',$request->id)->first();
       $update->update([
         'password' => Hash::make($request->get('password')),
       ]);
 
       if ($update) {
-        
+
           return response()->json([
             'message' => 'Senha alterada com sucesso.',
             'success' => true,
