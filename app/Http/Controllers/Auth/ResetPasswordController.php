@@ -60,7 +60,7 @@ class ResetPasswordController extends Controller
       //Check if the validation failed, return your custom formatted code here.
       if($validated->fails())
       {
-          return response()->json(['success' => false, 'messages' => 'Dados inválidos.', 'errors' => $validated->errors()]);
+          return response()->json(['success' => false, 'message' => 'Dados inválidos.', 'errors' => $validated->errors()]);
       }
 
       $update = User::where('id',$request->id)->first();
