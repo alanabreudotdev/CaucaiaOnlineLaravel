@@ -7,7 +7,7 @@
 
    </div>
     <div class="form-group col-md-12">
-      <input name="imagem_principal" class="input-file" type="file">
+      <input name="imagem_principal" class="form-control" type="file">
     </div>
 
 
