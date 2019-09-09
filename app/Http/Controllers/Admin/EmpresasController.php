@@ -88,7 +88,7 @@ class EmpresasController extends Controller
 		]);
 
         $requestData = $request->all();
-        $requestData->total_views= 0;
+        $requestData['total_views'] = 0;
 
         $save = Empresa::create($requestData);
 
