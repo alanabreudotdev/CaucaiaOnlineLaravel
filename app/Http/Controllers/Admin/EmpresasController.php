@@ -88,7 +88,8 @@ class EmpresasController extends Controller
 		]);
 
         $requestData = $request->all();
-
+        $image = $request->file('imagem_principal')[0];
+        unset($request->imagem_principal);
         $save = Empresa::create($requestData);
 
         //TRATAR IMAGEM PRINCIPAL DA EMPRESA
