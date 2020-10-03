@@ -10,15 +10,15 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+/*
 Route::get('/', function(){
   echo 'ok!';
 });
-/*
+*/
 Route::get('/', 'Front\\IndexController@index')->name('home');
 //Route::get('/', 'HomeController@index')->name('home');
-*/
-//ROTAS RECLAMAÇÃO
+
+//ROTAS VOZDOCIDADAO
 Route::get('/reclamar', 'Front\\ReclamarController@index')->name('reclamacao.front.index');
 Route::post('/reclamar', 'Front\\ReclamarController@reclamarPost')->middleware('auth')->name('reclamacao.front.post');
 Route::get('/reclamar/{id}', 'Front\\ReclamarController@reclamarOpen')->middleware('auth','verified')->name('reclamacao.front.open');
