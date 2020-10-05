@@ -44,6 +44,20 @@
                                     @enderror
                             </div>
                             <div class="form-group">
+                                <div class="input-group">
+                                <input class="form-control" name="cpf" data-mask="999.999.999-99 @error('cpf') is-invalid @enderror"  id="cpf" placeholder="CPF" type="text" required>
+                                    
+                                    <div class="input-group-append">
+                                        <span class="input-group-text"><span class="feather-icon"><i data-feather="eye-off"></i></span></span>
+                                    </div>
+                                    @error('cpf')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                 @enderror
+                                </div>
+                            </div>
+                            <div class="form-group">
                                     <div class="input-group">
                                     <input id="password" type="password" placeholder="Senha" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
                                     <div class="input-group-append">
@@ -64,6 +78,7 @@
                                     </div>
                                 </div>
                             </div>
+                            
                             <div class="custom-control custom-checkbox mb-25">
                                 <input class="custom-control-input" id="same-address" type="checkbox" checked>
                                 <label class="custom-control-label font-14" for="same-address">Eu li e aceito os <a href=""><u>termos e condições</u></a></label>

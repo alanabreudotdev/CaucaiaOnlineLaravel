@@ -92,10 +92,12 @@ class Reclamacao extends Model
                         ->with('categories')
                         ->where('id',$id)
                         ->orWhere('reclama_category_id', $category_id)
+                        ->where('status','1')
                         ->where('latitude','<>',null)->get();
         }else{
             $locations = Reclamacao::select('apoio','id','foto_url_01','endereco','latitude', 'longitude','titulo','id','slug','reclama_category_id')
                         ->with('categories')
+                        ->where('status','1')
                         ->where('latitude','<>',null)->get();
         }
         return $locations;

@@ -35,7 +35,7 @@ class ReclamarController extends Controller
     public function index(){
         $titulo = 'Reclamações - Índice';
 
-        $categorias = $this->rclCategory->orderby('name','asc')->paginate(12);
+        $categorias = $this->rclCategory->orderby('name','asc')->where('status','1')->paginate(12);
 
 
         return view('front.reclamacao.index', compact('titulo', 'categorias'));
@@ -64,11 +64,20 @@ class ReclamarController extends Controller
             'texto_reclamacao' => 'required',
             'endereco'   => "required",
             'celular'   => "required",
+            'foto_url_01' => 'required|mimes:jpeg,png,jpg',
+            'foto_url_02' => 'mimes:jpeg,png,jpg',
+            'foto_url_03' => 'mimes:jpeg,png,jpg'
+        ],
+         [
+             // custom message
+            
+            'foto_url_01.required'=> 'Adicione pelo menos uma imagem.',
+            'foto_url_01.mimes'=> 'Tipo de imagem não é válida.'
         ]);
 
         if ($validator->fails()) {
             Flash::error('','Verifique os dados digitados e tente novamente.');
-
+            
             return redirect()
                 ->back()
                 ->withErrors($validator)
@@ -80,7 +89,7 @@ class ReclamarController extends Controller
         // Get current user
         $input['user_id'] = Auth::user()->id;
         $input['slug'] = Str::slug($input['titulo']);
-        $input['status'] = 1;
+        $input['status'] = 2;
 
         //GET TOTAL RECLAMACOES PER CATEGORY
         $total = $this->rclCategory->getTotalReclamacao($input['reclama_category_id']);
@@ -158,8 +167,9 @@ class ReclamarController extends Controller
         }
 
         // Return user back and show a flash message
-        Flash::success('','Reclamação registrada com sucesso.');//flash message teste
-        return redirect('/reclamar/ver/'.$save->id.'/'.$save->slug);
+        Flash::success('','Reclamação registrada com sucesso e pendente de aprovação.');//flash message teste
+        //return redirect('/reclamar/ver/'.$save->id.'/'.$save->slug);
+        return redirect('/usuario/reclamacoes');
     }
 
     /*
@@ -170,7 +180,7 @@ class ReclamarController extends Controller
     public function reclamarListar($id = null){
 
          //LISTA CATEGORIAS PARA PASSAR PARA MENU LATERAL
-         $categorias = ReclamaCategory::orderby('total_reclamacoes','desc')->paginate(20);
+         $categorias = ReclamaCategory::orderby('total_reclamacoes','desc')->where('status','1')->paginate(20);
 
         if($id != 'todas'){
 
@@ -179,7 +189,7 @@ class ReclamarController extends Controller
 
             $perPage = 10;
 
-                $reclamacoes = Reclamacao::where('reclama_category_id',$id)->orderby('id','desc')->paginate(10);
+                $reclamacoes = Reclamacao::where('reclama_category_id',$id)->where('status','1')->orderby('id','desc')->paginate(10);
                 //PEGA OS DADOS PARA ALIMENTAR OS MAPAS
                 $locations = $this->rcl->mapJson($id, null);
                 //TRATA OS DADOS E TRANSFORMANDO EM JSON
@@ -189,7 +199,7 @@ class ReclamarController extends Controller
             $categoria = null;
             $titulo = 'Listagem de Reclamações';
 
-                $reclamacoes = Reclamacao::latest()->paginate(10);
+                $reclamacoes = Reclamacao::latest()->where('status',1)->paginate(10);
                 //PEGA OS DADOS PARA ALIMENTAR OS MAPAS
                 $locations = $this->rcl->mapJson();
 
@@ -215,7 +225,7 @@ class ReclamarController extends Controller
          //LISTA CATEGORIAS PARA PASSAR PARA MENU LATERAL
          $categorias = ReclamaCategory::orderby('total_reclamacoes','desc')->paginate(20);
 
-        $reclamacao = Reclamacao::where('id',$id)->with('answers','user','categories', 'subcategories')->first();
+        $reclamacao = Reclamacao::where('id',$id)->where('status','1')->with('answers','user','categories', 'subcategories')->first();
 
         $titulo = $reclamacao->titulo;
 
@@ -261,7 +271,8 @@ class ReclamarController extends Controller
             'texto_comentario' => 'required',
             'reclamacao_id' => 'required',
             'tipo'  => 'required'
-        ]);
+        ],
+       );
             if($validator->fails()){
                 Flash::error('','Verifique os dados digitados e tente novamente.');
 

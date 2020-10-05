@@ -60,6 +60,10 @@
     <label>{!! Form::radio('status', '1') !!} Ativo</label>
 </div>
 <div class="checkbox">
+    <label>{!! Form::radio('status', '2') !!} Aguardando Aprovação</label>
+</div>
+
+<div class="checkbox">
     <label>{!! Form::radio('status', '0', true) !!} Inativo</label>
 </div>
     {!! $errors->first('status', '<p class="help-block">:message</p>') !!}

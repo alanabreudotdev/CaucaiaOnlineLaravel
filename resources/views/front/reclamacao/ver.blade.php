@@ -61,16 +61,16 @@
                             </div>
                     </div>
 
-                        <div class="card-body">
+                        <div class="card-body p-0">
                             <div class="position-relative">
-                                <img class="card-img-top d-block" src="{{asset('storage'.$reclamacao->foto_url_01)}}" alt="Card image cap">
+                                <img class="card-img-top d-block" src="{{asset('storage'.$reclamacao->foto_url_01)}}" alt="{{ $reclamacao->titulo }}">
                             </div>
                             <div class="card-body">
                                  <h5 class="card-title">{{ $reclamacao->titulo}} @if($reclamacao->resolvido)<span class="badge badge-success">Resolvido</span>@endif</h5>
                                     <p class="card-text">{!! $reclamacao->texto_reclamacao!!}</p>
                             </div>
 
-                            <div class="form-group mt-30">
+                            <div class="form-group mt-30 pa-20">
                                 <label for="url">Compartilhar:</label>
                             <input type="url" class="form-control filled-input mw-100" value="{{setting('site_url')}}/reclama/ver/{{$reclamacao->id}}/{{$reclamacao->slug}}" readonly>
                             </div>
@@ -88,7 +88,7 @@
                 </div>
 
                 <!-- FIM CARD RECLAMACAO -->
-                @if($reclamacao->foto_url_02 || $reclamacao->foto_url_02)
+                @if($reclamacao->foto_url_02 || $reclamacao->foto_url_03)
                     <!-- SECTION IMAGENS RECLAMACAO -->
                     <section class="hk-sec-wrapper hk-gallery-wrap bg-light">
                             <h5 class="hk-sec-title">+ Imagens enviadas pelo reclamante</h5>
@@ -122,6 +122,7 @@
                             </div>
                         </section>
                     @endif
+                    <!-- SE TEM VIDEO NA RECLAMACAO -->
                     @if($reclamacao->url_video)
                         <section class="hk-sec-wrapper">
                             <h5 class="hk-sec-title">Video</h5>

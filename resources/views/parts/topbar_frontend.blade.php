@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar hk-navbar-alt">
+<nav class="navbar navbar-expand-xl navbar-light fixed-top hk-navbar hk-navbar-alt ">
         <a class="navbar-toggle-btn nav-link-hover navbar-toggler" href="javascript:void(0);" data-toggle="collapse" data-target="#navbarCollapseAlt" aria-controls="navbarCollapseAlt" aria-expanded="false" aria-label="Toggle navigation"><span class="feather-icon"><i data-feather="menu"></i></span></a>
         <a class="navbar-brand" href="/">
             <img class="brand-img d-inline-block align-top" src="{{asset('dist/img/logo-light.png')}}" alt="brand" />

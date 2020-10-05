@@ -44,16 +44,17 @@
     <link href="{{asset('dist/css/style.css')}}" rel="stylesheet" type="text/css">
     @yield('css_before')
 </head>
-
-<body>
-    @include('flash-toastr::message')
-    <!-- Preloader -->
-    <div class="preloader-it">
+ <!-- Preloader 
+ <div class="preloader-it ">
             <div class="pin"></div>
             <div class="pulse"></div>
     </div>
+    -->
     <!-- /Preloader -->
 
+<body class="container ">
+    @include('flash-toastr::message')
+   
 
 	<!-- HK Wrapper -->
 	<div class="hk-wrapper hk-alt-nav hk-icon-nav ">
@@ -61,10 +62,10 @@
             @include('parts.topbar_frontend')
         <!-- /Top Navbar -->
         <!-- Main Content -->
-        <div class="hk-pg-wrapper  px-0 bg-light ">
+        <div class="hk-pg-wrapper  px-0 bg-light pt-70">
             @yield('content')
             <!-- Footer -->
-            <div class="hk-footer-wrap container-fluid border-top border-5 border-green bg-light">
+            <div class="hk-footer-wrap container-fluid border-top border-5 border-green bg-light ">
                 <footer class="footer">
                     <div class="row">
                         <div class="col-md-6 col-sm-12">

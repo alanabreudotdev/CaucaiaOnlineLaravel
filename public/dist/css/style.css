@@ -18203,7 +18203,7 @@ table.dataTable {
     padding-right: 15px; } }
 /*Profile*/
 .profile-cover-wrap {
-  margin: 0 -50px;
+  margin: 0 0px;
   padding: 0 65px; }
   .profile-cover-wrap .profile-cover-img {
     background-size: cover;
@@ -20999,3 +20999,7 @@ div.provider-loader-wrap {
 			border-radius: 3px;
 }
 .listar-mapcontrols span + span{ margin:0 0 0 2px;}
+
+
+.side-crop { max-height: 540px; overflow: hidden; }
+.side-crop img { max-height: initial; /* Maybe optional. See note below */ }

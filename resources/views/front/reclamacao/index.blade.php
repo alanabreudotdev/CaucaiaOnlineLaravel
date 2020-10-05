@@ -117,6 +117,11 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <div class="form-group ">
+                                            
+                                            <input class="form-control" name="telefone" data-mask="999.999.999-99"  id="cpf" placeholder="CPF" type="cpf">
+                                            </div>
                                             <div class="custom-control custom-checkbox mb-25">
                                                 <input class="custom-control-input" id="same-address" type="checkbox" checked>
                                                 <label class="custom-control-label font-14" for="same-address">Eu li e aceito os <a href=""><u>termos e condições</u></a></label>

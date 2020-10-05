@@ -14,8 +14,11 @@
             <div class="hk-pg-header">
                 <h4 class="hk-pg-title ">Nova Reclamação </h4>
             </div>
+
+           
             <!-- /Title -->
                 <section class="hk-sec-wrapper">
+                @include('parts.messages')
                 <h4 class="hk-sec-title">{{setting('nome_orgao_servico')}}</h4>
                         <h5 class="mb-25">Categoria: {{ $categoria->name}}</h5>
                         <div class="row">

@@ -26,12 +26,13 @@
                             </div>
                         </div>
                         <div class="card-body p-0">
-                                    <div class="position-relative">
+       
+                                    <div class="position-relative side-crop">
                                         <a href="/reclamar/ver/{{$rcl->id}}/{{$rcl->slug}}">
                                             @if($rcl->foto_url_01)
-                                                <img class="card-img-top d-block  h-400p" src="{{asset('storage'.$rcl->foto_url_01)}}" alt="{{$rcl->titulo}}">
+                                                <img class="card-img-top d-block " src="{{asset('storage'.$rcl->foto_url_01)}}" alt="{{$rcl->titulo}}">
                                             @else
-                                                <img class="card-img-top d-block h-400p" src="{{asset('dist/img/default_reclamacao.jpg')}}" alt="{{$rcl->titulo}}">
+                                                <img class="card-img-top d-block" src="{{asset('dist/img/default_reclamacao.jpg')}}" alt="{{$rcl->titulo}}">
                                             @endif
                                             <a href="/reclamar/ver/{{$rcl->id}}/{{$rcl->slug}}" class="btn btn-light btn-wth-icon icon-wthot-bg btn-sm btn-rounded btn-pg-link"><span class="icon-label"><i class="ion ion-md-link"></i></span><span class="btn-text">visualizar</span></a>
                                         </a>
